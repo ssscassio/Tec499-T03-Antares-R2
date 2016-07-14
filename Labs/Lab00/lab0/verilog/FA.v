@@ -19,7 +19,7 @@ module FA(
     //Share Wire
     xor (AxorB, A, B);
     //Sum struct
-    xor (Sum, AxorB, Cin)
+    xor (Sum, AxorB, Cin);
     //Cout struct
     and (AandB, A, B);
     and (AxorBandCin, AxorB, Cin);
