@@ -15,7 +15,7 @@ module Adder #(
 );
 
    //Some pre-declarations are already done for you
-   
+
    // Wire used to connect the Cin and Cout of the FA cells
    wire [Width:0]     Carry;
    // Cin of the lowest-bit FA is a 0 for addition
@@ -24,8 +24,20 @@ module Adder #(
    assign Cout = Carry[Width];
 
    genvar 	      i;
-  
+
    /********YOUR CODE HERE********/
+    generate
+      for (i = 0 ; i < Width; i = i + 1)
+        begin: Adder_creator
+          FA
+            fa_in (
+              .A(A[i]),
+              .B(B[i]),
+              .Cin(Carry[i]),
+              .Sum(Result[i]),
+              .Cout(Carry[i+1])  );
+        end
+    endgenerate
    /********END CODE********/
 
 endmodule
