@@ -99,7 +99,7 @@ else if ((Count != {CWidth{1'b1}}) && LED_G) Count <= Count + 1'b1;
 end
 
 //RGB LED will light up green if your Adder.v works correctly
-assign LED_G = CUTResult == ExpectedResult && CUTCout == ExpectedCout;
+assign LED_G = ~(CUTResult == ExpectedResult && CUTCout == ExpectedCout);
 
 //GPIO RGB LED will light up red if you Adder is wrong
 assign LED_R = {~LED_G};
