@@ -12,7 +12,12 @@ module Mux2_1(
 );
    // You may only use structural verilog! (i.e. wires and gates only)
    /********YOUR CODE HERE********/
+    wire notSel, bSel, aNotSel;
+
+    not(notSel, SEL);
+    and(aNotSel, A, notSel);
+    and(bSel, B, SEL);
+    or(OUT, aNotSel, bSel);
+    
    /********END CODE********/
-   assign OUT = 1'b0; //delete this line once you finish writing your logic
-   
 endmodule
