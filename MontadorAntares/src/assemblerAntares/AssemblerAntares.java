@@ -3,19 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package montadorantares;
+package assemblerAntares;
+
+import controller.RegisterController;
 
 /**
  *
  * @author KHAICK O. BRITO
  */
-public class MontadorAntares {
-/
+public class AssemblerAntares {
+
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        RegisterController rc= new RegisterController();
+        
+        rc.loadRegisterSet();
+    
+    
     }
     
 }
