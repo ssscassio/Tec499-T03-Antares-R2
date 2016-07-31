@@ -5,7 +5,10 @@
  */
 package assemblerAntares;
 
+import controller.InstructionController;
 import controller.RegisterController;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,8 +21,12 @@ public class AssemblerAntares {
      */
     public static void main(String[] args) {
         RegisterController rc= new RegisterController();
+        InstructionController ic = new InstructionController();
         
         rc.loadRegisterSet();
+        ic.loadInstructionSet();
+        
+       
     
     
     }

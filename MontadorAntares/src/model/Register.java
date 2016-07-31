@@ -28,7 +28,7 @@ public class Register {
         return this.value;
     }
     
-    public String printValue(){
+    public String getBinaryValue(){
         DecimalFormat df = new DecimalFormat("00000");
         String aux = Integer.toBinaryString(value);
         return df.format(Integer.parseInt(aux.toString()));

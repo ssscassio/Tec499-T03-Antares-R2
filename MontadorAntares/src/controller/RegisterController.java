@@ -25,6 +25,19 @@ public class RegisterController {
     
     }
     
+    /**
+     * Este método converte um simbolo de registrador em seu valor em binário
+     * @param simbol
+     * @return O valor binário correspondente ao registrador
+     */
+    public String registerBinaryValue(String simbol) throws Exception{
+        if(registers.containsKey(simbol)){
+            return registers.get(simbol).getBinaryValue();
+        }else{
+            throw new Exception("Registrador não encontrado, verifique o nome utilizado!");
+        }
+    }
+    
     public void loadRegisterSet(){
         try{
             DefaultConfig conf = DefaultConfig.getInstance();
