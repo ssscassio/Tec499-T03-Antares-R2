@@ -23,6 +23,14 @@ public class Instruction {
         this.function = function;
     }
 
+    public int getNumRegis(){
+        return this.numRegis;
+    }
+    
+    public int getNumConst(){
+        return this.numConst;
+    }
+    
     public String getMnemonic(){
         return this.mnemonic;
     }

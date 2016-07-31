@@ -25,7 +25,13 @@ public class InstructionController {
        this.loadInstructionSet();
     }
     
-
+    public Instruction getInstruction(String keyToVerify) throws Exception{
+        if(instructions.containsKey(keyToVerify))
+            return instructions.get(keyToVerify);
+        else
+            throw new Exception("Instrução '"+keyToVerify+"' não existe!");
+    
+    }
     public void loadInstructionSet(){
         try{
             DefaultConfig conf = DefaultConfig.getInstance();
@@ -34,8 +40,8 @@ public class InstructionController {
             String row = fileBuf.readLine();
             while(row != null){
                 String[] parts = row.split(" ");
-                Instruction i = new Instruction(parts[0], parts[1], Integer.parseInt(parts[2]), Integer.parseInt(parts[3]),                        Integer.parseInt(parts[4]), Integer.parseInt(parts[5]));
-                this.instructions.put(parts[0], i);                
+                Instruction i = new Instruction(parts[0].toLowerCase(), parts[1].toLowerCase(), Integer.parseInt(parts[2]), Integer.parseInt(parts[3]),                        Integer.parseInt(parts[4]), Integer.parseInt(parts[5]));
+                this.instructions.put(parts[0].toLowerCase(), i);                
                 row = fileBuf.readLine();
             }
             file.close();

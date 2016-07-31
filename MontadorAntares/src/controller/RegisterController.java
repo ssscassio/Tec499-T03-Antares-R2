@@ -38,6 +38,9 @@ public class RegisterController {
         }
     }
     
+    public boolean checkContains(String simbol){
+        return this.registers.containsKey(simbol);
+    }
     public void loadRegisterSet(){
         try{
             DefaultConfig conf = DefaultConfig.getInstance();
@@ -46,8 +49,8 @@ public class RegisterController {
             String row = fileBuf.readLine();
             while(row != null){
                 String[] parts = row.split(" ");
-                Register r = new Register(parts[0], Integer.parseInt(parts[1]));
-                this.registers.put(parts[0], r);
+                Register r = new Register(parts[0].toLowerCase(), Integer.parseInt(parts[1]));
+                this.registers.put(parts[0].toLowerCase(), r);
                 row = fileBuf.readLine();
             }
             file.close();

@@ -22,18 +22,25 @@ public class AssemblerAntares {
     public static void main(String[] args) {
         Controller controller = Controller.getInstance();
         System.out.println("Antares Assembler Tec-499\n\n");
-        assemblyChoice();
+        //assemblyChoice();
+        controller.readAssembly("teste.asm");
+        controller.removeCommentsOnAssembly();
+        try {
+            controller.verifySyntax();
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
         
         
      
     }
     
     private static void assemblyChoice(){
-        Scanner reader = new Scanner(System.in);
-        System.out.println("Insira o nome do arquivo .asm:");
-        String assembly = reader.next();
         Controller controller = Controller.getInstance();
-        controller.readAssembly(assembly);
+        Scanner reader = new Scanner(System.in);
+        System.out.println("Insira o nome do arquivo .asm:");   
+        String assembly = reader.next();
+        controller.readAssembly(assembly); 
     }
     
 }
