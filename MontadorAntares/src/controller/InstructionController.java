@@ -22,7 +22,7 @@ public class InstructionController {
     private Map<String,Instruction> instructions = new HashMap<String,Instruction>();
 
     public InstructionController(){
-       
+       this.loadInstructionSet();
     }
     
 

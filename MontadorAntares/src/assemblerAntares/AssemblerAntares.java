@@ -5,8 +5,8 @@
  */
 package assemblerAntares;
 
-import controller.InstructionController;
-import controller.RegisterController;
+import controller.Controller;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,15 +20,20 @@ public class AssemblerAntares {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        RegisterController rc= new RegisterController();
-        InstructionController ic = new InstructionController();
+        Controller controller = Controller.getInstance();
+        System.out.println("Antares Assembler Tec-499\n\n");
+        assemblyChoice();
         
-        rc.loadRegisterSet();
-        ic.loadInstructionSet();
         
-       
+     
+    }
     
-    
+    private static void assemblyChoice(){
+        Scanner reader = new Scanner(System.in);
+        System.out.println("Insira o nome do arquivo .asm:");
+        String assembly = reader.next();
+        Controller controller = Controller.getInstance();
+        controller.readAssembly(assembly);
     }
     
 }

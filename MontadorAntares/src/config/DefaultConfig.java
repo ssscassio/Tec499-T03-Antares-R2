@@ -17,6 +17,10 @@ public class DefaultConfig {
     //Single Instance
     private static DefaultConfig config = null;
     
+    private DefaultConfig() {
+		
+    }
+    
     public static DefaultConfig getInstance() {
 		if (config == null) config = new DefaultConfig();
 		return config;

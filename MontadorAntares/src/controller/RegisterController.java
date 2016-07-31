@@ -22,7 +22,7 @@ public class RegisterController {
     private Map<String,Register> registers = new HashMap<String,Register>();
     
     public RegisterController(){
-    
+        this.loadRegisterSet();
     }
     
     /**
