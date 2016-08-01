@@ -27,6 +27,7 @@ public class AssemblerAntares {
         controller.removeCommentsOnAssembly();
         try {
             controller.verifySyntax();
+            controller.convertToBinary();
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
         }

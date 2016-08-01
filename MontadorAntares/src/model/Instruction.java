@@ -11,10 +11,10 @@ public class Instruction {
     private String type; // Tipo R, I ou J
     private int numRegis;
     private int numConst;
-    private int opCode;
-    private int function;
+    private String opCode;
+    private String function;
 
-    public Instruction(String mnemonic, String type, int numRegis, int numConst, int opCode, int function){
+    public Instruction(String mnemonic, String type, int numRegis, int numConst, String opCode, String function){
         this.mnemonic = mnemonic;
         this.type = type;
         this.numRegis = numRegis;
@@ -40,15 +40,11 @@ public class Instruction {
     }
     
     public String getOpcode(){
-        DecimalFormat df = new DecimalFormat("000000");
-        String aux = Integer.toBinaryString(this.opCode);
-        return df.format(Integer.parseInt(aux.toString()));
+        return this.opCode;
     }
     
     public String getFunction(){
-        DecimalFormat df = new DecimalFormat("000000");
-        String aux = Integer.toBinaryString(this.function);
-        return df.format(Integer.parseInt(aux.toString()));
+        return this.function;
     }
     
 

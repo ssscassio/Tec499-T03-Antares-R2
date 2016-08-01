@@ -15,10 +15,23 @@ public class Command {
     private int lineIndex;
     private String[] params;
     private String command;
+    private Instruction instruc;
     
     public Command(int lineIndex, String command){
         this.lineIndex = lineIndex;
         this.command = command;
+    }
+    
+    public void setInstruction(Instruction i){
+        this.instruc = i;
+    }
+    
+    public void changeLabel(String label){
+        this.command = label;
+    }
+    
+    public Instruction getInstruction(){
+        return instruc;
     }
     
     public int getLineIndex(){
@@ -36,8 +49,7 @@ public class Command {
     public void splitFields(){
         this.command = this.command.replace(",", "");
         this.command = this.command.trim();
-        this.command = this.command.replace(" ", "-");
-        this.params = this.command.split("-");
+        this.params = this.command.split(" ");
 
     }
     

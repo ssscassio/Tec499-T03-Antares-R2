@@ -8,9 +8,12 @@ package controller;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Command;
 import model.Instruction;
 import model.Label;
@@ -63,6 +66,57 @@ public class Controller {
 
         }
     }
+    public void convertToBinary() throws Exception{
+        for(Command command : this.assembly){
+            String binary = "";
+            if(!labels.containsKey(command.getCommand())){//Instrução
+                try {
+                    binary = convert(command);
+                } catch (Exception ex) {
+                    throw new Exception("Erro na linha: " + command.getLineIndex() +"; " + ex.getMessage());
+                }
+                System.err.println(binary);
+            }else{ //Label
+            
+            
+            }
+        }
+    }
+    
+    private String convert(Command command) throws Exception{
+        String binary = "";
+        Instruction instruc = command.getInstruction();
+        switch(instruc.getMnemonic()){
+            case "add": case "addu": case "sub": case "subu": case "and":
+            case "nor": case "or":  case "xor": case "mul": case "sllv":
+            case "srav": case "srlv": case "movn": case "movz": case "stl":
+            case "sltu":
+                binary = (instruc.getOpcode()+ rc.registerBinaryValue(command.getFields()[2])+
+                       rc.registerBinaryValue(command.getFields()[3]) + rc.registerBinaryValue(command.getFields()[1]) +"00000"+ instruc.getFunction() );
+                break;
+            case "mfhi": case "mflo":
+                binary = (instruc.getOpcode()+ "0000000000" + rc.registerBinaryValue(command.getFields()[1]) +"00000"+ instruc.getFunction() );                
+                break;
+            case "mthi": case "mtlo":
+                binary = (instruc.getOpcode()+ rc.registerBinaryValue(command.getFields()[1])+ "0000000000"  +"00000"+ instruc.getFunction() );                
+                break;
+            case "seb": case "seh": case "div": case "divu": case "madd": 
+            case "maddu": case "msub": case "msubu": case "mult": case "multu":
+                binary = (instruc.getOpcode()+ rc.registerBinaryValue(command.getFields()[1])+ rc.registerBinaryValue(command.getFields()[2])+  instruc.getFunction() );                
+                break;
+            case "clz": case "clo":
+                binary = (instruc.getOpcode()+ rc.registerBinaryValue(command.getFields()[2])+ rc.registerBinaryValue(command.getFields()[1]) + rc.registerBinaryValue(command.getFields()[1])+ "00000" + instruc.getFunction() );                
+
+        }
+        return binary;
+    }
+    
+    private String pseudoConvert(Command command){
+        String binary = "";
+        
+        
+        return binary;
+    }
     
     public void removeCommentsOnAssembly(){
         ArrayList<Command> aux = new ArrayList();
@@ -96,6 +150,7 @@ public class Controller {
                     //Erro, duas declarações para a mesma label;
                     throw new Exception("Erro na linha: " + command.getLineIndex() + "; A label '" + instruction + "' ja foi declarada");
                 }else{
+                    command.changeLabel(instruction);
                     Label l = new Label(instruction, lastAdress);
                     this.labels.put(instruction, l);
                 }            
@@ -117,6 +172,7 @@ public class Controller {
                             throw new Exception("O parametro caractere '$' é exclusivo para registradores!");
                         }
                     }
+                    command.setInstruction(instruc);
                 }catch(Exception ex){
                     //Erro, Instrução inexistente.
                     throw new Exception("Erro na linha: " + command.getLineIndex() +"; " + ex.getMessage());
