@@ -36,12 +36,13 @@ module	Lab2Lock(
 	//	Parameters
 	//--------------------------------------------------------------------------
 	localparam	DIGIT_1	=	4'h2,
-					DIGIT_2	=	4'h3;
+				DIGIT_2	=	4'h3;
 										
 	//--------------------------------------------------------------------------
-	
+
 	//--------------------------------------------------------------------------
 	//	Clock & Reset Inputs
+	
 	//--------------------------------------------------------------------------
 	input					Clock;	// System clock
 	input					Reset;	// System reset
@@ -67,7 +68,11 @@ module	Lab2Lock(
 	//--------------------------------------------------------------------------
 	
 	// place state encoding here
-	
+	localparam	LOCKED =  3'b000,
+				OK1 = 3'b001,
+				OPEN = 3'b011,
+				BAD1 = 3'b010,
+				BAD2 = 3'100;
 	//--------------------------------------------------------------------------
 	
 	//--------------------------------------------------------------------------
@@ -80,6 +85,61 @@ module	Lab2Lock(
 	
 	//--------------------------------------------------------------------------
 	//	Logic
+	always @ (posedge Clock)
+		begin
+			State <= LOCKED;
+		end
+		
+	always @ (Digit or Enter or State or Reset)
+		begin 
+			Open = 1'b1;
+			Fail = 1'b1;
+			case(State)
+				LOCKED:
+					begin
+						if(Enter && !Reset){
+							if(Digit == DIGIT_1)
+								State = OK1;
+							else
+								State = BAD1;
+						}
+						else if(Reset)
+							State = LOCKED;
+					end
+				OK1:
+					begin
+						if(Enter && !Reset){
+							if(Digit == DIGIT_2)
+								State = OPEN;
+							else
+								State = BAD2;
+						}
+						else if(Reset)
+							State = LOCKED;
+					end
+				OPEN:
+					begin
+						Open = 1'b0;
+						Fail = 1'b1;
+						else if(Reset)
+							State = LOCKED;
+					end
+				BAD1:
+					begin
+						if(Enter && !Reset)
+							State = BAD2
+						else if(Reset)
+							State = LOCKED;
+					end
+				BAD2:
+					begin
+						Open = 1'b1;
+						Fail = 1'b0;
+						if(Reset)
+							State = LOCKED;
+					end
+		end
+				
 	//--------------------------------------------------------------------------
 	
 	// Place you *behavioral* Verilog here

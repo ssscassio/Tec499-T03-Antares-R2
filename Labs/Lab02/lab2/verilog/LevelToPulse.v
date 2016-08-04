@@ -15,13 +15,13 @@ module	LevelToPulse(
 			Clock,
 			Reset,
 			//------------------------------------------------------------------
-
+			
 			//------------------------------------------------------------------
 			//	Inputs
 			//------------------------------------------------------------------
 			Level,
 			//------------------------------------------------------------------
-
+			
 			//------------------------------------------------------------------
 			//	Outputs
 			//------------------------------------------------------------------
@@ -34,7 +34,7 @@ module	LevelToPulse(
 	input					Clock;	// System clock
 	input					Reset;	// System reset
 	//--------------------------------------------------------------------------
-
+	
 	//--------------------------------------------------------------------------
 	//	Inputs
 	//--------------------------------------------------------------------------
@@ -49,52 +49,49 @@ module	LevelToPulse(
 
 	//--------------------------------------------------------------------------
 	//	State Encoding
-	localparam buttonPush = 1'b1,
-	localparam buttonRelease = 1'b0;
-
-	reg state,nextState;
-
-
 	//--------------------------------------------------------------------------
+	
+	localparam ativado =1 'b1,
+				desativado = 1'b0;
 
-	// place state encoding here
-
+	reg state,next;
+	
 	//--------------------------------------------------------------------------
-
+	
 	//--------------------------------------------------------------------------
 	//	Wire Declarations
 	//--------------------------------------------------------------------------
-
-	// place wire declarations here
-
+	
+	// place wire declarations here	
+	
 	//--------------------------------------------------------------------------
-
+	
 	//--------------------------------------------------------------------------
 	//	Logic
+	//--------------------------------------------------------------------------
 	always @(posedge Clock)
 		begin
-			state <= buttonRelease
+			state <= desativado;
 		end
-		always @(state or Level or Reset)
-			begin
-				case(state)
-					buttonRelease:
-						begin
-							Pulse = 1'b0;
-							if(Level and !Reset)
-								nextState = buttonPush;
-							else
-								next = buttonRelease;
-						end
-					buttonPush:
-						begin
-							Pulse = 1'b1;
-							nextState = buttonRelease;
-						end
-				endcase
-			end
-	//--------------------------------------------------------------------------
-
+		
+	always @(state or Level or Reset) 
+		begin
+			case(state)
+				desativado:
+					begin
+						Pulse = 1'b0;
+						if(Level and !Reset)
+							next = ativado;
+						else
+							next = desativado;
+					end
+				ativado: 
+					begin 
+						Pulse = 1'b1;
+						next = desativado;
+					end
+			endcase
+		end
 	// Place you *behavioral* Verilog here
 	// You may find it useful to use a case statement to describe your FSM.
 
