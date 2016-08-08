@@ -1,4 +1,5 @@
-# Cássio Santos, Fibonacci Recursivo
+# Cássio Santos, Khaick Brito, Wanderson Silva
+# Fibonacci Recursivo
 #
 #function fibonacci(int n){
 #  if(m<2)
@@ -11,7 +12,7 @@ main:
   ADD $a0, $zero, 7
   JAL fib
   J exit
-  
+
 fib :
   ADDI $sp , $sp , -12
   sw $s0, 0($sp) #n
@@ -21,7 +22,7 @@ fib :
   beq $t0, $zero, else
   add $v0, $zero, $a0
   j exit
-  
+
 else:
   addi $s0, $a0, 0
   addi $a0, $a0, -1

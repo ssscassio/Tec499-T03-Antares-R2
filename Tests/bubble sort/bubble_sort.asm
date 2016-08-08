@@ -1,15 +1,16 @@
-#Wanderson Silva, Bubble sort
-#$t0 array limit
-#$a0 base arry
+#Wanderson Silva,Cássio Santos, Khaick Brito
+# Bubble sort
+# $t0 array limit
+# $a0 base array
 .data
      Array: .word 0, 5, 2, 1, 6, 9, 3, 7, 8, 4
 .text
     la  $t0, Array            # Copy the base address of the array into $t1
-    add $t0, $t0, 40          # 4 bytes per int * 10 ints = 40 bytes                              
-outterLoop:              
+    add $t0, $t0, 40          # 4 bytes per int * 10 ints = 40 bytes
+outterLoop:
     add $t1, $zero, $zero     # $t1 holds a flag to determine when the list is sorted
     la  $a0, Array            # Set $a0 to the base address of the Array
-innerLoop:                    
+innerLoop:
     lw  $t2, 0($a0)           # current element in array
     lw  $t3, 4($a0)           # next element in array
     slt $t5, $t2, $t3         # $t5 = 1 if $t0 < $t1
