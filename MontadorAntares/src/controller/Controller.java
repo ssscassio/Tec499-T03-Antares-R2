@@ -106,7 +106,21 @@ public class Controller {
                 break;
             case "clz": case "clo":
                 binary = (instruc.getOpcode()+ rc.registerBinaryValue(command.getFields()[2])+ rc.registerBinaryValue(command.getFields()[1]) + rc.registerBinaryValue(command.getFields()[1])+ "00000" + instruc.getFunction() );                
-
+                break;
+            case "addi": case "andi": case "ori": case "xori": case "slti":
+                binary = ( instruc.getOpcode() + rc.registerBinaryValue(command.getFields()[2]) + rc.registerBinaryValue(command.getFields()[1]) + convertImediateToBinary(Integer.parseInt(command.getFields()[3]), false));
+                break;
+            case "addiu": case "sltiu":
+                binary = ( instruc.getOpcode() + rc.registerBinaryValue(command.getFields()[2]) + rc.registerBinaryValue(command.getFields()[1]) + convertImediateToBinary(Integer.parseInt(command.getFields()[3]), true));
+                break;
+            case "rotrv" :
+                binary = (instruc.getOpcode()+ rc.registerBinaryValue(command.getFields()[2])+
+                       rc.registerBinaryValue(command.getFields()[3]) + rc.registerBinaryValue(command.getFields()[1]) + instruc.getFunction() );
+                break;
+            case "rotr" :
+                binary = (instruc.getOpcode()+ rc.registerBinaryValue(command.getFields()[2])+
+                       rc.registerBinaryValue(command.getFields()[1]) + convertShiftAmmount(Integer.parseInt(command.getFields()[3])) + instruc.getFunction() );
+                break;
         }
         return binary;
     }
@@ -114,9 +128,35 @@ public class Controller {
     private String pseudoConvert(Command command){
         String binary = "";
         
-        
+
         return binary;
     }
+    private String convertShiftAmmount(Integer ammount){
+        DecimalFormat df = new DecimalFormat("00000");
+        String aux = Integer.toBinaryString(ammount);
+        return df.format(Integer.parseInt(aux.toString()));        
+    }
+    private String convertImediateToBinary(Integer imediate, Boolean unsigned){
+        if(unsigned){
+            if(imediate < 0)
+                imediate *= -1;
+            DecimalFormat df = new DecimalFormat("0000000000000000");
+            String aux = Integer.toBinaryString(imediate);
+            return df.format(Integer.parseInt(aux.toString()));
+        }else{
+            if(imediate >= 0){
+                DecimalFormat df = new DecimalFormat("000000000000000");
+                String aux = Integer.toBinaryString(imediate);
+                return "0"+df.format(Integer.parseInt(aux.toString()));
+            }else{
+                imediate*= -1;
+                imediate = (1<<16) - imediate;
+                String aux = Integer.toBinaryString(imediate);
+                return aux.toString();
+            }
+        }
+    }
+    
     
     public void removeCommentsOnAssembly(){
         ArrayList<Command> aux = new ArrayList();
@@ -160,7 +200,7 @@ public class Controller {
                     int i;
                     for(i = 1; i < instruc.getNumRegis()+1; i++){
                         if(!rc.checkContains(fields[i])){
-                            throw new Exception("Erro na linha: " + command.getLineIndex()+"; Verifique o nome do registrador!");
+                            throw new Exception(" Verifique o nome do registrador!");
                         }
                     }
                     for(; i < instruc.getNumConst()+instruc.getNumRegis()+1; i++){
