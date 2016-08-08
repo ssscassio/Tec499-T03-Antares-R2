@@ -11,7 +11,7 @@
 ; resto = %t4
 ;;;;;;;;;;;;;;;;;;;
 main:
- addi $t0,$zero,10
+ addi $t0,$zero,100
  addi $t1,$zero,0
  addi $t2,$zero,2
  add $t3,$t2,$zero
@@ -40,7 +40,7 @@ main:
  
  IF3: ;j == 1
  bne $t3,1,LOOP2
- sw $t1, array($t5) ;Storing the number
+ sw $t2, array($t5) ;Storing the number
  addi $t5, $t5, 4  
  addi $t1,$t1,1 ;i++
  j CONTINUE
