@@ -11,7 +11,7 @@
 #  return result;
 #}
 square:
-    ADD $s0, $zero, $a0  # s0 = a0 # variable rad
+    ADDI $s0, $zero, 4  # s0 = a0 # variable rad
     LI $s1, 0           # s1 = 0 # variable index
     LI $s2, 0           # s2 = 0 # variable result
     LI $s3, 0           # s3 = 0 # variable n
