@@ -54,8 +54,15 @@ public class Controller {
             BufferedReader fileBuf = new BufferedReader(file);
             String row = fileBuf.readLine();
             while (row != null) {
+                controller.removeCommentsOnAssembly();
                 if(!row.trim().equals("")){
-                    this.assembly.add(new Command(i,row.trim().toLowerCase()));//Trim para remover espaços no inicio e no fim da linha
+                    char lastChat = row.charAt(row.length()-1);
+                    if (lastChat == ':'){ //se for uma label vai pegar o index da proxima linha
+                        this.assembly.add(new Command(i+1,row.trim().toLowerCase()));//Trim para remover espaços no inicio e no fim da linha
+                    }
+                    else
+                        this.assembly.add(new Command(i,row.trim().toLowerCase()));//Trim para remover espaços no inicio e no fim da linha
+
                 }
                 row = fileBuf.readLine();
                 i++;
@@ -65,7 +72,9 @@ public class Controller {
             System.err.printf("Erro na abertura do arquivo: %s. \n", ex.getMessage());
 
         }
+
     }
+
     public void convertToBinary() throws Exception{
         for(Command command : this.assembly){
             String binary = "";
@@ -77,7 +86,7 @@ public class Controller {
                 }
                 System.err.println(binary);
             }else{ //Label
-            
+
             
             }
         }

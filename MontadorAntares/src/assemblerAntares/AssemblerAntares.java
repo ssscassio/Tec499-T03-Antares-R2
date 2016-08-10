@@ -24,7 +24,7 @@ public class AssemblerAntares {
         System.out.println("Antares Assembler Tec-499\n\n");
         //assemblyChoice();
         controller.readAssembly("teste.asm");
-        controller.removeCommentsOnAssembly();
+        //controller.removeCommentsOnAssembly();
         try {
             controller.verifySyntax();
             controller.convertToBinary();
