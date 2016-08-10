@@ -46,9 +46,13 @@ public class Command {
         return params;
     }
     
-    public void splitFields(){
+    public void splitFields(){  
         this.command = this.command.replace(",", "");
         this.command = this.command.trim();
+        if(command.indexOf("(") != -1){
+            command = this.command.replace("(", " ");
+            command = this.command.replace(")", "");
+        }
         this.params = this.command.split(" ");
 
     }
