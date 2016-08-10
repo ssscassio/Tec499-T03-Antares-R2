@@ -1,7 +1,7 @@
 # Cássio Santos, Wanderson Silva, Khaick Brito
-# Fibonacci Recursivo
+# Prime Numbers Generator
 #
-#void calcularPrimos(int qtd){//Calcular quantidade de primos
+#void genPrime(int qtd){ //Generator range 
 #int i = 0;
 #int n = 2;
 #int j = n;
@@ -22,12 +22,12 @@
 			# Space for 100 integers
 .text							
 .globl main
-# Variaveis########
+# Registers ########
 # qtd = $t0   Ex: qtd=10
 # i = $t1
 # n = $t2
 # j = $t3
-# resto = %t4
+# rest = %t4
 ###################
 main:
  addi $t0,$zero,100
