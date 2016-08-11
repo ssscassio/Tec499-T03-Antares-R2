@@ -127,7 +127,7 @@ public class Controller {
                        rc.registerBinaryValue(command.getFields()[3]) + rc.registerBinaryValue(command.getFields()[1]) + instruc.getFunction() );
                 break;
             case "rotr" :
-                binary =                 binary = (instruc.getOpcode()+"00001"+ rc.registerBinaryValue(command.getFields()[2])+
+                binary = (instruc.getOpcode()+"00001"+ rc.registerBinaryValue(command.getFields()[2])+
                        rc.registerBinaryValue(command.getFields()[1]) + convertShiftAmmount(Integer.parseInt(command.getFields()[3])) + instruc.getFunction() );
                 break;
             case "sll": case "sra": case "srl":
