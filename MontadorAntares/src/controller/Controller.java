@@ -117,7 +117,9 @@ public class Controller {
                 binary = (instruc.getOpcode()+ rc.registerBinaryValue(command.getFields()[2])+ rc.registerBinaryValue(command.getFields()[1]) + rc.registerBinaryValue(command.getFields()[1])+ "00000" + instruc.getFunction() );                
                 break;
             case "addi": case "andi": case "ori": case "xori": case "slti":
-                binary = ( instruc.getOpcode() + rc.registerBinaryValue(command.getFields()[2]) + rc.registerBinaryValue(command.getFields()[1]) + convertImediateToBinary(Integer.parseInt(command.getFields()[3]), false));
+                binary = ( instruc.getOpcode() + rc.registerBinaryValue(command.getFields()[2]) +
+                        rc.registerBinaryValue(command.getFields()[1]) +
+                        convertImediateToBinary(Integer.parseInt(command.getFields()[3]), false));
                 break;
             case "addiu": case "sltiu":
                 binary = ( instruc.getOpcode() + rc.registerBinaryValue(command.getFields()[2]) + rc.registerBinaryValue(command.getFields()[1]) + convertImediateToBinary(Integer.parseInt(command.getFields()[3]), true));
@@ -133,14 +135,52 @@ public class Controller {
             case "sll": case "sra": case "srl":
                 binary = (instruc.getOpcode()+ "00000" + rc.registerBinaryValue(command.getFields()[2]) +rc.registerBinaryValue(command.getFields()[1])+ convertShiftAmmount(Integer.parseInt(command.getFields()[3]))+instruc.getFunction());
                 break;
+            case "li": case "la":case "move":case "negu":case "not":
+                binary = pseudoConvert(command);
+                break;
         }
         return binary;
     }
     
-    private String pseudoConvert(Command command){
+    private String pseudoConvert(Command command) throws Exception {
         String binary = "";
-        
+        Instruction instruc = command.getInstruction();
+        switch(instruc.getMnemonic()){
 
+            case "li":
+                //addi
+                binary = ( instruc.getOpcode() +
+                        rc.registerBinaryValue(command.getFields()[1]) +
+                        rc.registerBinaryValue("$zero") +
+                        convertImediateToBinary(Integer.parseInt(command.getFields()[2]), false));
+                break;
+            case "la":
+                break;
+            case "move":
+                //add
+                binary = (instruc.getOpcode()+
+                        rc.registerBinaryValue(command.getFields()[2])+
+                        rc.registerBinaryValue(command.getFields()[3]) +
+                        rc.registerBinaryValue(command.getFields()[1]) +"00000"+
+                        instruc.getFunction() );
+                break;
+            case "negu":
+                //subu
+                binary = (instruc.getOpcode()+
+                        rc.registerBinaryValue(command.getFields()[1])+
+                        rc.registerBinaryValue("$zero") +
+                        rc.registerBinaryValue(command.getFields()[2]) +"00000"+
+                        instruc.getFunction() );
+
+                break;
+            case "not":
+                //nor
+                binary = (instruc.getOpcode()+
+                        rc.registerBinaryValue(command.getFields()[1])+
+                        rc.registerBinaryValue(command.getFields()[2]) +
+                        rc.registerBinaryValue("$zero") +"00000"+
+                        instruc.getFunction() );
+        }
         return binary;
     }
     private String convertShiftAmmount(Integer ammount){
