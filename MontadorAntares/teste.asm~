@@ -10,4 +10,5 @@
 
 pow:
       rotr $s0, $S1, 31
+      sll $s0, $s1, 4
 
