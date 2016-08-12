@@ -70,7 +70,6 @@ public class Controller {
             file.close();
         } catch (IOException ex) {
             System.err.printf("Erro na abertura do arquivo: %s. \n", ex.getMessage());
-
         }
 
     }
@@ -91,7 +90,7 @@ public class Controller {
             }
         }
     }
-    
+    //>>>>>>>>>>>>>>>>>>>> FALTA CRIAR A INSTRUÇÃO LUI <<<<<<<<<<<<<<<<<
     private String convert(Command command) throws Exception{
         String binary = "";
         Instruction instruc = command.getInstruction();
@@ -149,37 +148,61 @@ public class Controller {
 
             case "li":
                 //addi
-                binary = ( instruc.getOpcode() +
+                Instruction instructionAux1 = ic.getInstruction("addi");
+                binary = ( instructionAux1.getOpcode() +
                         rc.registerBinaryValue(command.getFields()[1]) +
                         rc.registerBinaryValue("$zero") +
                         convertImediateToBinary(Integer.parseInt(command.getFields()[2]), false));
                 break;
             case "la":
+                //lui
+                //ori
+
+                //code lui
+                /*
+                 Instruction instructionAux2 = ic.getInstruction("lui");
+                *
+                *
+                *
+                 */
+
+                //code ori
+                Instruction instructionAux3 = ic.getInstruction("ori");
+                binary = ( instructionAux3.getOpcode() + rc.registerBinaryValue(command.getFields()[2]) +
+                        rc.registerBinaryValue(command.getFields()[1]) +
+                        convertImediateToBinary(Integer.parseInt(command.getFields()[3]), false));
+
+
+
                 break;
             case "move":
                 //add
-                binary = (instruc.getOpcode()+
+                Instruction instructionAux4 = ic.getInstruction("add");
+
+                binary = (instructionAux4.getOpcode()+
                         rc.registerBinaryValue(command.getFields()[2])+
                         rc.registerBinaryValue(command.getFields()[3]) +
                         rc.registerBinaryValue(command.getFields()[1]) +"00000"+
-                        instruc.getFunction() );
+                        instructionAux4.getFunction());
                 break;
             case "negu":
                 //subu
-                binary = (instruc.getOpcode()+
+                Instruction instructionAux5 = ic.getInstruction("subu");
+                binary = (instructionAux5.getOpcode()+
                         rc.registerBinaryValue(command.getFields()[1])+
                         rc.registerBinaryValue("$zero") +
                         rc.registerBinaryValue(command.getFields()[2]) +"00000"+
-                        instruc.getFunction() );
+                        instructionAux5.getFunction() );
 
                 break;
             case "not":
                 //nor
-                binary = (instruc.getOpcode()+
+                Instruction instructionAux6 = ic.getInstruction("nor");
+                binary = (instructionAux6.getOpcode()+
                         rc.registerBinaryValue(command.getFields()[1])+
                         rc.registerBinaryValue(command.getFields()[2]) +
                         rc.registerBinaryValue("$zero") +"00000"+
-                        instruc.getFunction() );
+                        instructionAux6.getFunction() );
         }
         return binary;
     }
