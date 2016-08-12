@@ -21,4 +21,12 @@ public class Label {
     public String getLabelName(){
         return this.label;
     }
+
+    public int getLabelAdress() {
+        return adress;
+    }
+
+    public void setAdress(int adress) {
+        this.adress = adress;
+    }
 }

@@ -56,13 +56,7 @@ public class Controller {
             while (row != null) {
                 controller.removeCommentsOnAssembly();
                 if(!row.trim().equals("")){
-                    char lastChat = row.charAt(row.length()-1);
-                    if (lastChat == ':'){ //se for uma label vai pegar o index da proxima linha
-                        this.assembly.add(new Command(i+1,row.trim().toLowerCase()));//Trim para remover espaços no inicio e no fim da linha
-                    }
-                    else
                         this.assembly.add(new Command(i,row.trim().toLowerCase()));//Trim para remover espaços no inicio e no fim da linha
-
                 }
                 row = fileBuf.readLine();
                 i++;
@@ -134,6 +128,13 @@ public class Controller {
             case "sll": case "sra": case "srl":
                 binary = (instruc.getOpcode()+ "00000" + rc.registerBinaryValue(command.getFields()[2]) +rc.registerBinaryValue(command.getFields()[1])+ convertShiftAmmount(Integer.parseInt(command.getFields()[3]))+instruc.getFunction());
                 break;
+            case "lui":
+                String imediate16bits = convertShiftAmmount(Integer.parseInt(command.getFields()[2]));
+                for(int i =1; imediate16bits.length()-1<15; i++){ //o imediato deve ter 16 bits
+                    imediate16bits = "0"+imediate16bits;
+                }
+                binary = instruc.getOpcode()+ "00000" + rc.registerBinaryValue(command.getFields()[1])+ imediate16bits;
+                break;
             case "li": case "la":case "move":case "negu":case "not":
                 binary = pseudoConvert(command);
                 break;
@@ -150,30 +151,23 @@ public class Controller {
                 //addi
                 Instruction instructionAux1 = ic.getInstruction("addi");
                 binary = ( instructionAux1.getOpcode() +
-                        rc.registerBinaryValue(command.getFields()[1]) +
                         rc.registerBinaryValue("$zero") +
+                        rc.registerBinaryValue(command.getFields()[1]) +
                         convertImediateToBinary(Integer.parseInt(command.getFields()[2]), false));
                 break;
             case "la":
-                //lui
-                //ori
-
                 //code lui
-                /*
-                 Instruction instructionAux2 = ic.getInstruction("lui");
-                *
-                *
-                *
-                 */
+                int aux = labels.get(command.getFields()[2]).getLabelAdress();
+                String labelAdress = Integer.toString(aux);
+                String binaryAdress = convertImediateToBinary(Integer.parseInt(labelAdress), false);
+                Instruction instructionAux2 = ic.getInstruction("lui");
+                binary = instructionAux2.getOpcode()+ "00000" + rc.registerBinaryValue("$t0")+ binaryAdress;
 
                 //code ori
                 Instruction instructionAux3 = ic.getInstruction("ori");
-                binary = ( instructionAux3.getOpcode() + rc.registerBinaryValue(command.getFields()[2]) +
-                        rc.registerBinaryValue(command.getFields()[1]) +
-                        convertImediateToBinary(Integer.parseInt(command.getFields()[3]), false));
-
-
-
+                binary = binary + "\n" + ( instructionAux3.getOpcode() + rc.registerBinaryValue(command.getFields()[1]) +
+                        rc.registerBinaryValue("$t0") +
+                        convertImediateToBinary(Integer.parseInt(labelAdress), false));
                 break;
             case "move":
                 //add
@@ -181,7 +175,7 @@ public class Controller {
 
                 binary = (instructionAux4.getOpcode()+
                         rc.registerBinaryValue(command.getFields()[2])+
-                        rc.registerBinaryValue(command.getFields()[3]) +
+                        rc.registerBinaryValue("$zero") +
                         rc.registerBinaryValue(command.getFields()[1]) +"00000"+
                         instructionAux4.getFunction());
                 break;
@@ -189,9 +183,10 @@ public class Controller {
                 //subu
                 Instruction instructionAux5 = ic.getInstruction("subu");
                 binary = (instructionAux5.getOpcode()+
-                        rc.registerBinaryValue(command.getFields()[1])+
-                        rc.registerBinaryValue("$zero") +
-                        rc.registerBinaryValue(command.getFields()[2]) +"00000"+
+                        rc.registerBinaryValue("$zero")+
+                        rc.registerBinaryValue(command.getFields()[2])+
+                        rc.registerBinaryValue(command.getFields()[1]) +
+                       "00000"+
                         instructionAux5.getFunction() );
 
                 break;
@@ -199,9 +194,10 @@ public class Controller {
                 //nor
                 Instruction instructionAux6 = ic.getInstruction("nor");
                 binary = (instructionAux6.getOpcode()+
-                        rc.registerBinaryValue(command.getFields()[1])+
-                        rc.registerBinaryValue(command.getFields()[2]) +
-                        rc.registerBinaryValue("$zero") +"00000"+
+                        rc.registerBinaryValue(command.getFields()[2])+
+                        rc.registerBinaryValue("$zero") +
+                        rc.registerBinaryValue(command.getFields()[1]) +
+                        "00000"+
                         instructionAux6.getFunction() );
         }
         return binary;
