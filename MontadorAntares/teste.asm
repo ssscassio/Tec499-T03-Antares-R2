@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ; Cássio Santos, Potencial
 ;
 ;function pow(int x, int y){
@@ -19,10 +18,13 @@
 ;      jal pow
 ;      jalr $v0, $t1
 ;      jr $s0
+GOO:
 addi $t0, $zero, 3
 j GO
 GO:
    addi $t0, $t0, 3
-   beq $t0, $t0, GO
-=======
->>>>>>> origin/master
+   beq $t0, $t0, GOGO
+   addi $t0, $t0, 3
+GOGO:
+   addi $t0, $t0, 3
+   j GOO

@@ -26,7 +26,7 @@ public class Label {
         return address;
     }
 
-    public void setAddress(int adress) {
-        this.address = adress;
+    public void setAddress(int address) {
+        this.address = address;
     }
 }
