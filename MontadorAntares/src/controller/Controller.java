@@ -55,8 +55,11 @@ public class Controller {
             String row = fileBuf.readLine();
             while (row != null) {
                 if(!row.trim().equals("")){
+<<<<<<< HEAD
                     controller.removeCommentsOnAssembly();
                     this.assembly.add(new Command(i,row.trim().toLowerCase()));//Trim para remover espaços no inicio e no fim da linha
+=======
+>>>>>>> origin/master
                 }
                 row = fileBuf.readLine();
                 i++;
@@ -64,7 +67,6 @@ public class Controller {
             file.close();
         } catch (IOException ex) {
             System.err.printf("Erro na abertura do arquivo: %s. \n", ex.getMessage());
-
         }
 
     }
@@ -85,7 +87,7 @@ public class Controller {
             }
         }
     }
-    
+    //>>>>>>>>>>>>>>>>>>>> FALTA CRIAR A INSTRUÇÃO LUI <<<<<<<<<<<<<<<<<
     private String convert(Command command) throws Exception{
         String binary = "";
         Instruction instruc = command.getInstruction();
@@ -111,7 +113,9 @@ public class Controller {
                 binary = (instruc.getOpcode()+ rc.registerBinaryValue(command.getFields()[2])+ rc.registerBinaryValue(command.getFields()[1]) + rc.registerBinaryValue(command.getFields()[1])+ "00000" + instruc.getFunction() );                
                 break;
             case "addi": case "andi": case "ori": case "xori": case "slti":
-                binary = ( instruc.getOpcode() + rc.registerBinaryValue(command.getFields()[2]) + rc.registerBinaryValue(command.getFields()[1]) + convertImediateToBinary(Integer.parseInt(command.getFields()[3]), false));
+                binary = ( instruc.getOpcode() + rc.registerBinaryValue(command.getFields()[2]) +
+                        rc.registerBinaryValue(command.getFields()[1]) +
+                        convertImediateToBinary(Integer.parseInt(command.getFields()[3]), false));
                 break;
             case "addiu": case "sltiu":
                 binary = ( instruc.getOpcode() + rc.registerBinaryValue(command.getFields()[2]) + rc.registerBinaryValue(command.getFields()[1]) + convertImediateToBinary(Integer.parseInt(command.getFields()[3]), true));
@@ -127,6 +131,7 @@ public class Controller {
             case "sll": case "sra": case "srl":
                 binary = (instruc.getOpcode()+ "00000" + rc.registerBinaryValue(command.getFields()[2]) +rc.registerBinaryValue(command.getFields()[1])+ convertShiftAmmount(Integer.parseInt(command.getFields()[3]))+instruc.getFunction());
                 break;
+<<<<<<< HEAD
             case "bne": case "beq":
                 binary = (instruc.getOpcode() + rc.registerBinaryValue(command.getFields()[1]) + rc.registerBinaryValue(command.getFields()[2]) + defAddress(command.getAddress(),labels.get(command.getFields()[3]).getAddress()));
                 break;
@@ -141,21 +146,89 @@ public class Controller {
                 break;
             case "jr":
                 binary = ("000000" + rc.registerBinaryValue(command.getFields()[1]) + "0000000000" + "00000" + instruc.getOpcode());
+=======
+            case "lui":
+                String imediate16bits = convertShiftAmmount(Integer.parseInt(command.getFields()[2]));
+                for(int i =1; imediate16bits.length()-1<15; i++){ //o imediato deve ter 16 bits
+                    imediate16bits = "0"+imediate16bits;
+                }
+                binary = instruc.getOpcode()+ "00000" + rc.registerBinaryValue(command.getFields()[1])+ imediate16bits;
+                break;
+            case "li": case "la":case "move":case "negu":case "not":
+                binary = pseudoConvert(command);
+>>>>>>> origin/master
                 break;
         }
         return binary;
     }
     
+<<<<<<< HEAD
     private String defAddress(int actualAddress, int nextAddress){
         int result = nextAddress - actualAddress;
         String binaryAddress = convertImediateToBinary(result, false);
         return binaryAddress;
     }
     
-    private String pseudoConvert(Command command){
+=======
+    private String pseudoConvert(Command command) throws Exception {
+>>>>>>> origin/master
         String binary = "";
-        
+        Instruction instruc = command.getInstruction();
+        switch(instruc.getMnemonic()){
 
+            case "li":
+                //addi
+                Instruction instructionAux1 = ic.getInstruction("addi");
+                binary = ( instructionAux1.getOpcode() +
+                        rc.registerBinaryValue("$zero") +
+                        rc.registerBinaryValue(command.getFields()[1]) +
+                        convertImediateToBinary(Integer.parseInt(command.getFields()[2]), false));
+                break;
+            case "la":
+                //code lui
+                int aux = labels.get(command.getFields()[2]).getAddress();
+                String labelAdress = Integer.toString(aux);
+                String binaryAdress = convertImediateToBinary(Integer.parseInt(labelAdress), false);
+                Instruction instructionAux2 = ic.getInstruction("lui");
+                binary = instructionAux2.getOpcode()+ "00000" + rc.registerBinaryValue("$t0")+ binaryAdress;
+
+                //code ori
+                Instruction instructionAux3 = ic.getInstruction("ori");
+                binary = binary + "\n" + ( instructionAux3.getOpcode() + rc.registerBinaryValue(command.getFields()[1]) +
+                        rc.registerBinaryValue("$t0") +
+                        convertImediateToBinary(Integer.parseInt(labelAdress), false));
+                break;
+            case "move":
+                //add
+                Instruction instructionAux4 = ic.getInstruction("add");
+
+                binary = (instructionAux4.getOpcode()+
+                        rc.registerBinaryValue(command.getFields()[2])+
+                        rc.registerBinaryValue("$zero") +
+                        rc.registerBinaryValue(command.getFields()[1]) +"00000"+
+                        instructionAux4.getFunction());
+                break;
+            case "negu":
+                //subu
+                Instruction instructionAux5 = ic.getInstruction("subu");
+                binary = (instructionAux5.getOpcode()+
+                        rc.registerBinaryValue("$zero")+
+                        rc.registerBinaryValue(command.getFields()[2])+
+                        rc.registerBinaryValue(command.getFields()[1]) +
+                       "00000"+
+                        instructionAux5.getFunction() );
+
+                break;
+            case "not":
+                //nor
+                Instruction instructionAux6 = ic.getInstruction("nor");
+                binary = (instructionAux6.getOpcode()+
+                        rc.registerBinaryValue(command.getFields()[2])+
+                        rc.registerBinaryValue("$zero") +
+                        rc.registerBinaryValue(command.getFields()[1]) +
+                        "00000"+
+                        instructionAux6.getFunction() );
+        }
         return binary;
     }
     private String convertShiftAmmount(Integer ammount){
