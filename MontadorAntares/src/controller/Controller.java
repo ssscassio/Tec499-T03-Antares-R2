@@ -55,11 +55,8 @@ public class Controller {
             String row = fileBuf.readLine();
             while (row != null) {
                 if(!row.trim().equals("")){
-<<<<<<< HEAD
                     controller.removeCommentsOnAssembly();
                     this.assembly.add(new Command(i,row.trim().toLowerCase()));//Trim para remover espaços no inicio e no fim da linha
-=======
->>>>>>> origin/master
                 }
                 row = fileBuf.readLine();
                 i++;
@@ -131,7 +128,6 @@ public class Controller {
             case "sll": case "sra": case "srl":
                 binary = (instruc.getOpcode()+ "00000" + rc.registerBinaryValue(command.getFields()[2]) +rc.registerBinaryValue(command.getFields()[1])+ convertShiftAmmount(Integer.parseInt(command.getFields()[3]))+instruc.getFunction());
                 break;
-<<<<<<< HEAD
             case "bne": case "beq":
                 binary = (instruc.getOpcode() + rc.registerBinaryValue(command.getFields()[1]) + rc.registerBinaryValue(command.getFields()[2]) + defAddress(command.getAddress(),labels.get(command.getFields()[3]).getAddress()));
                 break;
@@ -146,7 +142,6 @@ public class Controller {
                 break;
             case "jr":
                 binary = ("000000" + rc.registerBinaryValue(command.getFields()[1]) + "0000000000" + "00000" + instruc.getOpcode());
-=======
             case "lui":
                 String imediate16bits = convertShiftAmmount(Integer.parseInt(command.getFields()[2]));
                 for(int i =1; imediate16bits.length()-1<15; i++){ //o imediato deve ter 16 bits
@@ -156,22 +151,18 @@ public class Controller {
                 break;
             case "li": case "la":case "move":case "negu":case "not":
                 binary = pseudoConvert(command);
->>>>>>> origin/master
                 break;
         }
         return binary;
     }
     
-<<<<<<< HEAD
     private String defAddress(int actualAddress, int nextAddress){
         int result = nextAddress - actualAddress;
         String binaryAddress = convertImediateToBinary(result, false);
         return binaryAddress;
     }
     
-=======
     private String pseudoConvert(Command command) throws Exception {
->>>>>>> origin/master
         String binary = "";
         Instruction instruc = command.getInstruction();
         switch(instruc.getMnemonic()){

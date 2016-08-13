@@ -22,7 +22,6 @@ public class Label {
         return this.label;
     }
 
-<<<<<<< HEAD
     public int getAddress() {
         return address;
     }
@@ -30,8 +29,4 @@ public class Label {
     public void setAddress(int adress) {
         this.address = adress;
     }
-    
-    
-=======
->>>>>>> origin/master
 }
