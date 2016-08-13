@@ -19,12 +19,13 @@
 ;      jalr $v0, $t1
 ;      jr $s0
 GOO:
-addi $t0, $zero, 3
-j GO
+   la $t1, GO
+   addi $t0, $zero, 3
+   jalr $t1, $t2
 GO:
    addi $t0, $t0, 3
-   beq $t0, $t0, GOGO
+   j GOGO
+   addi $t0, $t0, 3
    addi $t0, $t0, 3
 GOGO:
-   addi $t0, $t0, 3
-   j GOO
+   jr $ra

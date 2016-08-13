@@ -168,15 +168,20 @@ public class Controller {
             case "bnez":
                 binary = (instruc.getOpcode() + rc.registerBinaryValue(command.getFields()[1]) + "00000" + defAddress(command.getAddress(), labels.get(command.getFields()[2]).getAddress()));
                 break;
-            case "j": 
+            case "j":                 
             case "jal":
                 binary = (instruc.getOpcode() +  convertToBinary26bits(labels.get(command.getFields()[1]).getAddress()));
                 break;
             case "jalr":
-                binary = ("000000" + rc.registerBinaryValue(command.getFields()[1]) + "00000" + rc.registerBinaryValue(command.getFields()[2]) + "00000" + instruc.getOpcode());
+                String[] aux = command.getFields();
+                if(aux.length == 3)
+                    binary = ("000000" + rc.registerBinaryValue(command.getFields()[1]) + "00000" + rc.registerBinaryValue(command.getFields()[2]) + "00000" + instruc.getFunction());
+                else
+                    binary = ("000000" + rc.registerBinaryValue(command.getFields()[1] + "00000" + rc.registerBinaryValue("ra") + "00000" + instruc.getFunction()));
                 break;
             case "jr":
-                binary = ("000000" + rc.registerBinaryValue(command.getFields()[1]) + "0000000000" + "00000" + instruc.getOpcode());
+                binary = ("000000" + rc.registerBinaryValue(command.getFields()[1]) + "0000000000" + "00000" + instruc.getFunction());
+                break;
             case "lui":
                 String imediate16bits = convertShiftAmmount(Integer.parseInt(command.getFields()[2]));
                 for (int i = 1; imediate16bits.length() - 1 < 15; i++) { //o imediato deve ter 16 bits
