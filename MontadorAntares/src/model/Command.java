@@ -15,13 +15,22 @@ public class Command {
     private int lineIndex;
     private String[] params;
     private String command;
+    private int address;
     private Instruction instruc;
-    
+
     public Command(int lineIndex, String command){
         this.lineIndex = lineIndex;
         this.command = command;
     }
-    
+
+    public int getAddress() {
+        return address;
+    }
+
+    public void setAddress(int address) {
+        this.address = address;
+    }
+        
     public void setInstruction(Instruction i){
         this.instruc = i;
     }

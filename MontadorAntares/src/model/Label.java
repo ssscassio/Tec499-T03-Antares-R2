@@ -11,14 +11,24 @@ package model;
  */
 public class Label {
     private String label;
-    private int adress;
+    private int address;
     
-    public Label(String label, int adress){
+    public Label(String label, int address){
         this.label =label;
-        this.adress = adress;
+        this.address = address;
     }
     
     public String getLabelName(){
         return this.label;
     }
+
+    public int getAddress() {
+        return address;
+    }
+
+    public void setAddress(int adress) {
+        this.address = adress;
+    }
+    
+    
 }

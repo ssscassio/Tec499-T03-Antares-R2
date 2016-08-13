@@ -54,15 +54,9 @@ public class Controller {
             BufferedReader fileBuf = new BufferedReader(file);
             String row = fileBuf.readLine();
             while (row != null) {
-                controller.removeCommentsOnAssembly();
                 if(!row.trim().equals("")){
-                    char lastChat = row.charAt(row.length()-1);
-                    if (lastChat == ':'){ //se for uma label vai pegar o index da proxima linha
-                        this.assembly.add(new Command(i+1,row.trim().toLowerCase()));//Trim para remover espaços no inicio e no fim da linha
-                    }
-                    else
-                        this.assembly.add(new Command(i,row.trim().toLowerCase()));//Trim para remover espaços no inicio e no fim da linha
-
+                    controller.removeCommentsOnAssembly();
+                    this.assembly.add(new Command(i,row.trim().toLowerCase()));//Trim para remover espaços no inicio e no fim da linha
                 }
                 row = fileBuf.readLine();
                 i++;
@@ -133,8 +127,29 @@ public class Controller {
             case "sll": case "sra": case "srl":
                 binary = (instruc.getOpcode()+ "00000" + rc.registerBinaryValue(command.getFields()[2]) +rc.registerBinaryValue(command.getFields()[1])+ convertShiftAmmount(Integer.parseInt(command.getFields()[3]))+instruc.getFunction());
                 break;
+            case "bne": case "beq":
+                binary = (instruc.getOpcode() + rc.registerBinaryValue(command.getFields()[1]) + rc.registerBinaryValue(command.getFields()[2]) + defAddress(command.getAddress(),labels.get(command.getFields()[3]).getAddress()));
+                break;
+            case "beqz": case "bnez":
+                binary = (instruc.getOpcode() + rc.registerBinaryValue(command.getFields()[1]) + "00000" + defAddress(command.getAddress(),labels.get(command.getFields()[2]).getAddress()));
+                break;
+            case "j": case "jal":
+                binary = (instruc.getOpcode() + defAddress(command.getAddress(), labels.get(command.getFields()[1]).getAddress()));
+                break;
+            case "jalr":
+                binary = ("000000" + rc.registerBinaryValue(command.getFields()[1]) + "00000" + rc.registerBinaryValue(command.getFields()[2]) + "00000" + instruc.getOpcode());
+                break;
+            case "jr":
+                binary = ("000000" + rc.registerBinaryValue(command.getFields()[1]) + "0000000000" + "00000" + instruc.getOpcode());
+                break;
         }
         return binary;
+    }
+    
+    private String defAddress(int actualAddress, int nextAddress){
+        int result = nextAddress - actualAddress;
+        String binaryAddress = convertImediateToBinary(result, false);
+        return binaryAddress;
     }
     
     private String pseudoConvert(Command command){
@@ -204,6 +219,7 @@ public class Controller {
                     //Erro, duas declarações para a mesma label;
                     throw new Exception("Erro na linha: " + command.getLineIndex() + "; A label '" + instruction + "' ja foi declarada");
                 }else{
+                    command.setAddress(lastAdress);
                     command.changeLabel(instruction);
                     Label l = new Label(instruction, lastAdress);
                     this.labels.put(instruction, l);
@@ -227,6 +243,18 @@ public class Controller {
                         }
                     }
                     command.setInstruction(instruc);
+                    command.setAddress(lastAdress);
+                    switch(instruc.getMnemonic()){
+                        case "la": 
+                            lastAdress+=2;
+                            break;
+                        case "li": case "move": case "negu": case "not":
+                            lastAdress++;
+                            break;
+                        default:
+                            lastAdress++;
+                            break;
+                    }
                 }catch(Exception ex){
                     //Erro, Instrução inexistente.
                     throw new Exception("Erro na linha: " + command.getLineIndex() +"; " + ex.getMessage());
