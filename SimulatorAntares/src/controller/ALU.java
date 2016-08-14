@@ -431,6 +431,61 @@ public class ALU {
         c.PC.setData(c.registers.get(rs).getBinaryData()); 
     }
     
+    /* Conditional Functions */
+    
+    public void movn(String rs, String rt, String rd){
+        if(c.registers.get(rt).getData() != 0){
+            c.registers.get(rd).setData(c.registers.get(rs).getBinaryData());
+        }
+    }
+    
+    public void movz(String rs, String rt, String rd){
+        if(c.registers.get(rt).getData() == 0){
+            c.registers.get(rd).setData(c.registers.get(rs).getBinaryData());
+        }
+    }
+    
+    public void slt(String rs, String rt, String rd){
+        if(c.registers.get(rs).getData() < c.registers.get(rt).getData()){
+            c.registers.get(rd).setIntData(1);
+        }else{
+            c.registers.get(rd).setIntData(0);
+        }
+    }
+    
+    public void slti(String rs, String rt, String imm){
+        if(imm.charAt(0) =='1'){
+            imm = createPattern(16, '1') + imm;
+        }
+        int aux = convertImediate(imm, false);
+        if(c.registers.get(rs).getData() < aux){
+            c.registers.get(rt).setIntData(1);
+        }else{
+            c.registers.get(rt).setIntData(0);
+        }
+    }
+    
+    public void sltiu(String rs, String rt, String imm){
+        if(imm.charAt(0) =='1'){
+            imm = createPattern(16, '1') + imm;
+        }
+        int aux = convertImediate(imm, false);
+        if(c.registers.get(rs).getUnsignedData() < aux){
+            c.registers.get(rt).setIntData(1);
+        }else{
+            c.registers.get(rt).setIntData(0);
+        }
+    }
+    
+    public void sltu(String rs, String rt, String rd){
+        if(c.registers.get(rs).getUnsignedData() < c.registers.get(rt).getUnsignedData()){
+            c.registers.get(rd).setIntData(1);
+        }else{
+            c.registers.get(rd).setIntData(0);
+        }
+    }
+    
+    
     /*Auxiliar Functions*/
     private int convertImediate(String imm, boolean unsigned){
         return unsigned? (int) Long.parseUnsignedLong(imm, 2):(int) Long.parseLong(imm, 2);
