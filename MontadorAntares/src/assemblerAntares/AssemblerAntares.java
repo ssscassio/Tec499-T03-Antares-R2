@@ -6,6 +6,8 @@
 package assemblerAntares;
 
 import controller.Controller;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -18,31 +20,9 @@ public class AssemblerAntares {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Controller controller = Controller.getInstance();
-        System.out.println("Antares Assembler Tec-499\n\n");
-        //fileChoice v = new fileChoice();
-        //v.show();
-        //System.out.print(v.getAsmFile() +"----\n" + v.getPath());
-        //assemblyChoice();
-        controller.readAssembly("teste.asm");
-        //controller.removeCommentsOnAssembly();
-        try {
-            controller.verifySyntax();
-            controller.convertToBinary();
-        } catch (Exception ex) {
-            System.err.println(ex.getMessage());
-        }
-        
-        
-     
+        //O CÓDIGO QUE ESTAVA AQUI AGORA ESTÁ NA CLASSE FileChooser, no metodo readAsm.
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.show();
     }
-    
-    private static void assemblyChoice(){
-        Controller controller = Controller.getInstance();
-        Scanner reader = new Scanner(System.in);
-        System.out.println("Insira o nome do arquivo .asm:");   
-        String assembly = reader.next();
-        controller.readAssembly(assembly); 
-    }
-    
 }

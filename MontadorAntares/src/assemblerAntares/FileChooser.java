@@ -1,16 +1,21 @@
 package assemblerAntares;
 
+import controller.Controller;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 
 /**
  * Created by Wanderson on 13/08/16.
  */
-public class fileChoice {
+public class FileChooser {
 
     private JFrame frame;
     private JPanel jpMain;
@@ -22,16 +27,16 @@ public class fileChoice {
 
     private JTextField txtAsmFile;
     private JTextField txtPath;
+    private JTextField txtFileName;
 
     private JLabel lblAsmFile;
     private JLabel lblPath;
-
-    private String path;
-    private String asmFile;
+    private JLabel lblFileName;
 
 
 
-    public fileChoice(){}
+
+    public FileChooser(){}
 
     public void show() {
         createFrame();
@@ -66,6 +71,9 @@ public class fileChoice {
         frame.add(txtPath);
         frame.add(btnAddPath);
 
+        frame.add(lblFileName);
+        frame.add(txtFileName);
+
         frame.add(btnAssembler, BorderLayout.SOUTH);
     }
 
@@ -77,12 +85,14 @@ public class fileChoice {
         font = new Font(Font.SANS_SERIF, Font.PLAIN, 13);
 
         txtAsmFile = new JTextField(20);
-        txtPath = new JTextField(16);
+        txtPath = new JTextField(20);
+        txtFileName = new JTextField(25);
         btnAddAsmFile = new JButton("...");
         btnAddPath = new JButton("...");
         btnAssembler = new JButton("Assembler");
         lblAsmFile = new JLabel("Asm File: ");
-        lblPath = new JLabel("Save on: ");
+        lblPath = new JLabel("Save in: ");
+        lblFileName = new JLabel("File name:");
 
         btnAddAsmFile.addActionListener(new ActionListener() {
             @Override
@@ -102,15 +112,14 @@ public class fileChoice {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                asmFile = txtAsmFile.getText();
-                path = txtPath.getText();
+                String asmFile = txtAsmFile.getText();
+                String path = txtPath.getText();
+                String fileName= txtFileName.getText();
+                readAsmWrteBinary(asmFile, path,fileName);
                 frame.dispose();
 
             }
         });
-
-
-
     }
 
     public void addAsmFile(){
@@ -137,10 +146,32 @@ public class fileChoice {
         }
 
     }
-    public String getPath(){
-        return this.path;
+    public void readAsmWrteBinary(String asmFile, String path, String fileName){
+        Controller controller = Controller.getInstance();
+        System.out.println("Antares Assembler Tec-499\n\n");
+        controller.readAssembly(asmFile);
+        controller.removeCommentsOnAssembly();
+        try {
+            controller.verifySyntax();
+            String binary = controller.convertToBinary();
+            System.out.print("\n \n"+binary);
+            writeBinary(path, fileName, binary);
+        } catch (Exception ex) {
+            System.err.println(ex.getMessage());
+        }
     }
-    public String getAsmFile(){
-        return this.asmFile;
+    public void writeBinary(String path, String fileName, String binary){
+
+        FileWriter arq = null;
+        try {
+            arq = new FileWriter(path+"/"+fileName+".txt");
+            PrintWriter writArq = new PrintWriter(arq);
+            writArq.printf(binary);
+            arq.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
     }
 }

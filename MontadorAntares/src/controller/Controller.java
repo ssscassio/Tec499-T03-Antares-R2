@@ -68,23 +68,25 @@ public class Controller {
 
     }
 
-    public void convertToBinary() throws Exception{
+    public String convertToBinary() throws Exception{
+        String finalBinary = new String();
         for(Command command : this.assembly){
             String binary = "";
             if(!labels.containsKey(command.getCommand())){//Instrução
                 try {
                     binary = convert(command);
+                    finalBinary += binary+"\n";
                 } catch (Exception ex) {
                     throw new Exception("Erro na linha: " + command.getLineIndex() +"; " + ex.getMessage());
                 }
-                System.err.println(binary);
             }else{ //Label
 
             
             }
         }
+        return finalBinary;
     }
-    //>>>>>>>>>>>>>>>>>>>> FALTA CRIAR A INSTRUÇÃO LUI <<<<<<<<<<<<<<<<<
+
     private String convert(Command command) throws Exception{
         String binary = "";
         Instruction instruc = command.getInstruction();
