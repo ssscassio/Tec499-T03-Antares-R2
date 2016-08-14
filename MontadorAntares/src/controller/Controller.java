@@ -76,7 +76,7 @@ public class Controller {
             if (!labels.containsKey(command.getCommand())) {//Instrução
                 try {
                     binary = convert(command);
-                    finalBinary+=binary;
+                    finalBinary+=binary+"\n";
                 } catch (Exception ex) {
                     throw new Exception("Erro na linha: " + command.getLineIndex() + "; " + ex.getMessage());
                 }
