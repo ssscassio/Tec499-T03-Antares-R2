@@ -18,8 +18,14 @@
 ;      jal pow
 ;      jalr $v0, $t1
 ;      jr $s0
-addi $t0, $zero, 3
-j GO
+GOO:
+   la $t1, GO
+   addi $t0, $zero, 3
+   jalr $t1, $t2
 GO:
    addi $t0, $t0, 3
-   beq $t0, $t0, GO
+   j GOGO
+   addi $t0, $t0, 3
+   addi $t0, $t0, 3
+GOGO:
+   jr $ra
