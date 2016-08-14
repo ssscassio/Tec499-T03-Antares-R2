@@ -181,7 +181,7 @@ public class ALU {
         if(data<0){
             resultString = Long.toBinaryString(data);
         }else{
-            DecimalFormat df = new DecimalFormat("0000000000000000000000000000000000000000000000000000000000000000");
+            DecimalFormat df = new DecimalFormat(createPattern(64, '0'));
             String aux = Long.toBinaryString(data);
             resultString = df.format(  new BigInteger(aux) );           
         }
@@ -211,7 +211,7 @@ public class ALU {
         if(data<0){
             resultString = Long.toBinaryString(data);
         }else{
-            DecimalFormat df = new DecimalFormat("0000000000000000000000000000000000000000000000000000000000000000");
+            DecimalFormat df = new DecimalFormat(createPattern(64, '0'));
             String aux = Long.toBinaryString(data);
             resultString = df.format(  new BigInteger(aux) );           
         }
@@ -233,7 +233,7 @@ public class ALU {
         if(data<0){
             resultString = Long.toBinaryString(data);
         }else{
-            DecimalFormat df = new DecimalFormat("0000000000000000000000000000000000000000000000000000000000000000");
+            DecimalFormat df = new DecimalFormat(createPattern(64, '0'));
             String aux = Long.toBinaryString(data);
             resultString = df.format(  new BigInteger(aux) );           
         }
@@ -263,7 +263,7 @@ public class ALU {
         if(data<0){
             resultString = Long.toBinaryString(data);
         }else{
-            DecimalFormat df = new DecimalFormat("0000000000000000000000000000000000000000000000000000000000000000");
+            DecimalFormat df = new DecimalFormat(createPattern(64, '0'));
             String aux = Long.toBinaryString(data);
             resultString = df.format(  new BigInteger(aux) );           
         }
@@ -283,13 +283,11 @@ public class ALU {
         if(data<0){
             resultString = Long.toBinaryString(data);
         }else{
-            DecimalFormat df = new DecimalFormat("0000000000000000000000000000000000000000000000000000000000000000");
+            DecimalFormat df = new DecimalFormat(createPattern(64, '0'));
             String aux = Long.toBinaryString(data);
             resultString = df.format(  new BigInteger(aux) );           
         }
         c.registers.get(rd).setData(resultString.substring(32, 64));
-        System.out.println(c.registers.get(rs).getBinaryData() + " *" + c.registers.get(rt).getBinaryData()
-            + " " + resultString +" = " + c.registers.get(rd).getBinaryData());
     }
     
     public void mult(String rs, String rt){
@@ -299,7 +297,7 @@ public class ALU {
         if(data<0){
             resultString = Long.toBinaryString(data);
         }else{
-            DecimalFormat df = new DecimalFormat("0000000000000000000000000000000000000000000000000000000000000000");
+            DecimalFormat df = new DecimalFormat(createPattern(64, '0'));
             String aux = Long.toBinaryString(data);
             resultString = df.format(  new BigInteger(aux) );           
         }
@@ -319,7 +317,7 @@ public class ALU {
         if(data<0){
             resultString = Long.toBinaryString(data);
         }else{
-            DecimalFormat df = new DecimalFormat("0000000000000000000000000000000000000000000000000000000000000000");
+            DecimalFormat df = new DecimalFormat(createPattern(64, '0'));
             String aux = Long.toBinaryString(data);
             resultString = df.format(  new BigInteger(aux) );           
         }
@@ -332,9 +330,73 @@ public class ALU {
     
     }
     
+    public void rotr(String rt, String rd, String sa){
+        int rotrCount = convertImediate(sa, false);
+        int data = c.registers.get(rt).getData();
+        c.registers.get(rd).setIntData(Integer.rotateRight(data, rotrCount));
+    }
+    
+    public void rotrv(String rs, String rt, String rd){
+        String rotation = c.registers.get(rs).getBinaryData();
+        rotation = rotation.substring(28, 32);
+        int rotrCount = convertImediate(rotation, false);
+        int data = c.registers.get(rt).getData();
+        c.registers.get(rd).setIntData(Integer.rotateRight(data, rotrCount));
+    }
+    
+    public void sll (String rt, String rd, String sa){
+        int shiftCount = convertImediate(sa, false);
+        int data = c.registers.get(rt).getData();
+        c.registers.get(rd).setIntData(data<<shiftCount);
+    }
+    
+    public void sllv (String rs, String rt, String rd){
+        String shift = c.registers.get(rs).getBinaryData();
+        shift = shift.substring(28, 32);
+        int shiftCount = convertImediate(shift, false);
+        int data = c.registers.get(rt).getData();
+        c.registers.get(rd).setIntData(data<<shiftCount);
+    }
+    
+    public void sra(String rt, String rd, String sa){
+        int shiftCount = convertImediate(sa, false);
+        
+        int data = c.registers.get(rt).getData();
+        c.registers.get(rd).setIntData(data>>shiftCount);
+    }
+    
+    public void srav (String rs, String rt, String rd){
+        String shift = c.registers.get(rs).getBinaryData();
+        shift = shift.substring(28, 32);
+        int shiftCount = convertImediate(shift, false);
+        int data = c.registers.get(rt).getData();
+        c.registers.get(rd).setIntData(data>>shiftCount);
+    }
+    
+    public void srl(String rt, String rd, String sa){
+        int shiftCount = convertImediate(sa, false);
+        int data = c.registers.get(rt).getData();
+        c.registers.get(rd).setIntData(data>>>shiftCount);
+    }
+    
+    public void srlv (String rs, String rt, String rd){
+        String shift = c.registers.get(rs).getBinaryData();
+        shift = shift.substring(28, 32);
+        int shiftCount = convertImediate(shift, false);
+        int data = c.registers.get(rt).getData();
+        c.registers.get(rd).setIntData(data>>>shiftCount);
+    }
     
     /*Auxiliar Functions*/
     private int convertImediate(String imm, boolean unsigned){
         return unsigned? Integer.parseUnsignedInt(imm, 2):Integer.parseInt(imm,2);
+    }
+    
+    private String createPattern(int count, char c){
+        StringBuilder pattern = new StringBuilder();
+        for(int i=0; i<count; i++) {
+            pattern.append(c);
+        }
+        return pattern.toString();
     }
 }

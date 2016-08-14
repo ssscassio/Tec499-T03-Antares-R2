@@ -26,7 +26,7 @@ public class SimulatorAntares {
          ALU alu = ALU.getInstance();
          //controller.readBinaryFile("binary.txt");
          controller.setRegistersDefaultValue();
-         int i = -75;
+         int i = 101;
          Set<String> keys = controller.registers.keySet();
         for (String key : keys) {
             controller.registers.get(key).setIntData(i+=15);
@@ -36,13 +36,12 @@ public class SimulatorAntares {
             System.err.println(controller.registers.get(key).getData());
         }
         controller.registers.get("$zero").setIntData(0);
-        alu.mul("$s1", "$s2", "$s0");
+        alu.srlv("$s1", "$s2", "$s0");
         System.out.println(controller.registers.get("$s0").getBinaryData());
         /*
-        alu.xori("$s1", "$s0", "0011011010001001");
+        alu.srl("$s1", "$s0", "00011");
         System.out.println(controller.registers.get("$s0").getBinaryData());
-        
-        alu.madd("$s1", "$s0");
+        /*alu.madd("$s1", "$s0");
         */
     }
     
