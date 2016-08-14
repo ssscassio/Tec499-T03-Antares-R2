@@ -162,18 +162,18 @@ public class ALU {
     }
     
     public void div(String rs, String rt){
-        c.$LO.setIntData(c.registers.get(rs).getData() / c.registers.get(rt).getData());
-        c.$HI.setIntData(c.registers.get(rs).getData() % c.registers.get(rt).getData());
+        c.LO.setIntData(c.registers.get(rs).getData() / c.registers.get(rt).getData());
+        c.HI.setIntData(c.registers.get(rs).getData() % c.registers.get(rt).getData());
     }
     
     public void divu(String rs, String rt){
-        c.$LO.setIntData(c.registers.get(rs).getUnsignedData() / c.registers.get(rt).getUnsignedData());
-        c.$HI.setIntData(c.registers.get(rs).getUnsignedData() % c.registers.get(rt).getUnsignedData());
+        c.LO.setIntData(c.registers.get(rs).getUnsignedData() / c.registers.get(rt).getUnsignedData());
+        c.HI.setIntData(c.registers.get(rs).getUnsignedData() % c.registers.get(rt).getUnsignedData());
     }
     
     public void madd(String rs, String rt){
         long sum1 = c.registers.get(rs).getData() * c.registers.get(rt).getData();
-        String aux2 = c.$HI.getBinaryData() + c.$LO.getBinaryData();
+        String aux2 = c.HI.getBinaryData() + c.LO.getBinaryData();
         long sum2 =  Long.parseLong(aux2, 2);
         long data = sum1 + sum2;
         String resultString;
@@ -189,14 +189,14 @@ public class ALU {
         String lo,hi ="";
         hi = resultString.substring(0, 32);
         lo = resultString.substring(32, 64);
-        c.$HI.setData(hi);
-        c.$LO.setData(lo);
+        c.HI.setData(hi);
+        c.HI.setData(lo);
     
     }
     
     public void maddu(String rs, String rt){
         long sum1 = c.registers.get(rs).getUnsignedData() * c.registers.get(rt).getUnsignedData();
-        String aux2 = c.$HI.getBinaryData() + c.$LO.getBinaryData();
+        String aux2 = c.HI.getBinaryData() + c.LO.getBinaryData();
 
         long sum2 = 0;
         for(int i = aux2.length() -1; i>0; i--){
@@ -219,13 +219,13 @@ public class ALU {
         String lo,hi ="";
         hi = resultString.substring(0, 32);
         lo = resultString.substring(32, 64);
-        c.$HI.setData(hi);
-        c.$LO.setData(lo);
+        c.HI.setData(hi);
+        c.LO.setData(lo);
     }
     
     public void msub(String rs, String rt){
         long sum1 = c.registers.get(rs).getData() * c.registers.get(rt).getData();
-        String aux2 = c.$HI.getBinaryData() + c.$LO.getBinaryData();
+        String aux2 = c.HI.getBinaryData() + c.LO.getBinaryData();
         long sum2 =  Long.parseLong(aux2, 2);
         long data = sum2 - sum1;
         String resultString;
@@ -241,14 +241,14 @@ public class ALU {
         String lo,hi ="";
         hi = resultString.substring(0, 32);
         lo = resultString.substring(32, 64);
-        c.$HI.setData(hi);
-        c.$LO.setData(lo);
+        c.HI.setData(hi);
+        c.LO.setData(lo);
     
     }
     
     public void subbu(String rs, String rt){
         long sum1 = c.registers.get(rs).getUnsignedData() * c.registers.get(rt).getUnsignedData();
-        String aux2 = c.$HI.getBinaryData() + c.$LO.getBinaryData();
+        String aux2 = c.HI.getBinaryData() + c.LO.getBinaryData();
 
         long sum2 = 0;
         for(int i = aux2.length() -1; i>0; i--){
@@ -271,8 +271,8 @@ public class ALU {
         String lo,hi ="";
         hi = resultString.substring(0, 32);
         lo = resultString.substring(32, 64);
-        c.$HI.setData(hi);
-        c.$LO.setData(lo);
+        c.HI.setData(hi);
+        c.LO.setData(lo);
     }
     
     public void mul(String rs, String rt, String rd){
@@ -305,8 +305,8 @@ public class ALU {
         String lo,hi ="";
         hi = resultString.substring(0, 32);
         lo = resultString.substring(32, 64);
-        c.$HI.setData(hi);
-        c.$LO.setData(lo);
+        c.HI.setData(hi);
+        c.LO.setData(lo);
     
     }
     
@@ -325,8 +325,8 @@ public class ALU {
         String lo,hi ="";
         hi = resultString.substring(0, 32);
         lo = resultString.substring(32, 64);
-        c.$HI.setData(hi);
-        c.$LO.setData(lo);
+        c.HI.setData(hi);
+        c.LO.setData(lo);
     
     }
     
@@ -387,9 +387,53 @@ public class ALU {
         c.registers.get(rd).setIntData(data>>>shiftCount);
     }
     
+    /* Branch and Jump Functions */
+    
+    public void beq(String rs, String rt, String offset){
+        if(offset.charAt(0) =='1'){
+            offset = createPattern(16, '1') + offset;
+        }
+        int aux = convertImediate(offset, false);
+        aux = aux <<2;
+        if(c.registers.get(rs).getBinaryData().equals(c.registers.get(rt).getBinaryData())){
+            c.PC.setIntData(c.PC.getData() + aux);
+        }
+    }
+    
+    public void bne(String rs, String rt, String offset){
+        if(offset.charAt(0) =='1'){
+            offset = createPattern(16, '1') + offset;
+        }
+        int aux = convertImediate(offset, false);
+        aux = aux <<2;
+        if(!c.registers.get(rs).getBinaryData().equals(c.registers.get(rt).getBinaryData())){
+            c.PC.setIntData(c.PC.getData() + aux);
+        }
+    }
+    
+    public void j(String target){
+        String aux = c.PC.getBinaryData().substring(0,4) + target + "00";
+        c.PC.setData(aux);
+    }
+    
+    public void jal(String target){
+       c.registers.get("$ra").setIntData(c.PC.getData() + 8 );
+       String aux2 = c.PC.getBinaryData().substring(0,4) + target + "00";
+       c.PC.setData(aux2); 
+    }
+    
+    public void jalr(String rs, String rd){
+        c.registers.get(rd).setIntData(c.PC.getData() + 8 );
+        c.PC.setData(c.registers.get(rs).getBinaryData()); 
+    }
+    
+    public void jr(String rs){
+        c.PC.setData(c.registers.get(rs).getBinaryData()); 
+    }
+    
     /*Auxiliar Functions*/
     private int convertImediate(String imm, boolean unsigned){
-        return unsigned? Integer.parseUnsignedInt(imm, 2):Integer.parseInt(imm,2);
+        return unsigned? (int) Long.parseUnsignedLong(imm, 2):(int) Long.parseLong(imm, 2);
     }
     
     private String createPattern(int count, char c){
