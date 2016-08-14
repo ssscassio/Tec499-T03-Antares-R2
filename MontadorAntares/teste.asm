@@ -1,31 +1,14 @@
-; Cássio Santos, Potencial
-;
-;function pow(int x, int y){
-;  int result = 1;
-;  for(int i = 0; i!=y ; i++){
-;  result = result*x;
-;  }
-;  return result;
-;}
-; pow:
-;      rotr $s0, $S1, 32
-;      sll $s0, $s1, 4
-;      beq $s1, $s2, pow
-;      bne $s1, $s2, pow
-;      beqz $s0, pow
-;      bnez $s0, pow
-;      j pow
-;      jal pow
-;      jalr $v0, $t1
-;      jr $s0
-GOO:
-   la $t1, GO
+LABEL2:
    addi $t0, $zero, 3
-   jalr $t1, $t2
-GO:
-   addi $t0, $t0, 3
-   j GOGO
-   addi $t0, $t0, 3
-   addi $t0, $t0, 3
-GOGO:
-   jr $ra
+   addi $t1, $zero, 3
+   beq $t0, $t1, LABEL1
+   addi $t0, $zero, 3
+   addi $t0, $zero, 3
+LABEL1:
+   addi $t0, $zero, 0
+   bne $t0, $t1, LABEL3
+   addi $t1, $zero, 3
+   addi $t2, $zero, 3
+   addi $t1, $zero, 3
+LABEL3:
+   beqz $t0, LABEL2

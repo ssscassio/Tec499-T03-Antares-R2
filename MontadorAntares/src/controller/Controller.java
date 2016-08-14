@@ -169,7 +169,7 @@ public class Controller {
                 break;
             case "beqz":
             case "bnez":
-                binary = (instruc.getOpcode() + rc.registerBinaryValue(command.getFields()[1]) + "00000" + defAddress(command.getAddress(), labels.get(command.getFields()[2]).getAddress()));
+                binary = (pseudoConvert(command));
                 break;
             case "j":                 
             case "jal":
@@ -210,7 +210,7 @@ public class Controller {
     }
 
     private String defAddress(int actualAddress, int nextAddress) {
-        int result = nextAddress - actualAddress;
+        int result = (nextAddress - 1) - actualAddress;
         String binaryAddress = convertImediateToBinary(result, false);
         return binaryAddress;
     }
@@ -219,7 +219,10 @@ public class Controller {
         String binary = "";
         Instruction instruc = command.getInstruction();
         switch (instruc.getMnemonic()) {
-
+            case "beqz":
+                break;
+            case "bnez":
+                break;
             case "li":
                 //addi
                 Instruction instructionAux1 = ic.getInstruction("addi");
@@ -272,6 +275,7 @@ public class Controller {
                         + rc.registerBinaryValue(command.getFields()[1])
                         + "00000"
                         + instructionAux6.getFunction());
+                break;
         }
         return binary;
     }
