@@ -167,7 +167,6 @@ public class Controller {
             case "beq":
                 binary = (instruc.getOpcode() + rc.registerBinaryValue(command.getFields()[1]) + rc.registerBinaryValue(command.getFields()[2]) + defAddress(command.getAddress(), labels.get(command.getFields()[3]).getAddress()));
                 break;
-            case "beqz":
             case "bnez":
                 binary = (pseudoConvert(command));
                 break;
@@ -197,6 +196,7 @@ public class Controller {
             case "move":
             case "negu":
             case "not":
+            case "beqz":
                 binary = pseudoConvert(command);
                 break;
         }
@@ -219,10 +219,7 @@ public class Controller {
         String binary = "";
         Instruction instruc = command.getInstruction();
         switch (instruc.getMnemonic()) {
-            case "beqz":
-                break;
-            case "bnez":
-                break;
+
             case "li":
                 //addi
                 Instruction instructionAux1 = ic.getInstruction("addi");
@@ -276,7 +273,12 @@ public class Controller {
                         + "00000"
                         + instructionAux6.getFunction());
                 break;
+            case "beqz":
+                Instruction instructionAux7 = ic.getInstruction("beqz");
+                binary = (instructionAux7.getOpcode() + rc.registerBinaryValue(command.getFields()[1]) + rc.registerBinaryValue("$zero") + defAddress(command.getAddress(), labels.get(command.getFields()[2]).getAddress()));
+                break;
         }
+
         return binary;
     }
 
