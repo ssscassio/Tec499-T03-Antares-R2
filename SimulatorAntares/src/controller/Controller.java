@@ -11,6 +11,7 @@ import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import model.Register;
 import model.Word;
 
 /**
@@ -21,15 +22,15 @@ public class Controller {
    
     private static Controller controller = null;
     
-    public Map<String, Integer> registers;// Key = $s0, Value = Value of register
+    public Map<String, Register> registers;// Key = $s0, Value = Value of register
     
-    private Map<String, String> registersMap; // Key = 00100  Value = $a0 
+    public Map<String, String> registersMap; // Key = 00100  Value = $a0 
     
     private Word[] memory;
     
     private Controller(){
         memory = new Word[1600];
-        registers = new HashMap<String, Integer>();
+        registers = new HashMap<String, Register>();
         registersMap = new HashMap<String, String>();
         this.loadRegisterSet();
     }
@@ -48,8 +49,7 @@ public class Controller {
     public void setRegistersDefaultValue(){
         Set<String> keys = registersMap.keySet();
         for (String key : keys) {
-            registers.put(registersMap.get(key), 0);
-            System.err.println(registersMap.get(key) +" " +registers.get(registersMap.get(key)));
+            registers.put(registersMap.get(key), new Register());
         }
     }
     
@@ -68,7 +68,6 @@ public class Controller {
                 System.out.println(registersMap.get(aux));
                 row = fileBuf.readLine();
             }
-            this.setRegistersDefaultValue();
             file.close();
         } catch (IOException ex) {
             System.err.printf("Erro na abertura do arquivo: %s. \n", ex.getMessage());

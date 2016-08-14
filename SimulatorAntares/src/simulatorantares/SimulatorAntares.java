@@ -5,7 +5,11 @@
  */
 package simulatorantares;
 
+import controller.ALU;
 import controller.Controller;
+import java.util.Random;
+import java.util.Set;
+import model.Register;
 
 /**
  *
@@ -19,8 +23,22 @@ public class SimulatorAntares {
     public static void main(String[] args) {
    
          Controller controller = Controller.getInstance();
-         
-         controller.readBinaryFile("binary.txt");
+         ALU alu = ALU.getInstance();
+         //controller.readBinaryFile("binary.txt");
+         controller.setRegistersDefaultValue();
+         int i = 0;
+         Set<String> keys = controller.registers.keySet();
+        for (String key : keys) {
+            controller.registers.get(key).setIntData(i+=15);
+            
+            System.err.println(controller.registers.get(key).getBinaryData());
+            System.err.println(controller.registers.get(key).getUnsignedData());
+            System.err.println(controller.registers.get(key).getData());
+        }
+        controller.registers.get("$zero").setIntData(0);
+        alu.or("$s1", "$s2", "$s0");
+        System.out.println(controller.registers.get("$s0").getBinaryData());
+
     }
     
 }
