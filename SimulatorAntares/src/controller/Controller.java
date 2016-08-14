@@ -26,6 +26,9 @@ public class Controller {
     
     public Map<String, String> registersMap; // Key = 00100  Value = $a0 
     
+    //Special Registers
+    public Register $LO;
+    public Register $HI;
     private Word[] memory;
     
     private Controller(){
@@ -33,6 +36,8 @@ public class Controller {
         registers = new HashMap<String, Register>();
         registersMap = new HashMap<String, String>();
         this.loadRegisterSet();
+        $LO = new Register();
+        $HI = new Register();
     }
     
     public static Controller getInstance(){

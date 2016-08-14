@@ -24,12 +24,12 @@ public class Register {
             this.data = "00000000000000000000000000000000";
     }
     
-    public int getUnsignedData(){
+    public int getData(){
         
         return (int) Long.parseLong(data, 2);
     }
     
-    public int getData(){
+    public int getUnsignedData(){
         int result = 0;
         for(int i = data.length() -1; i>0; i--){
             if(data.charAt(i) == '1'){
