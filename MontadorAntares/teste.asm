@@ -11,4 +11,4 @@ LABEL1:
    addi $t2, $zero, 3
    addi $t1, $zero, 3
 LABEL3:
-   beqz $t0, LABEL2
+   beqz $t0, LABEL1

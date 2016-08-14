@@ -167,9 +167,6 @@ public class Controller {
             case "beq":
                 binary = (instruc.getOpcode() + rc.registerBinaryValue(command.getFields()[1]) + rc.registerBinaryValue(command.getFields()[2]) + defAddress(command.getAddress(), labels.get(command.getFields()[3]).getAddress()));
                 break;
-            case "bnez":
-                binary = (pseudoConvert(command));
-                break;
             case "j":                 
             case "jal":
                 binary = (instruc.getOpcode() +  convertToBinary26bits(labels.get(command.getFields()[1]).getAddress()));
@@ -197,6 +194,7 @@ public class Controller {
             case "negu":
             case "not":
             case "beqz":
+            case "bnez":
                 binary = pseudoConvert(command);
                 break;
         }
@@ -274,9 +272,12 @@ public class Controller {
                         + instructionAux6.getFunction());
                 break;
             case "beqz":
-                Instruction instructionAux7 = ic.getInstruction("beqz");
+                Instruction instructionAux7 = ic.getInstruction("beq");
                 binary = (instructionAux7.getOpcode() + rc.registerBinaryValue(command.getFields()[1]) + rc.registerBinaryValue("$zero") + defAddress(command.getAddress(), labels.get(command.getFields()[2]).getAddress()));
                 break;
+            case "bnez":
+                Instruction instructionAux8 = ic.getInstruction("bne");
+                binary = (instructionAux8.getOpcode() + rc.registerBinaryValue(command.getFields()[1]) + rc.registerBinaryValue("$zero") + defAddress(command.getAddress(), labels.get(command.getFields()[2]).getAddress()));
         }
 
         return binary;
