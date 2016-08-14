@@ -485,6 +485,23 @@ public class ALU {
         }
     }
     
+    /* Acc Access*/
+    
+    public void mfhi(String rd){
+        c.registers.get(rd).setData(c.HI.getBinaryData());
+    }
+    
+    public void mflo(String rd){
+        c.registers.get(rd).setData(c.LO.getBinaryData());
+    }
+    
+    public void mthi(String rs){
+         c.HI.setData(c.registers.get(rs).getBinaryData());     
+    }
+    
+    public void mtlo(String rs){
+         c.LO.setData(c.registers.get(rs).getBinaryData());     
+    }
     
     /*Auxiliar Functions*/
     private int convertImediate(String imm, boolean unsigned){
