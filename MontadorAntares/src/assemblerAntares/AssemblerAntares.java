@@ -7,8 +7,6 @@ package assemblerAntares;
 
 import controller.Controller;
 import java.util.Scanner;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -22,6 +20,9 @@ public class AssemblerAntares {
     public static void main(String[] args) {
         Controller controller = Controller.getInstance();
         System.out.println("Antares Assembler Tec-499\n\n");
+        //fileChoice v = new fileChoice();
+        //v.show();
+        //System.out.print(v.getAsmFile() +"----\n" + v.getPath());
         //assemblyChoice();
         controller.readAssembly("teste.asm");
         //controller.removeCommentsOnAssembly();
