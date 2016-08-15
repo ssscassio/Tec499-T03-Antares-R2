@@ -1,4 +1,6 @@
-.data
-.space
-.text
-addi $t3, $t2 ,4
+lw $t1, 4($t0)
+lb $t1, 4($t0)
+lh $t1, 4($t0)
+sw $t1, 4($t0)
+sb $t1, 4($t0)
+sh $t1, 4($t0)

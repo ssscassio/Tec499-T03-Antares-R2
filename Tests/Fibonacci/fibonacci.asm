@@ -11,7 +11,7 @@
 main:
   ADD $a0, $zero, 7
   JAL fib
-  J exit
+  J end
 
 fib :
   ADDI $sp , $sp , -12
@@ -38,3 +38,4 @@ exit:
   lw $ra, 8($sp)
   addi $sp, $sp, 12
   jr $ra
+end:

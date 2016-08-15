@@ -117,7 +117,6 @@ public class Controller {
             case "nor":
             case "or":
             case "xor":
-            case "mul":
             case "sllv":
             case "srav":
             case "srlv":
@@ -125,8 +124,12 @@ public class Controller {
             case "movz":
             case "stl":
             case "sltu":
-                binary = (instruc.getOpcode() + rc.registerBinaryValue(command.getFields()[2])
-                        + rc.registerBinaryValue(command.getFields()[3]) + rc.registerBinaryValue(command.getFields()[1]) + "00000" + instruc.getFunction());
+                binary = (instruc.getOpcode()+ rc.registerBinaryValue(command.getFields()[2])
+                        + rc.registerBinaryValue(command.getFields()[3]) + rc.registerBinaryValue(command.getFields()[1]) + "00000" + instruc.getOpcode());
+                break;
+            case "mul":
+                binary = (instruc.getFunction()+ rc.registerBinaryValue(command.getFields()[2])
+                        + rc.registerBinaryValue(command.getFields()[3]) + rc.registerBinaryValue(command.getFields()[1]) + "00000" + instruc.getOpcode());
                 break;
             case "mfhi":
             case "mflo":
@@ -138,6 +141,8 @@ public class Controller {
                 break;
             case "seb":
             case "seh":
+                binary = (instruc.getFunction() + "00000" + rc.registerBinaryValue(command.getFields()[2]) + rc.registerBinaryValue(command.getFields()[1]) + instruc.getOpcode());
+                break;
             case "div":
             case "divu":
             case "madd":
@@ -212,6 +217,15 @@ public class Controller {
             case "bnez":
                 binary = pseudoConvert(command);
                 break;
+            case "lw":
+            case "lb":
+            case "lh":
+            case "sb":
+            case "sw":
+            case "sh":
+                binary = (instruc.getOpcode() + rc.registerBinaryValue(command.getFields()[3]) + rc.registerBinaryValue(command.getFields()[1]) + convertImediateToBinary(Integer.parseInt(command.getFields()[2]), true));
+                break;
+            
         }
         return binary;
     }
@@ -232,7 +246,6 @@ public class Controller {
         String binary = "";
         Instruction instruc = command.getInstruction();
         switch (instruc.getMnemonic()) {
-
             case "li":
                 //addi
                 Instruction instructionAux1 = ic.getInstruction("addi");
@@ -293,6 +306,7 @@ public class Controller {
             case "bnez":
                 Instruction instructionAux8 = ic.getInstruction("bne");
                 binary = (instructionAux8.getOpcode() + rc.registerBinaryValue(command.getFields()[1]) + rc.registerBinaryValue("$zero") + defAddress(command.getAddress(), labels.get(command.getFields()[2]).getAddress()));
+                break;
         }
 
         return binary;
