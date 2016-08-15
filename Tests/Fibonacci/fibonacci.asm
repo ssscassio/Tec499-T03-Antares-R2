@@ -9,12 +9,12 @@
 #}
 
 main:
-  ADD $a0, $zero, 7
+  ADDI $a0, $zero, 7
   JAL fib
   J end
 
-fib :
-  ADDI $sp , $sp , -12
+fib:
+  ADDI $sp, $sp, -12
   sw $s0, 0($sp) #n
   sw $s1, 4($sp)
   sw $ra, 8($sp)

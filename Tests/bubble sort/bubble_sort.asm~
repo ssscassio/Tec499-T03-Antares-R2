@@ -5,8 +5,8 @@
 .data
      Array: .word 0, 5, 2, 1, 6, 9, 3, 7, 8, 4
 .text
-    la $t0, Array            # Copy the base address of the array into $t1
-    addi $t0, $t0, 40          # 4 bytes per int * 10 ints = 40 bytes
+    la  $t0, Array            # Copy the base address of the array into $t1
+    add $t0, $t0, 40          # 4 bytes per int * 10 ints = 40 bytes
 outterLoop:
     add $t1, $zero, $zero     # $t1 holds a flag to determine when the list is sorted
     la $a0, Array            # Set $a0 to the base address of the Array

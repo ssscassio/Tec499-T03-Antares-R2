@@ -28,13 +28,13 @@ public class Controller {
     private InstructionController ic = new InstructionController();
 
     private ArrayList<Command> assembly;
-
+    private ArrayList<String> staticMemory = new ArrayList<String>();
     private Map<String, Label> labels = new HashMap<String, Label>();
 
+    private int GP = 16384;
+    
     //Single Instance
     private static Controller controller = null;
-    private String[] wordValues;
-    private String finalWordBinary="";
     private ArrayList<String> dataRows = new ArrayList<>();
 
     private int actualAddress = 0;
@@ -58,7 +58,6 @@ public class Controller {
             FileReader file = new FileReader(assemblyNameTxt);
             BufferedReader fileBuf = new BufferedReader(file);
             String row = fileBuf.readLine();
-            ArrayList<String> dataRow = new ArrayList();
             while (row != null) {
                 if (!row.trim().equals("")) {
                     controller.removeCommentsOnAssembly();
@@ -67,8 +66,7 @@ public class Controller {
                     else if(row.contains(".text"))
                         is_data = false;
                     else if(is_data) {
-                        System.out.println("data");
-                        dataRow.add(row);
+                        dataRows.add(row);
                     }
                     else
                         this.assembly.add(new Command(i, row.trim().toLowerCase()));//Trim para remover espaços no inicio e no fim da linha
@@ -82,9 +80,10 @@ public class Controller {
         }
 
     }
-
+    
     public String convertToBinary() throws Exception {
         String finalBinary = "";
+        int i = 0;
         for (Command command : this.assembly) {
             String binary = "";
             if (!labels.containsKey(command.getCommand())) {//Instrução
@@ -99,7 +98,6 @@ public class Controller {
 
             }
         }
-        finalBinary = finalBinary + finalWordBinary;
         return finalBinary;
     }
 
@@ -125,11 +123,11 @@ public class Controller {
             case "stl":
             case "sltu":
                 binary = (instruc.getOpcode()+ rc.registerBinaryValue(command.getFields()[2])
-                        + rc.registerBinaryValue(command.getFields()[3]) + rc.registerBinaryValue(command.getFields()[1]) + "00000" + instruc.getOpcode());
+                        + rc.registerBinaryValue(command.getFields()[3]) + rc.registerBinaryValue(command.getFields()[1]) + "00000" + instruc.getFunction());
                 break;
             case "mul":
-                binary = (instruc.getFunction()+ rc.registerBinaryValue(command.getFields()[2])
-                        + rc.registerBinaryValue(command.getFields()[3]) + rc.registerBinaryValue(command.getFields()[1]) + "00000" + instruc.getOpcode());
+                binary = (instruc.getOpcode()+ rc.registerBinaryValue(command.getFields()[2])
+                        + rc.registerBinaryValue(command.getFields()[3]) + rc.registerBinaryValue(command.getFields()[1]) + "00000" + instruc.getFunction());
                 break;
             case "mfhi":
             case "mflo":
@@ -248,11 +246,11 @@ public class Controller {
         switch (instruc.getMnemonic()) {
             case "li":
                 //addi
-                Instruction instructionAux1 = ic.getInstruction("addi");
+                Instruction instructionAux1 = ic.getInstruction("addiu");
                 binary = (instructionAux1.getOpcode()
                         + rc.registerBinaryValue("$zero")
                         + rc.registerBinaryValue(command.getFields()[1])
-                        + convertImediateToBinary(Integer.parseInt(command.getFields()[2]), false));
+                        + convertImediateToBinary(Integer.parseInt(command.getFields()[2]), true));
                 break;
             case "la":
                 //code lui
@@ -270,11 +268,11 @@ public class Controller {
                 break;
             case "move":
                 //add
-                Instruction instructionAux4 = ic.getInstruction("add");
+                Instruction instructionAux4 = ic.getInstruction("addu");
 
                 binary = (instructionAux4.getOpcode()
-                        + rc.registerBinaryValue(command.getFields()[2])
                         + rc.registerBinaryValue("$zero")
+                        +rc.registerBinaryValue(command.getFields()[2]) 
                         + rc.registerBinaryValue(command.getFields()[1]) + "00000"
                         + instructionAux4.getFunction());
                 break;
@@ -345,7 +343,8 @@ public class Controller {
         ArrayList<Command> aux = new ArrayList();
         for (Command command : this.assembly) {
             String row = command.getCommand();
-            int comment = row.indexOf(";");
+            row.replace(";", "#");
+            int comment = row.indexOf("#");
 
             if (comment == -1) {
                 aux.add(new Command(command.getLineIndex(), row));
@@ -435,10 +434,10 @@ public class Controller {
                 String labelName = operators[0].replace(":", "");
                 String valor = operators[2];
 
-                Label label = new Label(labelName, (actualAddress)*4);
+                Label label = new Label(labelName, this.GP);
                 labels.put(labelName, label);
                 int x = Integer.parseInt(valor);
-                actualAddress = (actualAddress*4) + x;
+                this.GP = GP + x;
             }
             else if (row.contains(".word")) {
                 String[] operators;
@@ -449,27 +448,24 @@ public class Controller {
                 String labelName = operators[0].replace(":", "");
                 operators[1]= operators[1].replace(" ", "");
                 String[] valor = operators[1].split(",");
-
-                this.wordValues = valor;
-
-                Label label = new Label(labelName, actualAddress*4);
+                
+                for(int j = 0; j < valor.length; GP+=4){
+                    String data = convertWord(valor[j]);
+                    this.staticMemory.add(data);
+                }
+                Label label = new Label(labelName, GP);
                 labels.put(labelName, label);
-                actualAddress = (actualAddress+ valor.length) * 4;
 
-                convertWord();
             }
         }
 
-    }
+    }    
     //converte o valores do .word para binário de 32 bits.
-    public void convertWord(){
-        for(int i=0; i<wordValues.length;i++) {
-            String aux = convertShiftAmmount(Integer.parseInt(wordValues[i]));
+    public String convertWord(String valor){
+            String aux = convertShiftAmmount(Integer.parseInt(valor));
             while (aux.length()-1 <31){
                 aux = "0"+aux;
             }
-            finalWordBinary = finalWordBinary + aux + "\n";
-        }
-        System.out.print(finalWordBinary);
+        return aux;
     }
 }

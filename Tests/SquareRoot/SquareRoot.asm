@@ -11,7 +11,7 @@
 #  return result;
 #}
 main:
-    ADD $a0, $zero, 25
+    ADDI $a0, $zero, 25
     JAL square
     J exit
 
@@ -21,10 +21,11 @@ square:
     LI $s2, 0           # s2 = 0 # variable result
 L1:
     BEQ $s0, $zero, L2
-    SUB  $s0, $s0, $s1	# s0 = s0 - s3 --> rad = rad - n
-    ADDI $s2, ,$s2, 1	# result++
+    SUB $s0, $s0, $s1	# s0 = s0 - s3 --> rad = rad - n
+    ADDI $s2, $s2, 1	# result++
     ADDI $s1, $s1, 2
     J L1
-L2: MOVE $v0, $s2       # v0 = s2
+L2: 
+    MOVE $v0, $s2       # v0 = s2
     JR $ra              # return
 exit:

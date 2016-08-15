@@ -21,7 +21,7 @@ pow:
 L1:   
       BEQ $s3, $s1, L2    
       MUL $s2, $s2, $s0    
-      ADDI $s3, $s3, 1   
+      ADDI $s3, $s3 , 1   
       J L1                
 L2:   
       MOVE $v0, $s2       

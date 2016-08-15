@@ -31,7 +31,7 @@ public class Controller {
     public static Register LO;
     public static Register HI;
     public static Register PC;
-    public static Word[] memory = new Word[1600];
+    public static Word[] memory = new Word[16384];
     private static int intructionsLimiter;
     private ALU alu;
     
@@ -65,7 +65,9 @@ public class Controller {
         for (String key : keys) {
             registers.put(registersMap.get(key), new Register(key));
         }
-        registers.get(registersMap.get("$sp")).setIntData(1599*4);
+        registers.get(registersMap.get("$sp")).setIntData(16383*4);
+        registers.get(registersMap.get("$gp")).setIntData(4096*4);
+
     }
     
     public void loadRegisterSet(){
