@@ -30,7 +30,7 @@ public class Controller {
     public Register LO;
     public Register HI;
     public Register PC;
-    private Word[] memory;
+    public static Word[] memory;
     private int intructionsLimiter;
     private ALU alu;
     
@@ -144,9 +144,6 @@ public class Controller {
                 params[2] = row.substring(16, 32);    
         }
         
-        System.out.println(row);
-        System.err.println(opcode + " " + params[0] + " " + params[1] + " " + params[2] +" " + params[3] +" "+ function);
-
         this.execInstruction(opcode, params, function);  
     }
     
@@ -327,6 +324,25 @@ public class Controller {
             case "001011":
                 alu.sltiu(params[0], params[1], params[2]);
                 break;
+            case "100000":
+                alu.lb(params[0], params[1], params[2]);
+                break;
+            case "100011":
+                alu.lw(params[0], params[1], params[2]);
+                break;
+            case "100001":
+                alu.lh(params[0], params[1], params[2]);
+                break;
+            case "101000":
+                alu.sb(params[0], params[1], params[2]);
+                break;
+            case "101011":
+                alu.sw(params[0], params[1], params[2]);
+                break;
+            case "101001":
+                alu.sh(params[0], params[1], params[2]);
+                break;
+                
         }
     
     }

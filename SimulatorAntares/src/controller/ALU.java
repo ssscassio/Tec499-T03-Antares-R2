@@ -44,7 +44,6 @@ public class ALU {
     
     public void addiu(String rs, String rd, String imm){
         int bin = Integer.parseUnsignedInt(imm, 2);
-        System.err.println(c.registers.get(rs).getBinaryData());
         int aux = c.registers.get(rs).getUnsignedData() + bin;
         c.registers.get(rd).setIntData(aux);
     }
@@ -508,6 +507,92 @@ public class ALU {
     
     public void mtlo(String rs){
          c.LO.setData(c.registers.get(rs).getBinaryData());     
+    }
+    
+    /* Load and Store Functions*/
+    
+    public void lw(String base, String rt, String offset){
+        if(offset.charAt(0) =='1'){
+            offset = createPattern(16, '1') + offset;
+        }
+        int aux = convertImediate(offset, false);
+
+        int aux2 = c.registers.get(base).getData() + aux;  // Base + offset
+        c.registers.get(rt).setData(c.memory[aux2/4].getData());
+        
+    }
+    
+    public void lh(String base, String rt, String offset){
+        if(offset.charAt(0) =='1'){
+            offset = createPattern(16, '1') + offset;
+        }
+        int aux = convertImediate(offset, false);
+
+        int aux2 = c.registers.get(base).getData() + aux;  // Base + offset
+        String aux3 = c.memory[aux2/4].getData();
+        aux3 = aux3.substring(16,32);
+        if(aux3.charAt(0) =='1'){
+            aux3 = createPattern(16, '1') + aux3;
+        }
+        c.registers.get(rt).setData(aux3);       
+    }
+    
+    public void lb(String base, String rt, String offset){
+        if(offset.charAt(0) =='1'){
+            offset = createPattern(16, '1') + offset;
+        }
+        int aux = convertImediate(offset, false);
+
+        int aux2 = c.registers.get(base).getData() + aux;  // Base + offset
+        String aux3 = c.memory[aux2/4].getData();
+        aux3 = aux3.substring(24,32);
+        if(aux3.charAt(0) =='1'){
+            aux3 = createPattern(24, '1') + aux3;
+        }
+        c.registers.get(rt).setData(aux3);       
+    }
+    
+    public void sw(String base, String rt, String offset){
+        if(offset.charAt(0) =='1'){
+            offset = createPattern(16, '1') + offset;
+        }
+        int aux = convertImediate(offset, false);
+
+        int aux2 = c.registers.get(base).getData() + aux;  // Base + offset
+        c.memory[aux2/4].setData(c.registers.get(rt).getBinaryData());
+        
+    }
+    
+    public void sh(String base, String rt, String offset){
+        if(offset.charAt(0) =='1'){
+            offset = createPattern(16, '1') + offset;
+        }
+        int aux = convertImediate(offset, false);
+        int aux2 = c.registers.get(base).getData() + aux;  // Base + offset
+        
+        String aux3 = c.registers.get(rt).getBinaryData();
+        aux3 = aux3.substring(16,32);
+        if(aux3.charAt(0) =='1'){
+            aux3 = createPattern(16, '1') + aux3;
+        }
+        
+        c.memory[aux2/4].setData(aux3);    
+    }
+    
+    public void sb(String base, String rt, String offset){
+        if(offset.charAt(0) =='1'){
+            offset = createPattern(16, '1') + offset;
+        }
+        int aux = convertImediate(offset, false);
+        int aux2 = c.registers.get(base).getData() + aux;  // Base + offset
+        
+        String aux3 = c.registers.get(rt).getBinaryData();
+        aux3 = aux3.substring(24,32);
+        if(aux3.charAt(0) =='1'){
+            aux3 = createPattern(24, '1') + aux3;
+        }
+        
+        c.memory[aux2/4].setData(aux3);    
     }
     
     /*Auxiliar Functions*/
