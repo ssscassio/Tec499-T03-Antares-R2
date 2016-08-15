@@ -25,7 +25,7 @@ public class Register {
     }
     
     public int getData(){
-        
+       
         return (int) Long.parseLong(data, 2);
     }
     

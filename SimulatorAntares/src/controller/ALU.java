@@ -29,6 +29,8 @@ public class ALU {
         return aluInstance;
     }
     
+    /* ArithMetics Functions */
+    
     public void add(String rs, String rt, String rd){
         int aux =  c.registers.get(rs).getData() +  c.registers.get(rt).getData();
         c.registers.get(rd).setIntData(aux);
@@ -42,6 +44,7 @@ public class ALU {
     
     public void addiu(String rs, String rd, String imm){
         int bin = Integer.parseUnsignedInt(imm, 2);
+        System.err.println(c.registers.get(rs).getBinaryData());
         int aux = c.registers.get(rs).getUnsignedData() + bin;
         c.registers.get(rd).setIntData(aux);
     }
@@ -80,9 +83,7 @@ public class ALU {
         if(count !=0)
             c.registers.get(rd).setIntData(count);
         else
-            c.registers.get(rt).setIntData(32);
-        
-        
+            c.registers.get(rt).setIntData(32);  
     }
     
     public void lui(String rd, String imm){
@@ -90,7 +91,7 @@ public class ALU {
         c.registers.get(rd).setData(imm);
     }
     
-    public void seb(String rt, String rd){
+    public void seb(String rd, String rt){
         String rtValue = c.registers.get(rt).getBinaryData();
         rtValue = rtValue.substring(24, 32);
         char Sign = rtValue.charAt(0);
@@ -102,7 +103,7 @@ public class ALU {
         c.registers.get(rd).setData(rtValue);
     }
     
-    public void seh(String rt, String rd){
+    public void seh(String rd, String rt){
         String rtValue = c.registers.get(rt).getBinaryData();
         rtValue = rtValue.substring(16, 32);
         char Sign = rtValue.charAt(0);
@@ -123,6 +124,8 @@ public class ALU {
         int aux = c.registers.get(rs).getUnsignedData() - c.registers.get(rt).getUnsignedData();
         c.registers.get(rd).setIntData(aux);
     }
+    
+    /* Logic Functions */
     
     public void and(String rs, String rt, String rd){
         int aux = c.registers.get(rs).getData() & c.registers.get(rt).getData();
@@ -160,6 +163,8 @@ public class ALU {
         int aux = c.registers.get(rs).getData() ^ convertImediate(imm, false);  
         c.registers.get(rt).setIntData(aux);
     }
+    
+    /* Div and Mult Functions */
     
     public void div(String rs, String rt){
         c.LO.setIntData(c.registers.get(rs).getData() / c.registers.get(rt).getData());
@@ -246,7 +251,7 @@ public class ALU {
     
     }
     
-    public void subbu(String rs, String rt){
+    public void msubu(String rs, String rt){
         long sum1 = c.registers.get(rs).getUnsignedData() * c.registers.get(rt).getUnsignedData();
         String aux2 = c.HI.getBinaryData() + c.LO.getBinaryData();
 
@@ -329,6 +334,8 @@ public class ALU {
         c.LO.setData(lo);
     
     }
+    
+    /* Shift Functions */
     
     public void rotr(String rt, String rd, String sa){
         int rotrCount = convertImediate(sa, false);
@@ -417,7 +424,7 @@ public class ALU {
     }
     
     public void jal(String target){
-       c.registers.get("$ra").setIntData(c.PC.getData() + 8 );
+       c.registers.get("11111").setIntData(c.PC.getData() + 8 );
        String aux2 = c.PC.getBinaryData().substring(0,4) + target + "00";
        c.PC.setData(aux2); 
     }
@@ -485,7 +492,7 @@ public class ALU {
         }
     }
     
-    /* Acc Access*/
+    /* Acc Access Functions*/
     
     public void mfhi(String rd){
         c.registers.get(rd).setData(c.HI.getBinaryData());
