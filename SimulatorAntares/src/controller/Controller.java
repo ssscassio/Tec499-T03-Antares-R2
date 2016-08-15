@@ -65,7 +65,7 @@ public class Controller {
         for (String key : keys) {
             registers.put(registersMap.get(key), new Register(key));
         }
-        registers.get(registersMap.get("$sp")).setIntData(16383*4);
+        registers.get(registersMap.get("$sp")).setIntData(16384*4);
         registers.get(registersMap.get("$gp")).setIntData(4096*4);
 
     }
@@ -397,12 +397,12 @@ public class Controller {
     
     public void memoryStatus(){
         System.out.println("## Memória de Instrução ##\n");
-        for(int i = 0; i < 1600;i++){
+        for(int i = 0; i < 16384;i++){
             if(i==intructionsLimiter){
                 System.out.println("\n\n## Memória de Dados ##\n");
             }
             if(memory[i].getData() != null){
-                if(Long.parseLong(memory[i].getData(),2) != 0){
+                if((int) Long.parseLong(memory[i].getData().trim(),2) != 0){
                     System.out.println("Endereço: "+ i*4 +"| Valor: " + memory[i].getData());
                 }
             }

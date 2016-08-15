@@ -11,8 +11,8 @@ package config;
  */
 public class DefaultConfig {
    
-    public final String REGISTER_SET_FILE = "./src/config/register_set.txt";
-    public final String INSTRUCTION_SET_FILE = "./src/config/instruction_set.txt";
+    public final String REGISTER_SET_FILE = "register_set.txt";
+    public final String INSTRUCTION_SET_FILE = "instruction_set.txt";
     
     //Single Instance
     private static DefaultConfig config = null;

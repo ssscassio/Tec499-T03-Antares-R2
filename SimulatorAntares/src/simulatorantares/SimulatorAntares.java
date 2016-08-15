@@ -7,9 +7,12 @@ package simulatorantares;
 
 import controller.ALU;
 import controller.Controller;
+import java.io.IOException;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Register;
 
 /**
@@ -22,7 +25,8 @@ public class SimulatorAntares {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-   
+        System.out.print("\033[H\033[2J");  
+        System.out.flush(); 
         Controller controller = Controller.getInstance();
         ALU alu = ALU.getInstance();
         String leitura;
@@ -50,7 +54,7 @@ public class SimulatorAntares {
                 break;
         }
         
-        System.out.println("Aperte a tecla 'ENTER' para ver a área de memória utilizada.\n");
+        System.out.println("Aperte a tecla 'ENTER' para ver a área de memória utilizada.");
         Scanner scanner = new Scanner( System.in );
         scanner.nextLine();
         controller.memoryStatus();
