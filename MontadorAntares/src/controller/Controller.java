@@ -33,6 +33,9 @@ public class Controller {
 
     //Single Instance
     private static Controller controller = null;
+    private String[] wordValues;
+    private String finalWordBinary="";
+    private ArrayList<String> dataRows = new ArrayList<>();
 
     private int actualAddress = 0;
     private boolean is_data = false;
@@ -96,6 +99,7 @@ public class Controller {
 
             }
         }
+        finalBinary = finalBinary + finalWordBinary;
         return finalBinary;
     }
 
@@ -178,7 +182,7 @@ public class Controller {
             case "beq":
                 binary = (instruc.getOpcode() + rc.registerBinaryValue(command.getFields()[1]) + rc.registerBinaryValue(command.getFields()[2]) + defAddress(command.getAddress(), labels.get(command.getFields()[3]).getAddress()));
                 break;
-            case "j":                 
+            case "j":
             case "jal":
                 binary = (instruc.getOpcode() +  convertToBinary26bits(labels.get(command.getFields()[1]).getAddress()));
                 break;
@@ -359,7 +363,7 @@ public class Controller {
                     Label l = new Label(instruction, actualAddress);
                     this.labels.put(instruction, l);
                 }
-            } else { //Instruction               
+            } else { //Instruction
                 try {
                     Instruction instruc = ic.getInstruction(instruction);
                     int i;
@@ -400,9 +404,58 @@ public class Controller {
 
             }
         }
+        initData();
+    }
+
+    //trata os dados do .data
+    public void initData() {
+        String row = "";
+
+        for(int i = 0; i<dataRows.size(); i++){
+            row = dataRows.get(i);
+
+            if(row.contains(".space")){
+                String[] operators;
+                row = row.replace("\t", "");
+                operators = row.split(" ");
+                String labelName = operators[0].replace(":", "");
+                String valor = operators[2];
+
+                Label label = new Label(labelName, (actualAddress)*4);
+                labels.put(labelName, label);
+                int x = Integer.parseInt(valor);
+                actualAddress = (actualAddress*4) + x;
+            }
+            else if (row.contains(".word")) {
+                String[] operators;
+                row = row.replace("\t", "");
+                operators = row.split(".word");
+                operators[0].replace("."," ");
+                operators[0] = operators[0].replace(" ", "");
+                String labelName = operators[0].replace(":", "");
+                operators[1]= operators[1].replace(" ", "");
+                String[] valor = operators[1].split(",");
+
+                this.wordValues = valor;
+
+                Label label = new Label(labelName, actualAddress*4);
+                labels.put(labelName, label);
+                actualAddress = (actualAddress+ valor.length) * 4;
+
+                convertWord();
+            }
+        }
 
     }
-    public void verifyData() {
-
+    //converte o valores do .word para binário de 32 bits.
+    public void convertWord(){
+        for(int i=0; i<wordValues.length;i++) {
+            String aux = convertShiftAmmount(Integer.parseInt(wordValues[i]));
+            while (aux.length()-1 <31){
+                aux = "0"+aux;
+            }
+            finalWordBinary = finalWordBinary + aux + "\n";
+        }
+        System.out.print(finalWordBinary);
     }
 }

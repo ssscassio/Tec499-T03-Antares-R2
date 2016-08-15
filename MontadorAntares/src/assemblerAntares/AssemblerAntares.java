@@ -21,19 +21,8 @@ public class AssemblerAntares {
      */
     public static void main(String[] args) {
         //O CÓDIGO QUE ESTAVA AQUI AGORA ESTÁ NA CLASSE FileChooser, no metodo readAsm.
-Controller controller = Controller.getInstance();
-        System.out.println("Antares Assembler Tec-499\n\n");
-        controller.readAssembly("teste.asm");
-        controller.removeCommentsOnAssembly();
-        try {
-            controller.verifySyntax();
-            String binary = controller.convertToBinary();
-//            System.out.print("\n \n"+binary);
-//            writeBinary(path, fileName, binary);
-        } catch (Exception ex) {
-            System.err.println(ex.getMessage());
-        }
-//        FileChooser fileChooser = new FileChooser();
-//        fileChooser.show();
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.show();
     }
 }

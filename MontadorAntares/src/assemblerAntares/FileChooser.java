@@ -154,7 +154,7 @@ public class FileChooser {
         try {
             controller.verifySyntax();
             String binary = controller.convertToBinary();
-            System.out.print("\n \n"+binary);
+           // System.out.print("\n \n"+binary);
             writeBinary(path, fileName, binary);
         } catch (Exception ex) {
             System.err.println(ex.getMessage());
