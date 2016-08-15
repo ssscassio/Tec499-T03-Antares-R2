@@ -15,12 +15,14 @@ import sun.awt.X11.XConstants;
  */
 public class Register {
     String data;
+    String name;
     
     public Register(int data){
 
     }
     
-    public Register(){
+    public Register(String name){
+            this.name = name;
             this.data = "00000000000000000000000000000000";
     }
     
@@ -54,5 +56,10 @@ public class Register {
     
     public String getBinaryData(){
         return this.data;
+    }
+    
+    @Override
+    public String toString(){
+        return this.name + "\t|\t " + this.getData() +"\t|\t "+ Integer.toHexString(this.getData()) +"\t|\t"+this.getBinaryData()+"\t|";
     }
 }

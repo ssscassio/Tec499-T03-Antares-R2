@@ -37,7 +37,10 @@ public class ALU {
     }
     
     public void addi(String rs, String rd, String imm){
-        int bin = Integer.parseInt(imm, 2);
+        if(imm.charAt(0) =='1'){
+            imm = createPattern(16, '1') + imm;
+        }
+        int bin = this.convertImediate(imm, false);
         int aux = c.registers.get(rs).getData() + bin;
         c.registers.get(rd).setIntData(aux);
     }
@@ -291,6 +294,7 @@ public class ALU {
             String aux = Long.toBinaryString(data);
             resultString = df.format(  new BigInteger(aux) );           
         }
+        c.LO.setData(resultString.substring(32, 64));
         c.registers.get(rd).setData(resultString.substring(32, 64));
     }
     
@@ -423,7 +427,7 @@ public class ALU {
     }
     
     public void jal(String target){
-       c.registers.get("11111").setIntData(c.PC.getData() + 8 );
+       c.registers.get("11111").setIntData(c.PC.getData());
        String aux2 = c.PC.getBinaryData().substring(0,4) + target + "00";
        c.PC.setData(aux2); 
     }
@@ -557,7 +561,6 @@ public class ALU {
             offset = createPattern(16, '1') + offset;
         }
         int aux = convertImediate(offset, false);
-
         int aux2 = c.registers.get(base).getData() + aux;  // Base + offset
         c.memory[aux2/4].setData(c.registers.get(rt).getBinaryData());
         

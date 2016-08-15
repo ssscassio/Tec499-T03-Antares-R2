@@ -1,4 +1,4 @@
-# Cássio Santos, Wanderson Silva, Khaick Brito
+# Cï¿½ssio Santos, Wanderson Silva, Khaick Brito
 # Prime Numbers Generator
 #
 #void genPrime(int qtd){ //Generator range 
@@ -18,7 +18,7 @@
 #    }
 #}
 .data
-	array: .space 400#Initiating an array
+	array: .space 40#Initiating an array
 			# Space for 100 integers
 .text							
 .globl main
@@ -30,7 +30,7 @@
 # rest = %t4
 ###################
 main:
- addi $t0,$zero,100
+ addi $t0,$zero,10
  addi $t1,$zero,0
  addi $t2,$zero,2
  add $t3,$t2,$zero

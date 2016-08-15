@@ -8,6 +8,7 @@ package simulatorantares;
 import controller.ALU;
 import controller.Controller;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.Set;
 import model.Register;
 
@@ -24,20 +25,35 @@ public class SimulatorAntares {
    
         Controller controller = Controller.getInstance();
         ALU alu = ALU.getInstance();
-        controller.readBinaryFile("binary.txt");
+        String leitura;
+        System.out.println("##########  Antares R2 - Simulator  ##########\n\n");      
+        Scanner leitor = new Scanner(System.in);
+        System.out.println("Informe o caminho e nome do arquivo que deseja ler");
+        leitura = leitor.next();
+        int leitura2;
+        System.out.println(controller.readBinaryFile(leitura));
         controller.setRegistersDefaultValue();
-        controller.fetch();
+
+        do{
+        System.out.println("### Antares R2 - Menu ###\n\n");
+        System.out.println("1 - Simulação direta\n2 - Simulação passo a passo\n");
+        leitura2 = leitor.nextInt();
         
-        //Inicio Deletar depois, só para teste
-        int i = 101; 
-        Set<String> keys = controller.registers.keySet();
-        for (String key : keys) { 
-            controller.registers.get(key).setIntData(i+=15);
-            
+        }while(leitura2 != 2 && leitura2 !=1);
+
+        switch(leitura2){
+            case 1:
+                controller.fetch();         
+                break;
+            case 2:
+                controller.fetchStepByStep();
+                break;
         }
-        controller.registers.get("00000").setIntData(0); 
         
-        controller.PC.setIntData(0);
+        System.out.println("Aperte a tecla 'ENTER' para ver a área de memória utilizada.\n");
+        Scanner scanner = new Scanner( System.in );
+        scanner.nextLine();
+        controller.memoryStatus();
         
     }
     
