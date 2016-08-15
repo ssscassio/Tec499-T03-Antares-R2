@@ -102,7 +102,6 @@ public class Controller {
             case "nor":
             case "or":
             case "xor":
-            case "mul":
             case "sllv":
             case "srav":
             case "srlv":
@@ -110,8 +109,12 @@ public class Controller {
             case "movz":
             case "stl":
             case "sltu":
-                binary = (instruc.getOpcode() + rc.registerBinaryValue(command.getFields()[2])
-                        + rc.registerBinaryValue(command.getFields()[3]) + rc.registerBinaryValue(command.getFields()[1]) + "00000" + instruc.getFunction());
+                binary = (instruc.getOpcode()+ rc.registerBinaryValue(command.getFields()[2])
+                        + rc.registerBinaryValue(command.getFields()[3]) + rc.registerBinaryValue(command.getFields()[1]) + "00000" + instruc.getOpcode());
+                break;
+            case "mul":
+                binary = (instruc.getFunction()+ rc.registerBinaryValue(command.getFields()[2])
+                        + rc.registerBinaryValue(command.getFields()[3]) + rc.registerBinaryValue(command.getFields()[1]) + "00000" + instruc.getOpcode());
                 break;
             case "mfhi":
             case "mflo":
@@ -123,6 +126,8 @@ public class Controller {
                 break;
             case "seb":
             case "seh":
+                binary = (instruc.getFunction() + "00000" + rc.registerBinaryValue(command.getFields()[2]) + rc.registerBinaryValue(command.getFields()[1]) + instruc.getOpcode());
+                break;
             case "div":
             case "divu":
             case "madd":
