@@ -35,6 +35,7 @@ public class Controller {
     private static Controller controller = null;
 
     private int actualAddress = 0;
+    private boolean is_data = false;
 
     private Controller() {
 
@@ -54,10 +55,20 @@ public class Controller {
             FileReader file = new FileReader(assemblyNameTxt);
             BufferedReader fileBuf = new BufferedReader(file);
             String row = fileBuf.readLine();
+            ArrayList<String> dataRow = new ArrayList();
             while (row != null) {
                 if (!row.trim().equals("")) {
                     controller.removeCommentsOnAssembly();
-                    this.assembly.add(new Command(i, row.trim().toLowerCase()));//Trim para remover espaços no inicio e no fim da linha
+                    if (row.contains(".data"))
+                        is_data = true;
+                    else if(row.contains(".text"))
+                        is_data = false;
+                    else if(is_data) {
+                        System.out.println("data");
+                        dataRow.add(row);
+                    }
+                    else
+                        this.assembly.add(new Command(i, row.trim().toLowerCase()));//Trim para remover espaços no inicio e no fim da linha
                 }
                 row = fileBuf.readLine();
                 i++;
@@ -389,6 +400,9 @@ public class Controller {
 
             }
         }
+
+    }
+    public void verifyData() {
 
     }
 }
