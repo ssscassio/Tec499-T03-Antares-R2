@@ -57,6 +57,7 @@ begin
     `ORI: ALUop <= `ALU_XXX;
     `XORI: ALUop <= `ALU_XXX;
     `LUI: ALUop <= `ALU_LUI;
+    default: ALUop <= `ALU_XXX;
   endcase
 end
 endmodule

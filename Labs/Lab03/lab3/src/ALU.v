@@ -36,7 +36,8 @@ begin
     `ALU_SRL:  Out <= B >> A[4:0];
     `ALU_SRA:  Out <= $signed(B) >>> A[4:0];
     `ALU_NOR:  Out <= ~A & ~B;
-    `ALU_XXX:
+    `ALU_XXX:  Out <= 32'b0;//Colocando tudo zero caso seja uma operação invalida (para teste)
+    default: Out <= 32'b0;//Colocando tudo zero caso seja uma operação invalida (para teste)
 end
 
 endmodule
