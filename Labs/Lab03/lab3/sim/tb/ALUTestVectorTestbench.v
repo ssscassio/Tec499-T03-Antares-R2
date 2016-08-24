@@ -1,10 +1,10 @@
 //  Module: ALUTestVectorTestbench
 //  Desc:   Alternative 32-bit ALU testbench for the MIPS150 Processor
 //  Feel free to edit this testbench to add additional functionality
-//  
+//
 //  Note that this testbench only tests correct operation of the ALU,
 //  it doesn't check that you're mux-ing the correct values into the inputs
-//  of the ALU. 
+//  of the ALU.
 
 `timescale 1ns / 1ps
 
@@ -17,7 +17,7 @@ module ALUTestVectorTestbench();
     reg Clock;
 
     // Clock Signal generation:
-    initial Clock = 0; 
+    initial Clock = 0;
     always #(Halfcycle) Clock = ~Clock;
 
     // Wires to test the ALU
@@ -25,7 +25,7 @@ module ALUTestVectorTestbench();
     reg [5:0] opcode;
     reg [5:0] funct;
     reg [31:0] A, B;
-    reg [31:0] REFout; 
+    reg [31:0] REFout;
 
     wire [31:0] DUTout;
     wire [3:0] ALUop;
@@ -45,7 +45,7 @@ module ALUTestVectorTestbench();
     endtask
 
 
-    // This is where the modules being tested are instantiated. 
+    // This is where the modules being tested are instantiated.
     ALUdec DUT1(.funct(funct),
         .opcode(opcode),
         .ALUop(ALUop));
@@ -60,18 +60,29 @@ module ALUTestVectorTestbench();
     // testvector input file, which you can find with the command:
     // % wc -l ../sim/tests/testvectors.input
     // //////////////////////////////////////////////////////////////
-    localparam testcases = 25;
+    localparam testcases = 584;
 
     reg [107:0] testvector [0:testcases-1]; // Each testcase has 108 bits:
     // 64 for A and B, 32 for REFout, 6 for
     // opcode, 6 for funct
+    $readmemb("../tests/testvectors.input" , testvector);
 
     integer i; // integer used for looping in non-generate statement
 
-    initial 
+    initial
     begin
+      for(i = 0; i < testcases; i = i + 1)
+      begin
+        opcode = testvector[i][107:102];
+        funct = testvector[i][101:96];
+        A = testvector[i][95:64];
+        B = testvector[i][63:32];
+        REFout = testvector[i][31:0];
+        #1;
+        checkOutput(opcode, funct);
+      end
        $display("NO TESTS WRITTEN - FILL THIS OUT\n"); //delete this after you write your test cases
-       
+
        $display("\n\nALL TESTS PASSED!");
        $finish();
     end

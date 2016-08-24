@@ -1,10 +1,10 @@
 //  Module: ALUTestbench
 //  Desc:   32-bit ALU testbench for the MIPS150 Processor
 //  Feel free to edit this testbench to add additional functionality
-//  
+//
 //  Note that this testbench only tests correct operation of the ALU,
 //  it doesn't check that you're mux-ing the correct values into the inputs
-//  of the ALU. 
+//  of the ALU.
 
 // If #1 is in the initial block of your testbench, time advances by
 // 1ns rather than 1ps
@@ -15,21 +15,21 @@
 module ALUTestbench();
 
     parameter Halfcycle = 5; //half period is 5ns
-    
+
     localparam Cycle = 2*Halfcycle;
-    
+
     reg Clock;
-    
+
     // Clock Signal generation:
-    initial Clock = 0; 
+    initial Clock = 0;
     always #(Halfcycle) Clock = ~Clock;
-    
+
     // Register and wires to test the ALU
     reg [5:0] funct;
     reg [5:0] opcode;
     reg [31:0] A, B;
     wire [31:0] DUTout;
-    reg [31:0] REFout; 
+    reg [31:0] REFout;
     wire [3:0] ALUop;
 
     reg [30:0] rand_31;
@@ -58,7 +58,7 @@ module ALUTestbench();
         end
     endtask
 
-    //This is where the modules being tested are instantiated. 
+    //This is where the modules being tested are instantiated.
     ALUdec DUT1(.funct(funct),
         .opcode(opcode),
         .ALUop(ALUop));
@@ -92,7 +92,7 @@ module ALUTestbench();
 
             // Test load and store instructions (should add operands)
             opcode = `LB;
-            REFout = A + B; 
+            REFout = A + B;
             #1;
             checkOutput(opcode, funct);
 
@@ -123,13 +123,74 @@ module ALUTestbench();
             opcode = `SW;
             #1;
             checkOutput(opcode, funct);
+
+            opcode = `RTYPE;
+            funct = `SLL;
+            REFout = B << A[4:0];
+            #1;
+            checkOutput(opcode, funct);
+
+            funct = `SUBU;
+            REFout = A - B;
+            #1;
+            checkOutput(opcode, funct);
+
+            funct = `SLT;
+            REFout = ($signed(A) < $signed(B));
+            #1;
+            checkOutput(opcode, funct);
+
+            funct = `SLTU;
+            REFout = A < B;
+            #1;
+            checkOutput(opcode, funct);
+
+            funct = `AND;
+            REFout = A & B;
+            #1;
+            checkOutput(opcode, funct);
+
+            funct = `OR;
+            REFout = A | B;
+            #1;
+            checkOutput(opcode, funct);
+
+            funct = `XOR;
+            REFout = A ^ B;
+            #1;
+            checkOutput(opcode, funct);
+
+            funct = `LUI;
+            REFout = {B[15:0],16'b0};
+            #1;
+            checkOutput(opcode, funct);
+
+            funct = `ADDU;
+            REFout = A + B;
+            #1;
+            checkOutput(opcode, funct);
+
+            funct = `SRL;
+            REFout = B >> A[4:0];
+            #1;
+            checkOutput(opcode, funct);
+
+            funct = `SRA;
+            REFout = $signed(B)>>> A[4:0];
+            #1;
+            checkOutput(opcode, funct);
+
+            funct = `NOR;
+            REFout = ~A & ~B;
+            #1;
+            checkOutput(opcode, funct);
         end
         ///////////////////////////////
         // Hard coded tests go here
         ///////////////////////////////
 
         $display("\n\nADD YOUR ADDITIONAL TEST CASES HERE\n"); //delete this once you've written your test cases
-       
+
         $display("\n\nALL TESTS PASSED!");
         $finish();
     end
