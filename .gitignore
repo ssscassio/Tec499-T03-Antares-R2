@@ -2,7 +2,11 @@
 /MontadorAntares/build/
 /MontadorAntares/dist/
 /AntaresSimulator/nbproject/private/
+<<<<<<< HEAD
 /AntaresSimulator/build/
 /SimulatorAntares/nbproject/private/
 /SimulatorAntares/build/
 /SimulatorAntares/dist/
+=======
+/SimulatorAntares/nbproject/private/
+>>>>>>> b74be58eff5109bbbd306ad3dea2a4921793671c
