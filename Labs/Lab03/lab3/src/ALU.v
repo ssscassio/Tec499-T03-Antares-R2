@@ -1,14 +1,14 @@
-// Universidade Estadual de Feira de Santana 
+// Universidade Estadual de Feira de Santana
 // TEC499 - MI - Sistemas Digitais
 // Lab 3, 2016.1
 //
 // Module: ALU.v
 // Desc:   32-bit ALU for the MIPS150 Processor
-// Inputs: 
+// Inputs:
 // 	A: 32-bit value
 // 	B: 32-bit value
-// 	ALUop: Selects the ALU's operation 
-// 						
+// 	ALUop: Selects the ALU's operation
+//
 // Outputs:
 // 	Out: The chosen function mapped to A and B.
 
@@ -21,7 +21,22 @@ module ALU(
     output reg [31:0] Out
 );
 
-    // Implement your ALU here, then delete this comment
+always@ (*);
+begin
+  case(ALUop)
+    `ALU_ADDU: Out <= A + B;
+    `ALU_SUBU: Out <= A - B;
+    `ALU_SLT:  Out <= ($signed(A) < $signed(B));
+    `ALU_SLTU: Out <= A < B;
+    `ALU_AND:  Out <= A & B;
+    `ALU_OR:   Out <= A | B;
+    `ALU_XOR   Out <= A ^ B;
+    `ALU_LUI:  Out <= {B[15:0],16'b0};
+    `ALU_SLL:  Out <= B << A[4:0];
+    `ALU_SRL:  Out <= B >> A[4:0];
+    `ALU_SRA:  Out <= $signed(B) >>> A[4:0];
+    `ALU_NOR:  Out <= ~A & ~B;
+    `ALU_XXX:
+end
 
-always@* Out <= A + B;
 endmodule
