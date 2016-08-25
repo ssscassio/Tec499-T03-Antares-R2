@@ -36,8 +36,8 @@ begin
     `ALU_SRL:  Out <= B >> A[4:0];
     `ALU_SRA:  Out <= $signed(B) >>> A[4:0];
     `ALU_NOR:  Out <= ~A & ~B;
-    `ALU_XXX:  Out <= A + B;//Colocando A + B para operações não definidas, para serguir o arquivo de teste
-    default: Out <= A + B;//Colocando (para teste)
+    `ALU_XXX:  Out <= 32'b0;//Colocando A + B para operações não definidas, para serguir o arquivo de teste
+    default: Out <= 32'b0;//Colocando (para teste)
 end
 
 endmodule

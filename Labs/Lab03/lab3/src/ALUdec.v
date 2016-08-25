@@ -26,9 +26,9 @@ begin
       `SLL: ALUop <= `ALU_SLL;
       `SRL: ALUop <= `ALU_SRL;
       `SRA: ALUop <= `ALU_SRA;
-      `SLLV: ALUop <= `ALU_XXX;
-      `SRLV: ALUop <= `ALU_XXX;
-      `SRAV: ALUop <= `ALU_XXX;
+      `SLLV: ALUop <= `ALU_SLL;
+      `SRLV: ALUop <= `ALU_SRL;
+      `SRAV: ALUop <= `ALU_SRA;
       `ADDU: ALUop <= `ALU_ADDU;
       `SUBU: ALUop <= `ALU_SUBU;
       `AND: ALUop <= `ALU_AND;
@@ -39,22 +39,22 @@ begin
       `SLTU: ALUop <= `ALU_SLTU;
       endcase
     // Load/store
-    `LB: ALUop <= `ALU_XXX;
-    `LB: ALUop <= `ALU_XXX;
-    `LH: ALUop <= `ALU_XXX;
-    `LW: ALUop <= `ALU_XXX;
-    `LBU: ALUop <= `ALU_XXX;
-    `LHU: ALUop <= `ALU_XXX;
-    `SB: ALUop <= `ALU_XXX;
-    `SH: ALUop <= `ALU_XXX;
-    `SW: ALUop <= `ALU_XXX;
+    `LB: ALUop <= `ALU_ADDU;
+    `LB: ALUop <= `ALU_ADDU;
+    `LH: ALUop <= `ALU_ADDU;
+    `LW: ALUop <= `ALU_ADDU;
+    `LBU: ALUop <= `ALU_ADDU;
+    `LHU: ALUop <= `ALU_ADDU;
+    `SB: ALUop <= `ALU_ADDU;
+    `SH: ALUop <= `ALU_ADDU;
+    `SW: ALUop <= `ALU_ADDU;
     // I-type
-    `ADDIU: ALUop <= `ALU_XXX;
-    `SLTI: ALUop <= `ALU_XXX;
-    `SLTIU: ALUop <= `ALU_XXX;
-    `ANDI: ALUop <= `ALU_XXX;
-    `ORI: ALUop <= `ALU_XXX;
-    `XORI: ALUop <= `ALU_XXX;
+    `ADDIU: ALUop <= `ALU_ADDU;
+    `SLTI: ALUop <= `ALU_SLT;
+    `SLTIU: ALUop <= `ALU_SLTU;
+    `ANDI: ALUop <= `ALU_AND;
+    `ORI: ALUop <= `ALU_OR;
+    `XORI: ALUop <= `ALU_XOR;
     `LUI: ALUop <= `ALU_LUI;
     default: ALUop <= `ALU_XXX;
   endcase

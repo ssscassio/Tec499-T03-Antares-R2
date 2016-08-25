@@ -124,6 +124,56 @@ module ALUTestbench();
             #1;
             checkOutput(opcode, funct);
 
+            opcode = `SLLV;
+            REFout = B << A[4:0];
+            #1;
+            checkOutput(opcode, funct);
+
+            opcode = `SRLV;
+            REFout = B >> A[4:0];
+            #1;
+            checkOutput(opcode, funct);
+
+            opcode = `SRAV;
+            REFout = $signed(B)>>> A[4:0];
+            #1;
+            checkOutput(opcode, funct);
+
+            opcode = `ADDIU;
+            REFout = A + B;
+            #1;
+            checkOutput(opcode, funct);
+
+            opcode = `SLTI;
+            REFout = ($signed(A) < $signed(B));
+            #1;
+            checkOutput(opcode, funct);
+
+            opcode = `SLTIU;
+            REFout = A < B;
+            #1;
+            checkOutput(opcode, funct);
+
+            opcode = `ANDI;
+            REFout = A & B;
+            #1;
+            checkOutput(opcode, funct);
+
+            opcode = `ORI;
+            REFout = A | B;
+            #1;
+            checkOutput(opcode, funct);
+
+            opcode = `XORI;
+            REFout = A ^ B;
+            #1;
+            checkOutput(opcode, funct);
+
+            opcode = `LUI;
+            REFout = {B[15:0],16'b0};
+            #1;
+            checkOutput(opcode, funct);
+
             opcode = `RTYPE;
             funct = `SLL;
             REFout = B << A[4:0];
@@ -189,7 +239,6 @@ module ALUTestbench();
         // Hard coded tests go here
         ///////////////////////////////
 
-        $display("\n\nADD YOUR ADDITIONAL TEST CASES HERE\n"); //delete this once you've written your test cases
         opcode = `RTYPE;
 
         //ADDU
