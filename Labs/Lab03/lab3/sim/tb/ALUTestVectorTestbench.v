@@ -65,12 +65,12 @@ module ALUTestVectorTestbench();
     reg [107:0] testvector [0:testcases-1]; // Each testcase has 108 bits:
     // 64 for A and B, 32 for REFout, 6 for
     // opcode, 6 for funct
-    $readmemb("sim/tests/testvectors.input" , testvector);
 
     integer i; // integer used for looping in non-generate statement
 
     initial
     begin
+      $readmemb("../tests/testvectors.input" , testvector);
       for(i = 0; i < testcases; i = i + 1)
       begin
         opcode = testvector[i][107:102];

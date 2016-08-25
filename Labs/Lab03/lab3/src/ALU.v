@@ -38,6 +38,7 @@ begin
     `ALU_NOR:  Out = ~A & ~B;
     `ALU_XXX:  Out = 32'b0;//Colocando A + B para operações não definidas, para serguir o arquivo de teste
     default: Out = 32'b0;//Colocando (para teste)
+  endcase
 end
 
 endmodule

@@ -124,21 +124,6 @@ module ALUTestbench();
             #1;
             checkOutput(opcode, funct);
 
-            opcode = `SLLV;
-            REFout = B << A[4:0];
-            #1;
-            checkOutput(opcode, funct);
-
-            opcode = `SRLV;
-            REFout = B >> A[4:0];
-            #1;
-            checkOutput(opcode, funct);
-
-            opcode = `SRAV;
-            REFout = $signed(B)>>> A[4:0];
-            #1;
-            checkOutput(opcode, funct);
-
             opcode = `ADDIU;
             REFout = A + B;
             #1;
@@ -180,6 +165,21 @@ module ALUTestbench();
             #1;
             checkOutput(opcode, funct);
 
+            funct = `SLLV;
+            REFout = B << A[4:0];
+            #1;
+            checkOutput(opcode, funct);
+
+            funct = `SRLV;
+            REFout = B >> A[4:0];
+            #1;
+            checkOutput(opcode, funct);
+
+            opcode = `SRAV;
+            REFout = $signed(B)>>> A[4:0];
+            #1;
+            checkOutput(opcode, funct);
+
             funct = `SUBU;
             REFout = A - B;
             #1;
@@ -207,11 +207,6 @@ module ALUTestbench();
 
             funct = `XOR;
             REFout = A ^ B;
-            #1;
-            checkOutput(opcode, funct);
-
-            funct = `LUI;
-            REFout = {B[15:0],16'b0};
             #1;
             checkOutput(opcode, funct);
 
@@ -394,24 +389,25 @@ module ALUTestbench();
         checkOutput(opcode,funct);
 
         //LUI
-        funct = `LUI;
+        opcode = `LUI;
         B = 32'b00000000000000000000000000000010;
         REFout = {B[15:0],16'b0};
         #1;
         checkOutput(opcode,funct);
 
-        funct = `LUI;
+        opcode = `LUI;
         B = 32'b11111111111111111111111111111110;
         REFout = {B[15:0],16'b0};
         #1;
         checkOutput(opcode,funct);
 
-        funct = `LUI;
+        opcode = `LUI;
         B = 32'b11111111111111111111111111111110;
         REFout = {B[15:0],16'b0};
         #1;
         checkOutput(opcode,funct);
 
+        opcode = `RTYPE;
         //SLL
         funct = `SLL;
         A = 32'b00000000000000000000000000000011;
