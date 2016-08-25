@@ -65,7 +65,7 @@ module ALUTestVectorTestbench();
     reg [107:0] testvector [0:testcases-1]; // Each testcase has 108 bits:
     // 64 for A and B, 32 for REFout, 6 for
     // opcode, 6 for funct
-    $readmemb("../tests/testvectors.input" , testvector);
+    $readmemb("sim/tests/testvectors.input" , testvector);
 
     integer i; // integer used for looping in non-generate statement
 
@@ -81,7 +81,6 @@ module ALUTestVectorTestbench();
         #1;
         checkOutput(opcode, funct);
       end
-       $display("NO TESTS WRITTEN - FILL THIS OUT\n"); //delete this after you write your test cases
 
        $display("\n\nALL TESTS PASSED!");
        $finish();
