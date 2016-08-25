@@ -190,6 +190,267 @@ module ALUTestbench();
         ///////////////////////////////
 
         $display("\n\nADD YOUR ADDITIONAL TEST CASES HERE\n"); //delete this once you've written your test cases
+        opcode = `RTYPE;
+
+        //ADDU
+        funct = `ADDU;
+        A = 32'b11111111111111111111111111111110;
+        B = 32'b00000000000000000000000000000110;
+        REFout = A + B;
+        #1;
+        checkOutput(opcode,funct);
+
+        A = 32'b00000000000000000000000000000000;
+        B = 32'b00000000000000000000000000000110;
+        REFout = A + B;
+        #1;
+        checkOutput(opcode,funct);
+
+        A = 32'b11111111111111111111111111111100;
+        B = 32'b11111111111111111111111111111110;
+        REFout = A + B;
+        #1;
+        checkOutput(opcode,funct);
+
+        //SUBU
+        funct = `SUBU;
+        A = 32'b00000000000000000000000000000011;
+        B = 32'b00000000000000000000000000000010;
+        REFout = A - B;
+        #1;
+        checkOutput(opcode,funct);
+
+        funct = `SUBU;
+        A = 32'b00000000000000000000000000000011;
+        B = 32'b11111111111111111111111111111110;
+        REFout = A - B;
+        #1;
+        checkOutput(opcode,funct);
+
+        funct = `SUBU;
+        A = 32'b11111111111111111111111111111100;
+        B = 32'b11111111111111111111111111111110;
+        REFout = A - B;
+        #1;
+        checkOutput(opcode,funct);
+
+        //SLT
+        funct = `SLT;
+        A = 32'b00000000000000000000000000000011;
+        B = 32'b00000000000000000000000000000010;
+        REFout = $signed(A) < $signed(B);
+        #1;
+        checkOutput(opcode,funct);
+
+        funct = `SLT;
+        A = 32'b00000000000000000000000000000011;
+        B = 32'b11111111111111111111111111111110;
+        REFout = $signed(A) < $signed(B);
+        #1;
+        checkOutput(opcode,funct);
+
+        funct = `SLT;
+        A = 32'b11111111111111111111111111111100;
+        B = 32'b11111111111111111111111111111110;
+        REFout = $signed(A) < $signed(B);
+        #1;
+        checkOutput(opcode,funct);
+
+        //SLTU
+        funct = `SLTU;
+        A = 32'b00000000000000000000000000000011;
+        B = 32'b00000000000000000000000000000010;
+        REFout = A < B;
+        #1;
+        checkOutput(opcode,funct);
+
+        funct = `SLTU;
+        A = 32'b00000000000000000000000000000011;
+        B = 32'b11111111111111111111111111111110;
+        REFout = A < B;
+        #1;
+        checkOutput(opcode,funct);
+
+        funct = `SLTU;
+        A = 32'b11111111111111111111111111111100;
+        B = 32'b11111111111111111111111111111110;
+        REFout = A < B;
+        #1;
+        checkOutput(opcode,funct);
+
+        //AND
+        funct = `AND;
+        A = 32'b00000000000000000000000000000011;
+        B = 32'b00000000000000000000000000000010;
+        REFout = A & B;
+        #1;
+        checkOutput(opcode,funct);
+
+        funct = `AND;
+        A = 32'b00000000000000000000000000000011;
+        B = 32'b11111111111111111111111111111110;
+        REFout = A & B;
+        #1;
+        checkOutput(opcode,funct);
+
+        funct = `AND;
+        A = 32'b11111111111111111111111111111100;
+        B = 32'b11111111111111111111111111111110;
+        REFout = A & B;
+        #1;
+        checkOutput(opcode,funct);
+
+        //OR
+        funct = `OR;
+        A = 32'b00000000000000000000000000000011;
+        B = 32'b00000000000000000000000000000010;
+        REFout = A | B;
+        #1;
+        checkOutput(opcode,funct);
+
+        funct = `OR;
+        A = 32'b00000000000000000000000000000011;
+        B = 32'b11111111111111111111111111111110;
+        REFout = A | B;
+        #1;
+        checkOutput(opcode,funct);
+
+        funct = `OR;
+        A = 32'b11111111111111111111111111111100;
+        B = 32'b11111111111111111111111111111110;
+        REFout = A | B;
+        #1;
+        checkOutput(opcode,funct);
+
+        //XOR
+        funct = `XOR;
+        A = 32'b00000000000000000000000000000011;
+        B = 32'b00000000000000000000000000000010;
+        REFout = A ^ B;
+        #1;
+        checkOutput(opcode,funct);
+
+        funct = `XOR;
+        A = 32'b00000000000000000000000000000011;
+        B = 32'b11111111111111111111111111111110;
+        REFout = A ^ B;
+        #1;
+        checkOutput(opcode,funct);
+
+        funct = `XOR;
+        A = 32'b11111111111111111111111111111100;
+        B = 32'b11111111111111111111111111111110;
+        REFout = A ^ B;
+        #1;
+        checkOutput(opcode,funct);
+
+        //LUI
+        funct = `LUI;
+        B = 32'b00000000000000000000000000000010;
+        REFout = {B[15:0],16'b0};
+        #1;
+        checkOutput(opcode,funct);
+
+        funct = `LUI;
+        B = 32'b11111111111111111111111111111110;
+        REFout = {B[15:0],16'b0};
+        #1;
+        checkOutput(opcode,funct);
+
+        funct = `LUI;
+        B = 32'b11111111111111111111111111111110;
+        REFout = {B[15:0],16'b0};
+        #1;
+        checkOutput(opcode,funct);
+
+        //SLL
+        funct = `SLL;
+        A = 32'b00000000000000000000000000000011;
+        B = 32'b00000000000000000000000000000010;
+        REFout = B << A[4:0];
+        #1;
+        checkOutput(opcode,funct);
+
+        funct = `SLL;
+        A = 32'b00000000000000000000000000000011;
+        B = 32'b11111111111111111111111111111110;
+        REFout = B << A[4:0];
+        #1;
+        checkOutput(opcode,funct);
+
+        funct = `SLL;
+        A = 32'b11111111111111111111111111111100;
+        B = 32'b11111111111111111111111111111110;
+        REFout = B << A[4:0];
+        #1;
+        checkOutput(opcode,funct);
+
+        //SRL
+        funct = `SRL;
+        A = 32'b00000000000000000000000000000011;
+        B = 32'b00000000000000000000000000000010;
+        REFout = B >> A[4:0];
+        #1;
+        checkOutput(opcode,funct);
+
+        funct = `SRL;
+        A = 32'b00000000000000000000000000000011;
+        B = 32'b11111111111111111111111111111110;
+        REFout = B >> A[4:0];
+        #1;
+        checkOutput(opcode,funct);
+
+        funct = `SRL;
+        A = 32'b11111111111111111111111111111100;
+        B = 32'b11111111111111111111111111111110;
+        REFout = B >> A[4:0];
+        #1;
+        checkOutput(opcode,funct);
+
+        //SRA
+        funct = `SRA;
+        A = 32'b00000000000000000000000000000011;
+        B = 32'b00000000000000000000000000000010;
+        REFout = $signed(B) >>> A[4:0];
+        #1;
+        checkOutput(opcode,funct);
+
+        funct = `SRA;
+        A = 32'b00000000000000000000000000000011;
+        B = 32'b11111111111111111111111111111110;
+        REFout = $signed(B) >>> A[4:0];
+        #1;
+        checkOutput(opcode,funct);
+
+        funct = `SRA;
+        A = 32'b11111111111111111111111111111100;
+        B = 32'b11111111111111111111111111111110;
+        REFout = $signed(B) >>> A[4:0];
+        #1;
+        checkOutput(opcode,funct);
+
+        //NOR
+        funct = `NOR;
+        A = 32'b00000000000000000000000000000011;
+        B = 32'b00000000000000000000000000000010;
+        REFout = ~A & ~B;
+        #1;
+        checkOutput(opcode,funct);
+
+        funct = `NOR;
+        A = 32'b00000000000000000000000000000011;
+        B = 32'b11111111111111111111111111111110;
+        REFout = ~A & ~B;
+        #1;
+        checkOutput(opcode,funct);
+
+        funct = `NOR;
+        A = 32'b11111111111111111111111111111100;
+        B = 32'b11111111111111111111111111111110;
+        REFout = ~A & ~B;
+        #1;
+        checkOutput(opcode,funct);
+
 
         $display("\n\nALL TESTS PASSED!");
         $finish();
