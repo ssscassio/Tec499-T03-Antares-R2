@@ -16,7 +16,7 @@
 
 module sign_extend(
       input  [16:0] immediate,
-      output [32:0] out);
+      output [31:0] out);
 
       assign out = $signed(immediate);
 

@@ -16,8 +16,8 @@
 `ifndef _mux_2_32
 `define _mux_2_32
 
-module _mux_2_32(
-      input [32:0] A, B,
+module mux_2_32(
+      input [31:0] A, B,
       input Sel,
       output out
     );
