@@ -22,7 +22,7 @@
 module register_memory(
       input clock, regWrite,
       input [31:0] writeData,
-      input [4:0] readRegister1, readRegister2, writeRegister
+      input [4:0] readRegister1, readRegister2, writeRegister,
       output [31:0] readData1, readData2
 );
 
@@ -49,7 +49,7 @@ module register_memory(
 
       always @(posedge clock) begin //Write Data on Falling edge
       		if (regWrite && writeRegister != 5'd0) begin //Check if write sinal is on
-      			memory[writeRegister] <= wrdata;
+      			memory[writeRegister] <= writeData;
       		end
       end
 
