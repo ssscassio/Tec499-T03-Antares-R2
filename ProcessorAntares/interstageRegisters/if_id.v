@@ -21,19 +21,14 @@
 `define _if_id
 
 module if_id(
-      input flush, clock,IFIDWrite,
+      input flush, clock,IFIDWrite, reset,
       input [31:0] pcPlus4, instruction,
       output reg [31:0] instructionRegister,pcPlus4Register
 );
 
-      initial begin
-        instructionRegister = 0;
-        pcPlus4Register = 0;
-      end
 
-      always@(posedge clock)
-        begin
-          if(flush) begin
+      always@(posedge clock) begin
+          if (flush || reset) begin
             instructionRegister <= 0;
             pcPlus4Register <=0;
           end
