@@ -16,7 +16,7 @@
 
 module shift_2(
       input [31:0] in,
-      output out
+      output [31:0] out
     );
 
     assign out = {in[29:0], 2'b0};
