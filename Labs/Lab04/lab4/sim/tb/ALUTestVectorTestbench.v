@@ -10,7 +10,7 @@
 
 module ALUTestVectorTestbench();
 
-    parameter Halfcycle = 5; //half period is 5ns
+    parameter Halfcycle = 8.8; //half period is 5ns
 
     localparam Cycle = 2*Halfcycle;
 
@@ -36,7 +36,6 @@ module ALUTestVectorTestbench();
         if ( REFout !== DUTout ) begin
             $display("FAIL: Incorrect result for opcode %b, funct: %b:", opcode, funct);
             $display("\tA: 0x%h, B: 0x%h, DUTout: 0x%h, REFout: 0x%h", A, B, DUTout, REFout);
-        $finish();
         end
         else begin
             $display("PASS: opcode %b, funct %b", opcode, funct);
@@ -70,7 +69,7 @@ module ALUTestVectorTestbench();
 
     initial
     begin
-      $readmemb("../tests/testvectors.input" , testvector);
+      $readmemb("../../tests/testvectors.input" , testvector);
       for(i = 0; i < testcases; i = i + 1)
       begin
         opcode = testvector[i][107:102];
@@ -78,7 +77,7 @@ module ALUTestVectorTestbench();
         A = testvector[i][95:64];
         B = testvector[i][63:32];
         REFout = testvector[i][31:0];
-        #1;
+        #Cycle;
         checkOutput(opcode, funct);
       end
 

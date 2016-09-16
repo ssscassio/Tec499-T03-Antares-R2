@@ -1,4 +1,4 @@
-###################################################################
+ ###################################################################
 # Project Configuration: 
 # 
 # Specify the name of the design (project) and the Quartus II
@@ -54,7 +54,7 @@ MAP_ARGS = --read_settings_files=on $(addprefix --source=,$(SRCS))
 FIT_ARGS = --part=$(PART) --read_settings_files=on
 ASM_ARGS =
 STA_ARGS =
-EDA_ARGS = --read_settings_files=off --write_settings_files=off --simulation $(PROJECT) -c $(TOP) --output_directory="../syn/src"
+EDA_ARGS = --read_settings_files=off --write_settings_files=off --simulation $(PROJECT) -c $(TOP) --output_directory="../syn/src" --tool=modelsim_oem --format=verilog
 
 ###################################################################
 # Target implementations

@@ -14,7 +14,7 @@
 `define _control_unit
 
 module control_unit(
-  input [5:0] opCode;
+  input [5:0] opCode,
   output reg [1:0] aluOp,
   output reg regDst,memRead,memToReg,memWrite,aluSrc,regWrite,
   output reg beq,bne,
@@ -69,12 +69,16 @@ module control_unit(
       end
     //SW
       6'b101011: begin
-        memwrite <= 1'b1;
+        memWrite <= 1'b1;
         aluOp[1] <= 1'b0;
         aluSrc   <= 1'b1;
         regWrite <= 1'b0;
       end
-    end
+    //JR
+      6'
+    
+   endcase
+ end
 endmodule
 
 `endif

@@ -1,25 +1,3 @@
-// module HazardUnit(IDRegRs,IDRegRt,EXRegRt,EXMemRead,stallIF,IFIDWrite,HazMuxCon);
-//  input [4:0] IDRegRs,IDRegRt,EXRegRt;
-//  input EXMemRead;
-//  output stallIF, IFIDWrite, HazMuxCon;
-//
-//  reg PCWrite, IFIDWrite, HazMuxCon;
-//
-//  always@(IDRegRs,IDRegRt,EXRegRt,EXMemRead)
-//     if(EXMemRead&((EXRegRt == IDRegRs)|(EXRegRt == IDRegRt)))
-//       begin//stall
-//       stallIF = 0;
-//       IFIDWrite = 0;
-//       HazMuxCon = 1;
-//       end
-//     else
-//       begin//no stall
-//       stallIF = 1;
-//       IFIDWrite = 1;
-//       HazMuxCon = 1;
-//     end
-// endmodule
-
 //-----------------------------------------------------------------------------
 // Universidade Estadual de Feira de Santana
 // TEC499 - MI - Sistemas Digitais
@@ -42,7 +20,6 @@
 // ifIdWrite:
 //-----------------------------------------------------------------------------
 
-
 module hazard(  //stallID,stallIF,rsID,rtID,rsEX,rtEX,flushEX,memReadEx,clk,hazMuxCont,mRegister
   input [4:0] rsID,rtID,rtEX,rsEX,
   input clk, mRegister, memReadEx,
@@ -50,10 +27,12 @@ module hazard(  //stallID,stallIF,rsID,rtID,rsEX,rtEX,flushEX,memReadEx,clk,hazM
   );
 
   always @ (rsID,rtID,rsEX,memReadEx) begin
-    if(memReadEx $ ((rtEx == rsID)|(rtEx == rtID)) begin
-        stallIF = ifIdWrite = 0;
+    if(memReadEx & ((rtEx == rsID)|(rtEx == rtID))
+        stallIF = 0;
+        ifIdWrite = 0;
     end
     else begin
-      stallIF = ifIdWrite;
+      stallIF = 1;
+      ifIdWrite = 1;
     end
 endmodule

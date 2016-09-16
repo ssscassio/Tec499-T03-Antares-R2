@@ -6,7 +6,7 @@
 //  it doesn't check that you're mux-ing the correct values into the inputs
 //  of the ALU.
 
-// If #1 is in the initial block of your testbench, time advances by
+// If #Cycle is in the initial block of your testbench, time advances by
 // 1ns rather than 1ps
 `timescale 1ns / 1ps
 
@@ -14,7 +14,7 @@
 
 module ALUTestbench();
 
-    parameter Halfcycle = 5; //half period is 5ns
+    parameter Halfcycle = 8.8; //half period is 5ns
 
     localparam Cycle = 2*Halfcycle;
 
@@ -50,7 +50,6 @@ module ALUTestbench();
         if ( REFout !== DUTout ) begin
             $display("FAIL: Incorrect result for opcode %b, funct: %b:", opcode, funct);
             $display("\tA: 0x%h, B: 0x%h, DUTout: 0x%h, REFout: 0x%h", A, B, DUTout, REFout);
-            $finish();
         end
         else begin
             $display("PASS: opcode %b, funct %b", opcode, funct);
@@ -80,7 +79,7 @@ module ALUTestbench();
             // and hard-coded tests outside of the loop
             // (see comment below)
             // //////////////////////////////////////////
-            #1;
+            #Cycle;
             // Make both A and B negative to check signed operations
             rand_31 = {$random} & 31'h7FFFFFFF;
             rand_15 = {$random} & 15'h7FFF;
@@ -93,141 +92,141 @@ module ALUTestbench();
             // Test load and store instructions (should add operands)
             opcode = `LB;
             REFout = A + B;
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             opcode = `LH;
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             opcode = `LW;
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             opcode = `LBU;
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             opcode = `LHU;
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             opcode = `SB;
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             opcode = `SH;
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             opcode = `SW;
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             opcode = `ADDIU;
             REFout = A + B;
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             opcode = `SLTI;
             REFout = ($signed(A) < $signed(B));
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             opcode = `SLTIU;
             REFout = A < B;
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             opcode = `ANDI;
             REFout = A & B;
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             opcode = `ORI;
             REFout = A | B;
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             opcode = `XORI;
             REFout = A ^ B;
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             opcode = `LUI;
             REFout = {B[15:0],16'b0};
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             opcode = `RTYPE;
             funct = `SLL;
             REFout = B << A[4:0];
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             funct = `SLLV;
             REFout = B << A[4:0];
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             funct = `SRLV;
             REFout = B >> A[4:0];
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
-            opcode = `SRAV;
+            funct = `SRAV;
             REFout = $signed(B)>>> A[4:0];
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             funct = `SUBU;
             REFout = A - B;
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             funct = `SLT;
             REFout = ($signed(A) < $signed(B));
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             funct = `SLTU;
             REFout = A < B;
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             funct = `AND;
             REFout = A & B;
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             funct = `OR;
             REFout = A | B;
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             funct = `XOR;
             REFout = A ^ B;
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             funct = `ADDU;
             REFout = A + B;
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             funct = `SRL;
             REFout = B >> A[4:0];
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             funct = `SRA;
             REFout = $signed(B)>>> A[4:0];
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
 
             funct = `NOR;
             REFout = ~A & ~B;
-            #1;
+            #Cycle;
             checkOutput(opcode, funct);
         end
         ///////////////////////////////
@@ -241,19 +240,19 @@ module ALUTestbench();
         A = 32'b11111111111111111111111111111110;
         B = 32'b00000000000000000000000000000110;
         REFout = A + B;
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         A = 32'b00000000000000000000000000000000;
         B = 32'b00000000000000000000000000000110;
         REFout = A + B;
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         A = 32'b11111111111111111111111111111100;
         B = 32'b11111111111111111111111111111110;
         REFout = A + B;
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         //SUBU
@@ -261,21 +260,21 @@ module ALUTestbench();
         A = 32'b00000000000000000000000000000011;
         B = 32'b00000000000000000000000000000010;
         REFout = A - B;
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         funct = `SUBU;
         A = 32'b00000000000000000000000000000011;
         B = 32'b11111111111111111111111111111110;
         REFout = A - B;
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         funct = `SUBU;
         A = 32'b11111111111111111111111111111100;
         B = 32'b11111111111111111111111111111110;
         REFout = A - B;
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         //SLT
@@ -283,21 +282,21 @@ module ALUTestbench();
         A = 32'b00000000000000000000000000000011;
         B = 32'b00000000000000000000000000000010;
         REFout = $signed(A) < $signed(B);
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         funct = `SLT;
         A = 32'b00000000000000000000000000000011;
         B = 32'b11111111111111111111111111111110;
         REFout = $signed(A) < $signed(B);
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         funct = `SLT;
         A = 32'b11111111111111111111111111111100;
         B = 32'b11111111111111111111111111111110;
         REFout = $signed(A) < $signed(B);
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         //SLTU
@@ -305,21 +304,21 @@ module ALUTestbench();
         A = 32'b00000000000000000000000000000011;
         B = 32'b00000000000000000000000000000010;
         REFout = A < B;
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         funct = `SLTU;
         A = 32'b00000000000000000000000000000011;
         B = 32'b11111111111111111111111111111110;
         REFout = A < B;
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         funct = `SLTU;
         A = 32'b11111111111111111111111111111100;
         B = 32'b11111111111111111111111111111110;
         REFout = A < B;
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         //AND
@@ -327,21 +326,21 @@ module ALUTestbench();
         A = 32'b00000000000000000000000000000011;
         B = 32'b00000000000000000000000000000010;
         REFout = A & B;
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         funct = `AND;
         A = 32'b00000000000000000000000000000011;
         B = 32'b11111111111111111111111111111110;
         REFout = A & B;
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         funct = `AND;
         A = 32'b11111111111111111111111111111100;
         B = 32'b11111111111111111111111111111110;
         REFout = A & B;
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         //OR
@@ -349,21 +348,21 @@ module ALUTestbench();
         A = 32'b00000000000000000000000000000011;
         B = 32'b00000000000000000000000000000010;
         REFout = A | B;
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         funct = `OR;
         A = 32'b00000000000000000000000000000011;
         B = 32'b11111111111111111111111111111110;
         REFout = A | B;
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         funct = `OR;
         A = 32'b11111111111111111111111111111100;
         B = 32'b11111111111111111111111111111110;
         REFout = A | B;
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         //XOR
@@ -371,40 +370,40 @@ module ALUTestbench();
         A = 32'b00000000000000000000000000000011;
         B = 32'b00000000000000000000000000000010;
         REFout = A ^ B;
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         funct = `XOR;
         A = 32'b00000000000000000000000000000011;
         B = 32'b11111111111111111111111111111110;
         REFout = A ^ B;
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         funct = `XOR;
         A = 32'b11111111111111111111111111111100;
         B = 32'b11111111111111111111111111111110;
         REFout = A ^ B;
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         //LUI
         opcode = `LUI;
         B = 32'b00000000000000000000000000000010;
         REFout = {B[15:0],16'b0};
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         opcode = `LUI;
         B = 32'b11111111111111111111111111111110;
         REFout = {B[15:0],16'b0};
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         opcode = `LUI;
         B = 32'b11111111111111111111111111111110;
         REFout = {B[15:0],16'b0};
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         opcode = `RTYPE;
@@ -413,21 +412,21 @@ module ALUTestbench();
         A = 32'b00000000000000000000000000000011;
         B = 32'b00000000000000000000000000000010;
         REFout = B << A[4:0];
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         funct = `SLL;
         A = 32'b00000000000000000000000000000011;
         B = 32'b11111111111111111111111111111110;
         REFout = B << A[4:0];
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         funct = `SLL;
         A = 32'b11111111111111111111111111111100;
         B = 32'b11111111111111111111111111111110;
         REFout = B << A[4:0];
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         //SRL
@@ -435,21 +434,21 @@ module ALUTestbench();
         A = 32'b00000000000000000000000000000011;
         B = 32'b00000000000000000000000000000010;
         REFout = B >> A[4:0];
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         funct = `SRL;
         A = 32'b00000000000000000000000000000011;
         B = 32'b11111111111111111111111111111110;
         REFout = B >> A[4:0];
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         funct = `SRL;
         A = 32'b11111111111111111111111111111100;
         B = 32'b11111111111111111111111111111110;
         REFout = B >> A[4:0];
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         //SRA
@@ -457,21 +456,21 @@ module ALUTestbench();
         A = 32'b00000000000000000000000000000011;
         B = 32'b00000000000000000000000000000010;
         REFout = $signed(B) >>> A[4:0];
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         funct = `SRA;
         A = 32'b00000000000000000000000000000011;
         B = 32'b11111111111111111111111111111110;
         REFout = $signed(B) >>> A[4:0];
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         funct = `SRA;
         A = 32'b11111111111111111111111111111100;
         B = 32'b11111111111111111111111111111110;
         REFout = $signed(B) >>> A[4:0];
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         //NOR
@@ -479,21 +478,21 @@ module ALUTestbench();
         A = 32'b00000000000000000000000000000011;
         B = 32'b00000000000000000000000000000010;
         REFout = ~A & ~B;
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         funct = `NOR;
         A = 32'b00000000000000000000000000000011;
         B = 32'b11111111111111111111111111111110;
         REFout = ~A & ~B;
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
         funct = `NOR;
         A = 32'b11111111111111111111111111111100;
         B = 32'b11111111111111111111111111111110;
         REFout = ~A & ~B;
-        #1;
+        #Cycle;
         checkOutput(opcode,funct);
 
 
