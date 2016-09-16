@@ -24,7 +24,7 @@ module branch_compare(
       output reg selPC
 );
 
-      localparam EQ_BNE = 2'b11;
+      localparam EQ_BNE = 2'b10;
       localparam EQ_BEQ = 2'b01;
 
       always@ (*)
