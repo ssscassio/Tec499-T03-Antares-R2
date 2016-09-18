@@ -41,6 +41,9 @@ module alu_dec(
             `NOR: ALUop <= `ALU_NOR;
             `SLT: ALUop <= `ALU_SLT;
             `SLTU: ALUop <= `ALU_SLTU;
+            `DIV: ALUop <= `ALU_DIV;
+            `DIVU:ALUop <= `ALU_DIVU;
+            `ADD: ALUop <= `ALU_ADD;
             endcase
           // Load/store
           `LB: ALUop <= `ALU_ADDU;
@@ -60,6 +63,7 @@ module alu_dec(
           `ORI: ALUop <= `ALU_OR;
           `XORI: ALUop <= `ALU_XOR;
           `LUI: ALUop <= `ALU_LUI;
+          `MUL: ALUop <= `ALU_MUL;
           default: ALUop <= `ALU_XXX;
         endcase
       end

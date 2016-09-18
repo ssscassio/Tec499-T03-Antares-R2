@@ -13,6 +13,8 @@
 `define ALU_SRL  4'd9
 `define ALU_SRA  4'd10
 `define ALU_NOR  4'd11
+`define ALU_MUL  4'd12
+`define ALU_ADD  4'd13
 `define ALU_XXX  4'd15
 
 `endif //ALUOP

@@ -10,75 +10,109 @@
 // Outputs:
 // 	out: A microprogram to command datapath's structures
 //-----------------------------------------------------------------------------
+include "Opcode.vh"
 `ifndef _control_unit
 `define _control_unit
 
 module control_unit(
   input [5:0] opCode,
-  output reg [1:0] aluOp,
-  output reg regDst,memRead,memToReg,memWrite,aluSrc,regWrite,
-  output reg beq,bne,
-  output reg jump
+  output [1:0] reg branch,
+  output reg jump,
+  output reg regDst,memRead,memToReg,memWrite,aluSrc,regWrite
   );
 
   always @ ( * ) begin
-  //Default settings
-    regDst <= 1'b1;
-    beq <= 1'b0;
-    bne <= 1'b0;
-    memRead <= 1'b0;
-    memToReg <= 1'b0;
-    aluOp[1:0] <= 2'b10;
-    memWrite <= 1'b0;
-    aluSrc <= 1'b0;
-    regWrite <= 1'b1;
-    jump <= 1'b0;
-
     case (opCode)
-    //JUMP
-      6'b000010: begin
-        jump <= 1'b1;
+    	`RTYPE: begin
+        branch <= 2'b00;
+        jump <= 1'b0;
+        regDst <= 1'b1;
+        aluSrc <= 1'b0;
+        memRead <= 1'b0;
+        memWrite <= 1'b0;
+        memToReg <= 1'b0;
+        regWrite <= 1'b1;
+    	end
+      6'b001???: begin //Immediate Operations
+        branch <= 2'b00;
+        jump <= 0;
+        regDst <= 1'b0;
+        aluSrc <= 1'b1;
+        memRead <= 0;
+        memWrite <= 0;
+        memToReg <= 0;
+        regWrite <= 1;
       end
-    //ADDI
-      6'b001000: begin
-        regDst   <= 1'b0;
-        aluOp[1] <= 1'b0;
-        aluSrc   <= 1'b1;
+      `MUL: begin
+        branch <= 2'b00;
+        jump <= 1'b0;
+        regDst <= 1'b1;
+        aluSrc <= 1'b0;
+        memRead <= 1'b0;
+        memWrite <= 1'b0;
+        memToReg <= 1'b0;
+        regWrite <= 1'b1;
       end
-    //BEQ
-      6'b000100: begin
-        aluOp[0]  <= 1'b1;
-        aluOp[1]  <= 1'b0;
-        beq <= 1'b1;
-        regWrite  <= 1'b0;
+      `BEQ: begin
+        branch <= 2'b01;
+        jump <= 0;
+        regDst <= 1'b0;
+        aluSrc <= 1'b1;
+        memRead <= 0;
+        memWrite <= 0;
+        memToReg <= 0;
+        regWrite <= 0;
       end
-    //BNE
-      6'b000101: begin
-        aluOp[0]  <= 1'b1;
-        aluOp[1]  <= 1'b0;
-        bne <= 1'b1;
-        regWrite  <= 1'b0;
+      `BNE: begin
+        branch <= 2'b10;
+        jump <= 0;
+        regDst <= 1'b0;
+        aluSrc <= 1'b1;
+        memRead <= 0;
+        memWrite <= 0;
+        memToReg <= 0;
+        regWrite <= 0;
       end
-    //LW
-      6'b100011: begin
-        memRead  <= 1'b1;
-        regDst   <= 1'b0;
-        memToReg <= 1'b1;
-        aluOp[1] <= 1'b0;
-        aluSrc   <= 1'b1;
+      `100???: begin //Load
+        RegDst <= 0;
+        aluSrc <= 1;
+        memWrite <= 0;
+        memRead <=1;
+        memToReg <= 1;
+        regWrite  <= 1;
+        branch <= 0;
       end
-    //SW
-      6'b101011: begin
-        memWrite <= 1'b1;
-        aluOp[1] <= 1'b0;
-        aluSrc   <= 1'b1;
-        regWrite <= 1'b0;
+      `101???: begin //Store
+        co_RegDest = 0;
+        co_ALUSource = 1;
+        co_ALUControl = 0;
+        co_MemWrite = 1;
+        co_RegWSource = 0;
+        co_RegWrite = 0;
+        co_Branch = 0;
+      `J: begin
+        jump <=1'b1;
+        branch <= 2'b00;
+        jump <= 0;
+        regDst <= 1'b0;
+        aluSrc <= 1'b0;
+        memRead <= 0;
+        memWrite <= 0;
+        memToReg <= 0;
+        regWrite <= 0;
       end
-    //JR
-      6'
+      `JAL: begin
 
-   endcase
- end
+      end
+      `DIV: begin
+
+      end
+      `MFHI: begin
+
+      end
+
+    endcase
+  end
+
 endmodule
-
 `endif
