@@ -23,8 +23,9 @@
 
 module alu(
     input [31:0] A,B,
-    input [3:0] ALUop,
+    input [4:0] ALUop,
     output reg [31:0] Out,
+    output reg [31:0] HI, LO,
     output reg Zero
 );
 
@@ -43,8 +44,14 @@ begin
     `ALU_SRL:  Out = B >> A[4:0];
     `ALU_SRA:  Out = $signed(B) >>> A[4:0];
     `ALU_NOR:  Out = ~A & ~B;
-    `ALU_MUL:  Out = A * B;
+    `ALU_MUL:  Out = $signed(A) * $signed(B);
     `ALU_ADD:  Out = $signed(A) + $signed(B);
+    `ALU_DIV: begin
+               HI  <= $signed(A) % $signed(B);
+               LO  <= $signed(A) / $signed(B);
+     end
+    `ALU_MFHI: Out <= HI;
+    `ALU_MFLO: Out <= LO;
     `ALU_XXX:  Out = 32'b0;//Colocando A + B para operações não definidas, para serguir o arquivo de teste
     default: Out = 32'b0;//Colocando (para teste)
   endcase

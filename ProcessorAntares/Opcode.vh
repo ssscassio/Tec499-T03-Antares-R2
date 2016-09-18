@@ -49,4 +49,6 @@
 `define JR      6'b001000
 `define DIV     6'b011010
 `define DIVU    6'b011011
+`define MFHI    6'b010000
+`define MFLO    6'b010010
 `endif //OPCODE

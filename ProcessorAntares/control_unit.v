@@ -9,19 +9,33 @@
 // 	opCode: Instruction OpCode
 // Outputs:
 // 	out: A microprogram to command datapath's structures
+//
+// Credits: 2014, Segiusz 'q3k' Bazanski <sergiusz@bazanski.pl>
 //-----------------------------------------------------------------------------
-include "Opcode.vh"
+`include "Opcode.vh"
 `ifndef _control_unit
 `define _control_unit
 
 module control_unit(
   input [5:0] opCode,
-  output [1:0] reg branch,
+  input reset,
+  output reg [1:0] branch,
   output reg jump,
   output reg regDst,memRead,memToReg,memWrite,aluSrc,regWrite
   );
 
   always @ ( * ) begin
+    if(reset) begin
+      branch <= 2'b00;
+      jump <= 1'b0;
+      regDst <= 1'b0;
+      aluSrc <= 1'b0;
+      memRead <= 1'b0;
+      memWrite <= 1'b0;
+      memToReg <= 1'b0;
+      regWrite <= 1'b0;
+    end
+    else begin
     case (opCode)
     	`RTYPE: begin
         branch <= 2'b00;
@@ -73,8 +87,8 @@ module control_unit(
         memToReg <= 0;
         regWrite <= 0;
       end
-      `100???: begin //Load
-        RegDst <= 0;
+      6'b100???: begin //Load
+        regDst <= 0;
         aluSrc <= 1;
         memWrite <= 0;
         memRead <=1;
@@ -82,14 +96,15 @@ module control_unit(
         regWrite  <= 1;
         branch <= 0;
       end
-      `101???: begin //Store
-        co_RegDest = 0;
-        co_ALUSource = 1;
-        co_ALUControl = 0;
-        co_MemWrite = 1;
-        co_RegWSource = 0;
-        co_RegWrite = 0;
-        co_Branch = 0;
+      6'b101???: begin //Store
+        regDst <=  0;
+        aluSrc <= 1;
+        memWrite <= 1;
+        memRead <= 0;
+        memToReg <= 0;
+        regWrite <= 0;
+        branch <= 0;
+      end
       `J: begin
         jump <=1'b1;
         branch <= 2'b00;
@@ -112,6 +127,7 @@ module control_unit(
       end
 
     endcase
+    end
   end
 
 endmodule

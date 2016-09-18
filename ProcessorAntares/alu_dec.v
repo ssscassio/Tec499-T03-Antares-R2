@@ -19,7 +19,7 @@
 
 module alu_dec(
       input [5:0] funct, opcode,
-      output reg [3:0] ALUop
+      output reg [4:0] ALUop
 );
 
       always @ (*)
@@ -42,8 +42,8 @@ module alu_dec(
             `SLT: ALUop <= `ALU_SLT;
             `SLTU: ALUop <= `ALU_SLTU;
             `DIV: ALUop <= `ALU_DIV;
-            `DIVU:ALUop <= `ALU_DIVU;
             `ADD: ALUop <= `ALU_ADD;
+            `MFHI:ALUop <= `ALU_MFHI;
             endcase
           // Load/store
           `LB: ALUop <= `ALU_ADDU;

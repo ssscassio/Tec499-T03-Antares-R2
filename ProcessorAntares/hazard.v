@@ -1,5 +1,5 @@
 //-----------------------------------------------------------------------------
-// Universidade Estadual de Feira de Santana
+// UniversIdade Estadual de Feira de Santana
 // TEC499 - MI - Sistemas Digitais
 // Antares-R2 2016.1
 //
@@ -9,31 +9,64 @@
 //  clk: System clock.
 // 	rsId:
 //  rtId:
-//  rsEX:
+//  rsEx:
 //  rtEx:
 //  memReadRegister:
 //  mRegister:
 // Outputs:
-// 	stallID:
+// 	stallId:
 //  stallIF:
-//  flushEX:
+//  flushEx:
 // ifIdWrite:
 //-----------------------------------------------------------------------------
+`include "Opcode.vh"
 
-module hazard(  //stallID,stallIF,rsID,rtID,rsEX,rtEX,flushEX,memReadEx,clk,hazMuxCont,mRegister
-  input [4:0] rsID,rtID,rtEX,rsEX,
-  input clk, mRegister, memReadEx,
-  output reg stallID,stallIF,flushEX,ifIdWrite
-  );
+module hazard(
+  input [5:0] opcode,
+  input branchResult,
+  input memReadEx,reset,clock,
+  input [4:0] rtEx, rsId, rtId,
+  output reg pcStop, IdExFlush,ifIdFlush, ifIdWrite);
 
-  always @ (rsID,rtID,rsEX,memReadEx) begin
-    if(memReadEx & ((rtEX == rsID)|(rtEX == rtID))) begin
-        stallIF = 0;
+  always @ (clock) begin
+    if(reset)
+      begin
+        pcStop = 0;
+        IdExFlush = 0;
+        ifIdFlush = 0;
+        ifIdWrite = 1;
+      end
+  end
+  always @ (rtEx, rsId, rtId,opcode, branchResult, memReadEx, reset) begin
+
+    case(opcode)
+      `BEQ:
+      if(branchResult) begin
+        ifIdFlush = 1;
+        ifIdWrite =0;
+      end
+      `BNE:
+      if(branchResult) begin
+        ifIdFlush = 1;
         ifIdWrite = 0;
+      end
+      default: begin
+        ifIdFlush = 0;
+        ifIdWrite = 1;
+      end
+
+    endcase
+
+    if(memReadEx && ((rsId == rtEx) || (rtId == rtEx))) begin
+      pcStop = 1;
+      IdExFlush = 1;
+      ifIdWrite = 0;
     end
     else begin
-      stallIF = 1;
+      pcStop = 0;
+      IdExFlush = 0;
       ifIdWrite = 1;
     end
+
   end
 endmodule

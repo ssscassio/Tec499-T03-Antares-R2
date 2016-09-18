@@ -3,13 +3,14 @@
 `define _id_ex
 module id_ex(
       input clock, reset,
-      input [3:0] aluOp, //EX
+      input flush,
+      input [4:0] aluOp, //EX
       input regDst, aluSrc, //EX
       input memRead, memWrite,//MEM
       input memToReg, regWrite, // WB
       input [4:0] rs,rt,rd,
       input [31:0] pcPlus4, data1, data2, immediate,
-      output reg[3:0] aluOpRegister,
+      output reg[4:0] aluOpRegister,
       output reg regDstRegister, aluSrcRegister,
       output reg memToRegRegister, regWriteRegister,
       output reg memWriteRegister, memReadRegister,
@@ -18,7 +19,7 @@ module id_ex(
 );
 
       always@(posedge clock) begin
-        if(reset) begin
+        if(reset || flush) begin
           memToRegRegister = 0;
           regWriteRegister = 0;
           memReadRegister = 0;

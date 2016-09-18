@@ -5,8 +5,9 @@ module cpu();
 
   //********************Instruction Fetch - Stage 1***************************//
   wire [31:0] pcPlus4, branchAddress, jump_address_2;
-  wire jump_2, pcBranch;
+  wire jump_2, pcBranch, pcStop_1;
   pc_control pcControl( .branch(pcBranch), .jumpReg(jump_2),.clk(clock),.PC(pcPlus4),
+                        .stall(pcStop_1),
                         .jumpAddress(jump_address_2), .branchAddress(branchAddress),
 
                         .nextPC(pcPlus4));
@@ -22,19 +23,22 @@ module cpu();
                       .readData(instruction_1),.readData2(outMemory_4));
 
   wire [31:0] PCPlus4_2;
-  if_id IFID( .flush(),.clock(clock),.IFIDWrite(),.reset(),
+  wire ifIdFlush_1;
+  wire ifIdWrite_1;
+  wire[31:0] instruction_2;
+  if_id IFID( .flush(ifIdFlush_1),.clock(clock),.IFIDWrite(ifIdWrite_1),.reset(reset),
               .pcPlus4(pcPlus4),.instruction(instruction_1),
 
-              .instructionRegister(), .pcPlus4Register(PCPlus4_2));
+              .instructionRegister(instruction_2), .pcPlus4Register(PCPlus4_2));
   //*****************End Instruction Fetch************************************//
 
 
   //***********************Instruction Decode - Stage 2***********************//
-  wire[31:0] instruction_2;
   wire[1:0] branch_2;
   wire regDst_2,aluSrc_2,memWrite_2,memRead_2,memToReg_2,regWrite_2;
   control_unit ControlUnit ( .opCode(instruction_2[31:26]),
-                            //Esperar Khaick consertar o control_unit para colocar os sinais
+                             .reset(reset),
+
                             .branch(branch_2),
                             .jump(jump_2),
                             .regDst(regDst_2), .aluSrc(aluSrc_2),
@@ -42,7 +46,7 @@ module cpu();
                             .memToReg(memToReg_2), .regWrite(regWrite_2)
                            );
 
-  wire [3:0] aluOp_2;
+  wire [4:0] aluOp_2;
   alu_dec DecodeALU (.opcode(instruction_2[31:26]),.funct(instruction_2[5:0]),.ALUop(aluOp_2));
 
 
@@ -82,11 +86,12 @@ module cpu();
 
   //End Destine register Selection
 
-  wire [3:0] aluOp_3;
+  wire [4:0] aluOp_3;
   wire [31:0] rsData_3, rtData_3, immediate_3, PCPlus4_3;
   wire [4:0] rs_3, rt_3, rd_3;
+  wire idExFlush_2;
   wire regDst_3, aluSrc_3,memWrite_3,memRead_3,memToReg_3,regWrite_3;
-  id_ex IDEX( .clock(clock),.reset(reset),
+  id_ex IDEX( .clock(clock),.reset(reset), .flush(idExFlush_2),
               .data1(rsData_2),.data2(rtData_2), .immediate(immediate_extended),
               .aluOp(aluOp_2), .regDst(regDst_2), .aluSrc(aluSrc_2),//EX
               .memWrite(memWrite_2), .memRead(memRead_2),//MEM
@@ -102,6 +107,16 @@ module cpu();
   //*******************End of Instruction Decode******************************//
 
   //************************Execute - Stage 3*********************************//
+
+  //Hazard Unit
+
+  hazard HazardUnit(.reset(reset), .clock(clock),
+                    .opcode(instruction_2[31:26]), .branchResult(pcBranch),
+                    .memReadEx(memRead_2),
+                    .rtEx(rt_3), .rsId(instruction_2[25:21]), .rtId(instruction_2[20:16]),
+
+                    .pcStop(pcStop_1), .idExFlush(idExFlush_2), .ifIdFLush(ifIdFlush_1), .ifIdWrite(ifIdWrite_1));
+
 
   //Destine register Selection
   wire [4:0] realrd;
@@ -133,7 +148,7 @@ module cpu();
 
   wire [32:0] aluResult;
   alu ALU(.A(aluInA_3), .B(aluInB_3), .ALUop(aluOp_3),
-          .Out(aluResult),.Zero());
+          .Out(aluResult));
 
   wire memToReg_4;
   ex_mem EXMEN (.clock(clock), .reset(reset),
