@@ -23,11 +23,11 @@
 module hazard(  //stallID,stallIF,rsID,rtID,rsEX,rtEX,flushEX,memReadEx,clk,hazMuxCont,mRegister
   input [4:0] rsID,rtID,rtEX,rsEX,
   input clk, mRegister, memReadEx,
-  output stallID,stallIF,flushEX,ifIdWrite
+  output reg stallID,stallIF,flushEX,ifIdWrite
   );
 
   always @ (rsID,rtID,rsEX,memReadEx) begin
-    if(memReadEx & ((rtEx == rsID)|(rtEx == rtID))
+    if(memReadEx & ((rtEX == rsID)|(rtEX == rtID))) begin
         stallIF = 0;
         ifIdWrite = 0;
     end
@@ -35,4 +35,5 @@ module hazard(  //stallID,stallIF,rsID,rtID,rsEX,rtEX,flushEX,memReadEx,clk,hazM
       stallIF = 1;
       ifIdWrite = 1;
     end
+  end
 endmodule
