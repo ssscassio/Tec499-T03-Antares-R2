@@ -20,7 +20,9 @@
 module data_memory(
       input clk, memWrite,
       input [31:0] address,
+      input [31:0] address2,
       output [31:0] readData,
+      output [31:0] readData2,
       input [31:0] writeData
 );
       //----------------------

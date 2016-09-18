@@ -1,6 +1,8 @@
+`ifndef _behavioral_adder
+`define _behavioral_adder
 
-module BehavioralAdder #(
-  parameter Width = 16
+module behavioral_adder #(
+  parameter Width = 32
 )
 (
   input   [Width-1:0] A,
@@ -12,3 +14,5 @@ module BehavioralAdder #(
   assign {Cout, Result} = A + B;
 
 endmodule
+
+`endif
