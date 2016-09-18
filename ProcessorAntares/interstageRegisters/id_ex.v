@@ -3,28 +3,30 @@
 `define _id_ex
 module id_ex(
       input clock, reset,
-      input [3:0] aluOp,
-      input regDst, aluSrc
-      input [1:0] WB,
-      input [2:0] M,
+      input [3:0] aluOp, //EX
+      input regDst, aluSrc, //EX
+      input memRead, memWrite,//MEM
+      input memToReg, regWrite, // WB
       input [4:0] rs,rt,rd,
       input [31:0] pcPlus4, data1, data2, immediate,
       output reg[3:0] aluOpRegister,
       output reg regDstRegister, aluSrcRegister,
-      output reg [1:0] WBregister,
-      output reg [2:0] Mregister,
+      output reg memToRegRegister, regWriteRegister,
+      output reg memWriteRegister, memReadRegister,
       output reg [4:0] rsRegister, rtRegister, rdRegister,
       output reg [31:0] pcPlus4Register, data1Register, data2Register,immediateRegister
 );
 
       always@(posedge clock) begin
         if(reset) begin
-          WBregister = 0;
-          Mregister = 0;
+          memToRegRegister = 0;
+          regWriteRegister = 0;
+          memReadRegister = 0;
+          memWriteRegister = 0;
           rsRegister = 0;
           rtRegister = 0;
           rdRegister = 0;
-          cpPlus4Register = 0;
+          pcPlus4Register = 0;
           data1Register = 0;
           data2Register = 0;
           immediateRegister = 0;
@@ -33,8 +35,10 @@ module id_ex(
           aluSrcRegister = 0;
         end
         else begin
-          WBregister <= WB;
-          Mregister <= M;
+          memToRegRegister <= memToReg; //WB
+          regWriteRegister <= regWrite; //WB
+          memReadRegister <= memRead; //MEM
+          memWriteRegister <= memWrite; //MEM
           rsRegister <= rs; //Rs Register
           rtRegister <= rt; //Rt Register
           rdRegister <= rd; //Supose Rd Register

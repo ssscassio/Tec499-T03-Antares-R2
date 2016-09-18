@@ -33,6 +33,8 @@ module register_memory(
       always @(*) begin
       		if (readRegister1 == 5'd0)
       			_data1 = 32'd0;//Always read 0 from $zero register
+          else if ((readRegister1 == writeRegister) && regWrite)
+          			_data1 = writeData;//Caso a leitura seja no registrador que esta escreendo no momento
       		else
       			_data1 = memory[readRegister1][31:0];
     	end
@@ -40,6 +42,8 @@ module register_memory(
       always @(*) begin
           if (readRegister2 == 5'd0)
             _data2 = 32'd0;//Always read 0 from $zero register
+          else if ((readRegister2 == writeRegister) && regWrite)
+              _data2 = writeData;
           else
             _data2 = memory[readRegister2][31:0];
       end

@@ -76,7 +76,7 @@ module control_unit(
       end
     //JR
       6'
-    
+
    endcase
  end
 endmodule
