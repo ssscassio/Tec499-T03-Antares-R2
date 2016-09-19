@@ -51,7 +51,7 @@ module cpu(input clock, reset);
   wire [31:0] rsData_2,rtData_2;
   wire [31:0] writeDataRegister_5;
   wire regWrite_5;
-  register_memory Registers ( .clock(clock), .regWrite(regWrite_5),
+  register_memory Registers ( .clock(clock), .regWrite(regWrite_5), .reset(reset),
                             .writeData(writeDataRegister_5),
                             .readRegister1(instruction_2[25:21]),.readRegister2(instruction_2[20:16]),
                             .writeRegister(rd_5),

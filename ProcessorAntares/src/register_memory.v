@@ -20,7 +20,7 @@
 `define _register_memory
 
 module register_memory(
-      input clock, regWrite,
+      input clock, regWrite, reset,
       input [31:0] writeData,
       input [4:0] readRegister1, readRegister2, writeRegister,
       output [31:0] readData1, readData2
@@ -55,6 +55,40 @@ module register_memory(
       		if (regWrite && writeRegister != 5'd0) begin //Check if write sinal is on
       			memory[writeRegister] <= writeData;
       		end
+          if(reset) begin
+          		memory[0] <= 32'd0;
+          		memory[1] <= 32'd0;
+          		memory[2] <= 32'd0;
+          		memory[3] <= 32'd0;
+          		memory[4] <= 32'd0;
+          		memory[5] <= 32'd0;
+          		memory[6] <= 32'd0;
+          		memory[7] <= 32'd0;
+          		memory[8] <= 32'd0;
+          		memory[9] <= 32'd0;
+          		memory[10] <= 32'd0;
+          		memory[11] <= 32'd0;
+          		memory[12] <= 32'd0;
+          		memory[13] <= 32'd0;
+          		memory[14] <= 32'd0;
+          		memory[15] <= 32'd0;
+          		memory[16] <= 32'd0;
+          		memory[17] <= 32'd0;
+          		memory[18] <= 32'd0;
+          		memory[19] <= 32'd0;
+          		memory[20] <= 32'd0;
+          		memory[21] <= 32'd0;
+          		memory[22] <= 32'd0;
+          		memory[23] <= 32'd0;
+          		memory[24] <= 32'd0;
+          		memory[25] <= 32'd0;
+          		memory[26] <= 32'd0;
+          		memory[27] <= 32'd0;
+          		memory[28] <= 32'd0;
+          		memory[29] <= 32'd0;
+          		memory[30] <= 32'd0;
+          		memory[31] <= 32'd0;
+         end
       end
 
 endmodule

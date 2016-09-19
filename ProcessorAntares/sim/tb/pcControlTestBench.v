@@ -16,7 +16,7 @@ module pcControlTestBench();
   endtask
 
   pc_control pc(.clk(clock), .stall(stall), .branch(branch), .jumpReg(jumpReg),
-                .jumpAddress(jumpAddress), .branchAddress(branchAddress), .PC(PC)
+                .jumpAddress(jumpAddress), .branchAddress(branchAddress), .PC(PC),
                 .nextPC(nextPC));
 
 	initial begin
