@@ -26,6 +26,7 @@ module cpuTestbench();
   assign PC = cpu.pcPlus4;
 
   localparam loops = 20; // number of instructions on test (inputLines/4)+Stalls
+  integer i;
 
   initial begin
 
@@ -36,7 +37,7 @@ module cpuTestbench();
     Reset = 0;
     for(i = 0; i < loops; i = i + 1) begin
       $display("***********************INSTRUCTION FETCH************************");
-      $display("PC: %b",cpu.pc);
+      $display("PC: %b",cpu.pcPlus4);
       $display("Instruction Fetched: %b", cpu.instruction_1);
       $display("****************************************************************");
 
@@ -57,7 +58,7 @@ module cpuTestbench();
       $display("memRead(MEM control): %b", cpu.memRead_2);
       $display("memToReg(WB control): %b", cpu.memToReg_2);
       $display("regWrite(WB control): %b", cpu.regWrite_2);
-      $display("PC of Instruction in this stage: %b", cpu.PCPLus4_2);
+      $display("PC of Instruction in this stage: %b", cpu.PCPlus4_2);
       $display("RS Register: %b", cpu.instruction_2[25:21]);
       $display("RT Register: %b", cpu.instruction_2[20:16]);
       $display("RD Register: %b", cpu.instruction_2[15:11]);
@@ -68,7 +69,7 @@ module cpuTestbench();
       $display("ALU In B: %b", cpu.aluInB_3);
       $display("ALU Operation: %b", cpu.aluOp_3);
       $display("Alu Result: %b", cpu.aluResult);
-      $display("regDst: %b, RT(0): %b, RD(1): %b, Read RD: %b",cpu.regDst_3, cpu.rt_3, cpu.rd_3, cpu.readRd);
+      $display("regDst: %b, RT(0): %b, RD(1): %b, Real RD: %b",cpu.regDst_3, cpu.rt_3, cpu.rd_3, cpu.realrd);
       $display("aluSrc: %b, B Data(0): %b, Immediate(1): %b, ALU In B: %b",cpu.aluSrc_3, cpu.B_3, cpu.immediate_3, cpu.aluInB_3);
       $display("memWrite(MEM control): %b", cpu.memWrite_3);
       $display("memRead(MEM control): %b", cpu.memRead_3);
@@ -90,7 +91,7 @@ module cpuTestbench();
       $display("************************WRITE BACK******************************");
       $display("Register Bank Write?: %b", cpu.regWrite_5);
       $display("Destine Register: %b", cpu.rd_5);
-      $display("memToReg_5: %b, Alu Result(0): %b, Memomory Out(1): %b, Write Data: %b",cpu.memToReg_5, cpu.aluResult_5, cpu.memoryOut_5, cpu.writeDataRegister_5);
+      $display("memToReg_5: %b, Alu Result(0): %b, Memomory Out(1): %b, Write Data: %b",cpu.memToReg_5, cpu.aluResult_5, cpu.outMemory_5, cpu.writeDataRegister_5);
       $display("****************************************************************");
 
       $display("================================================================");
