@@ -26,17 +26,8 @@ module hazard(
   input branchResult,
   input memReadEx,reset,clock,
   input [4:0] rtEx, rsId, rtId,
-  output reg pcStop, IdExFlush,ifIdFlush, ifIdWrite);
+  output reg pcStop, idExFlush,ifIdFlush, ifIdWrite);
 
-  always @ (clock) begin
-    if(reset)
-      begin
-        pcStop = 0;
-        IdExFlush = 0;
-        ifIdFlush = 0;
-        ifIdWrite = 1;
-      end
-  end
   always @ (rtEx, rsId, rtId,opcode, branchResult, memReadEx, reset) begin
 
     case(opcode)
@@ -59,12 +50,12 @@ module hazard(
 
     if(memReadEx && ((rsId == rtEx) || (rtId == rtEx))) begin
       pcStop = 1;
-      IdExFlush = 1;
+      idExFlush = 1;
       ifIdWrite = 0;
     end
     else begin
       pcStop = 0;
-      IdExFlush = 0;
+      idExFlush = 0;
       ifIdWrite = 1;
     end
 

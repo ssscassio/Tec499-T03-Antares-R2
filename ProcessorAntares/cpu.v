@@ -96,13 +96,13 @@ module cpu();
               .aluOp(aluOp_2), .regDst(regDst_2), .aluSrc(aluSrc_2),//EX
               .memWrite(memWrite_2), .memRead(memRead_2),//MEM
               .memToReg(memToReg_2), .regWrite(regWrite_2), //WB
-              .pcPlus4(PCPlus4_2), .rs(instruction_2[25:21]), .rt(instruction_2[20:16]), .rd(instruction[15:11]),
+              .pcPlus4(PCPlus4_2), .rs(instruction_2[25:21]), .rt(instruction_2[20:16]), .rd(instruction_2[15:11]),
 
-              .data1Register(rsData_3),.data2Register(rtData_3),.immediateregister(immediate_3),
+              .data1Register(rsData_3),.data2Register(rtData_3),.immediateRegister(immediate_3),
               .aluOpRegister(aluOp_3), .regDstRegister(regDst_3),.aluSrcRegister(aluSrc_3),
               .memWriteRegister(memWrite_3),.memReadRegister(memRead_3),
               .memToRegRegister(memToReg_3), .regWriteRegister(regWrite_3),
-              .pcPlus4register(PCPlus4_3),.rsRegister(rs_3), .rtRegister(rt_3), .rdRegister(rd_3));
+              .pcPlus4Register(PCPlus4_3),.rsRegister(rs_3), .rtRegister(rt_3), .rdRegister(rd_3));
 
   //*******************End of Instruction Decode******************************//
 
@@ -115,7 +115,7 @@ module cpu();
                     .memReadEx(memRead_2),
                     .rtEx(rt_3), .rsId(instruction_2[25:21]), .rtId(instruction_2[20:16]),
 
-                    .pcStop(pcStop_1), .idExFlush(idExFlush_2), .ifIdFLush(ifIdFlush_1), .ifIdWrite(ifIdWrite_1));
+                    .pcStop(pcStop_1), .idExFlush(idExFlush_2), .ifIdFlush(ifIdFlush_1), .ifIdWrite(ifIdWrite_1));
 
 
   //Destine register Selection
@@ -127,10 +127,10 @@ module cpu();
   wire [31:0] aluInA_3,aluInB_3,B_3;
   wire [4:0] rd_4;
   wire regWrite_4;
-  forwarding_unit FowardingUnit(  .rsEx(rs_3), .rtEx(rt_3), .rdMEM(rd_4), .rdWB(rd_5),
+  forwarding_unit FowardingUnit(  .rsEX(rs_3), .rtEX(rt_3), .rdMEM(rd_4), .rdWB(rd_5),
                                   .regWriteMEM(regWrite_4), .regWriteWB(regWrite_5),
 
-                                  .dataSelectorEx1(muxSel1), .dataSelectorEx2(muxSel2));
+                                  .dataSelectorEX1(muxSel1), .dataSelectorEX2(muxSel2));
 
 
   mux_4_32 MultiplexReadDataOutRS(.A(rsData_3),.B(aluResult_4),.C(writeDataRegister_5), .Sel(muxSel1),
@@ -146,7 +146,7 @@ module cpu();
 
                                 .out(aluInB_3));
 
-  wire [32:0] aluResult;
+  wire [31:0] aluResult;
   alu ALU(.A(aluInA_3), .B(aluInB_3), .ALUop(aluOp_3),
           .Out(aluResult));
 

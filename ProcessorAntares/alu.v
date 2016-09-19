@@ -47,11 +47,11 @@ begin
     `ALU_MUL:  Out = $signed(A) * $signed(B);
     `ALU_ADD:  Out = $signed(A) + $signed(B);
     `ALU_DIV: begin
-               HI  <= $signed(A) % $signed(B);
-               LO  <= $signed(A) / $signed(B);
+               HI  = $signed(A) % $signed(B);
+               LO  = $signed(A) / $signed(B);
      end
-    `ALU_MFHI: Out <= HI;
-    `ALU_MFLO: Out <= LO;
+    `ALU_MFHI: Out = HI;
+    `ALU_MFLO: Out = LO;
     `ALU_XXX:  Out = 32'b0;//Colocando A + B para operações não definidas, para serguir o arquivo de teste
     default: Out = 32'b0;//Colocando (para teste)
   endcase

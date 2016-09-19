@@ -47,7 +47,6 @@ module alu_dec(
             endcase
           // Load/store
           `LB: ALUop <= `ALU_ADDU;
-          `LB: ALUop <= `ALU_ADDU;
           `LH: ALUop <= `ALU_ADDU;
           `LW: ALUop <= `ALU_ADDU;
           `LBU: ALUop <= `ALU_ADDU;

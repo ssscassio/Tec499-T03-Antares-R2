@@ -24,7 +24,6 @@
 module forwarding_unit(
 	input [4:0] rsEX,rtEX,rdMEM,rdWB,
 	input regWriteMEM,regWriteWB,
-	output reg dataSelectorID1,dataSelectorID2,
 	output reg [1:0] dataSelectorEX1,dataSelectorEX2
 );
 

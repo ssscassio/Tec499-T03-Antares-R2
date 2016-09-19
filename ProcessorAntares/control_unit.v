@@ -36,7 +36,7 @@ module control_unit(
       regWrite <= 1'b0;
     end
     else begin
-    case (opCode)
+    casex (opCode)
     	`RTYPE: begin
         branch <= 2'b00;
         jump <= 1'b0;
@@ -123,6 +123,9 @@ module control_unit(
 
       end
       `MFHI: begin
+
+      end
+      default: begin
 
       end
 
