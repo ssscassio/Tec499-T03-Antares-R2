@@ -51,10 +51,6 @@ module data_memory(
     	reg[1:0] state2 = 2'b00;
 
       reg [1:0] nextstate1, nextstate2;
-      always @ (posedge clk) begin //Verificar depois
-        state1 <= 2'b00;
-        state2 <= 2'b00;
-      end
 
       always @ ( posedge clk4 ) begin
         state1 <= nextstate1;

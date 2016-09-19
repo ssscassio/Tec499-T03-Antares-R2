@@ -1,7 +1,4 @@
-module cpu();
-
-  reg clock;
-
+module cpu(input clock, reset);
 
   //********************Instruction Fetch - Stage 1***************************//
   wire [31:0] pcPlus4, branchAddress, jump_address_2;
