@@ -1,10 +1,14 @@
-module cpu(input clock, reset);
+module cpu(input clock, reset, 
+				output memWrite, memRead2,
+				output [31:0] address, address2, writeData,
+				input [31:0] readData, readData2
+);
 
   //********************Instruction Fetch - Stage 1***************************//
   wire [31:0] pcPlus4, branchAddress, jump_address_2;
   wire jump_2, pcBranch, pcStop_1;
   pc_control pcControl( .branch(pcBranch), .jumpReg(jump_2),.clk(clock),.PC(pcPlus4),
-                        .stall(pcStop_1),
+                        .stall(pcStop_1), .reset(reset),
                         .jumpAddress(jump_address_2), .branchAddress(branchAddress),
 
                         .nextPC(pcPlus4));
@@ -14,10 +18,15 @@ module cpu(input clock, reset);
   wire [31:0] aluResult_4,writeData_4;
   wire memRead_4, memWrite_4;
   wire [31:0] outMemory_4;
-  data_memory Memory( .clk(clock), .memWrite(memWrite_4), .memRead2(memRead_4),
-                      .address(pcPlus4), .address2(aluResult_4), .writeData(writeData_4),
-
-                      .readData(instruction_1),.readData2(outMemory_4));
+  
+  assign memWrite = memWrite_4;
+  assign memRead2 = memRead_4;
+  assign address = pcPlus4;
+  assign address2 = aluResult_4;
+  assign writeData = writeData_4;
+  assign instruction_1 = readData;
+  assign outMemory_4 =  readData2;
+  
 
   wire [31:0] PCPlus4_2;
   wire ifIdFlush_1;
@@ -192,7 +201,6 @@ module cpu(input clock, reset);
   //***************************** Write Back - Stage 5 ***********************//
 
   mux_2_32 RegisterMemoryDataInMux (.A(outMemory_5),.B(aluResult_5),.Sel(memToReg_5),.out(writeDataRegister_5));
-
 
 
 endmodule

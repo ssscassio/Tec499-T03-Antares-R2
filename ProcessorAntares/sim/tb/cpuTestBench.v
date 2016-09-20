@@ -1,11 +1,11 @@
 `timescale 1ns / 1ps
 
-module cpuTestbench();
+module cpuTestBench();
 
   reg Clock, Clock4 ,Reset;
 
-  parameter Halfcycle = 30;
-  parameter Halfcycle4 = Halfcycle/4;
+  parameter Halfcycle = 40;
+  parameter Halfcycle4 = Halfcycle/5;
 
   localparam  Cycle = 2*Halfcycle;
   localparam  Cycle4 = 2*Halfcycle4;
@@ -15,11 +15,30 @@ module cpuTestbench();
 
   always #(Halfcycle) Clock = ~Clock;
   always #(Halfcycle4) Clock4 = ~Clock4;
+  wire [31:0] memOutputCPU;
+  
 
-  cpu cpuAntares( .Clock(Clock),
-                        .reset(Reset));
+  wire memRead2_test, memWrite_test;
+  wire [31:0] readData_test, readData2_test, address_test, address2_test, writeData_test;
+  
+  
+  data_memory mem(.clk(Clock), .memWrite(memWrite_test), .memRead2(memRead2_test),
+		.address(address_test), .address2(address2_test), .writeData(writeData_test),
+		
+		
+		.readData(readData_test), .readData2(readData2_test));
+		
+		
+  cpu cpu( .clock(Clock), .reset(Reset),
+			  .readData(readData_test), .readData2(readData2_test),
+			  
+			  .memWrite(memWrite_test), .memRead2(memRead2_test), .writeData(writeData_test),
+			  .address(address_test), .address2(address2_test)
+  );
+ 
 
-  assign cpu.Memory.clk4 = Clock4; //Conectando a fio interno da memória
+ 
+  assign mem.clk4 = Clock4; //Conectando a fio interno da memória
 
   wire pc;
 
@@ -27,17 +46,18 @@ module cpuTestbench();
 
   localparam loops = 20; // number of instructions on test (inputLines/4)+Stalls
   integer i;
-
+  
   initial begin
 
-    $readmemb("./pow.input", cpu.Memory.Memory.ram);
+    $readmemb("pow.input", mem.Memory.ram);
 
     Reset = 1;
     #Cycle;
     Reset = 0;
     for(i = 0; i < loops; i = i + 1) begin
+		
       $display("***********************INSTRUCTION FETCH************************");
-      $display("PC: %b",cpu.pcPlus4);
+      $display("Next PC: %b",cpu.pcPlus4);
       $display("Instruction Fetched: %b", cpu.instruction_1);
       $display("****************************************************************");
 

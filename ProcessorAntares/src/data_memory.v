@@ -39,6 +39,8 @@ module data_memory(
           .clk(clk4),
 
           .addr_a(addr1),
+			    .we_a(1'b0),
+          .data_a(8'b0),
           .q_a(out1),
 
           .addr_b(addr2),
@@ -61,22 +63,22 @@ module data_memory(
         case(state1)
           2'b00: begin
             addr1 = address[15:0];
-            readData[31:24] = out1;
+            readData[7:0] = out1;
             nextstate1 = 2'b01;
           end
           2'b01: begin
             addr1 = address[15:0] + 2'b01;
-            readData[23:16] = out1;
+            readData[31:24] = out1;
             nextstate1 = 2'b10;
           end
           2'b10: begin
             addr1 = address[15:0] + 2'b10;
-            readData[15:8] = out1;
+            readData[23:16] = out1;
             nextstate1 = 2'b11;
           end
           2'b11: begin
             addr1 = address[15:0] + 2'b11;
-            readData[7:0] = out1;
+            readData[15:8] = out1;
             nextstate1 = 2'b00;
           end
         endcase
@@ -87,7 +89,7 @@ module data_memory(
           2'b00: begin
             addr2 = address2[15:0];
             if(memRead2) begin
-              readData2[31:24] = out2;
+              readData2[7:0] = out2;
             end
             wr2 = writeData[31:24];
             nextstate2 = 2'b01;
@@ -95,7 +97,7 @@ module data_memory(
           2'b01: begin
             addr2 = address2[15:0] + 2'b01;
             if(memRead2) begin
-              readData2[23:16] = out2;
+              readData2[31:24] = out2;
             end
             wr2 = writeData[23:16];
             nextstate2 = 2'b10;
@@ -103,7 +105,7 @@ module data_memory(
           2'b10: begin
             addr2 = address2[15:0] + 2'b10;
             if(memRead2) begin
-              readData2[15:8] = out2;
+              readData2[23:16] = out2;
             end
             wr2 = writeData[15:8];
             nextstate2 = 2'b11;
@@ -111,7 +113,7 @@ module data_memory(
           2'b11: begin
             addr2 = address[15:0] + 2'b11;
             if(memRead2) begin
-              readData2[7:0] = out2;
+              readData2[15:8] = out2;
             end
             wr2 = writeData[7:0];
             nextstate2 = 2'b00;
