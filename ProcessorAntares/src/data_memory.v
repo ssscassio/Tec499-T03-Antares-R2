@@ -39,7 +39,7 @@ module data_memory(
           .clk(clk4),
 
           .addr_a(addr1),
-			    .we_a(1'b0),
+			 .we_a(1'b0),
           .data_a(8'b0),
           .q_a(out1),
 

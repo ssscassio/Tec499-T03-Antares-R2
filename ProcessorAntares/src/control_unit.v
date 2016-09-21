@@ -89,6 +89,7 @@ module control_unit(
       end
       6'b100???: begin //Load
         regDst <= 0;
+        jump <= 0;
         aluSrc <= 1;
         memWrite <= 0;
         memRead <=1;
@@ -98,6 +99,7 @@ module control_unit(
       end
       6'b101???: begin //Store
         regDst <=  0;
+        jump <= 0;
         aluSrc <= 1;
         memWrite <= 1;
         memRead <= 0;
@@ -106,7 +108,7 @@ module control_unit(
         branch <= 0;
       end
       `J: begin
-        jump <=1'b1;
+        jump <=1;
         branch <= 2'b00;
         jump <= 0;
         regDst <= 1'b0;

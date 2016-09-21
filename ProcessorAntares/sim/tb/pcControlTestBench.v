@@ -11,7 +11,7 @@ module pcControlTestBench();
           $finish();
       end
       else begin
-          $display("PASS");
+          $display("PASS  Saida esperada %8d, Saida encontrada %8d", REFout, nextPC);
       end
   endtask
 

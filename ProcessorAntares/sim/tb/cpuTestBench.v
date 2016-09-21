@@ -5,7 +5,7 @@ module cpuTestBench();
   reg Clock, Clock4 ,Reset;
 
   parameter Halfcycle = 40;
-  parameter Halfcycle4 = Halfcycle/5;
+  parameter Halfcycle4 = Halfcycle/10;
 
   localparam  Cycle = 2*Halfcycle;
   localparam  Cycle4 = 2*Halfcycle4;
