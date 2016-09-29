@@ -16,7 +16,7 @@ module baud_generator(
       baudGeneratorAcc <= baudGeneratorAcc[baudGeneratorAccWidth-1:0] + baudGeneratorInc;
     end
 
-    wire tick = baudGeneratorAcc[baudGeneratorAccWidth];
+    reg tick = baudGeneratorAcc[baudGeneratorAccWidth];
 
 endmodule
 
