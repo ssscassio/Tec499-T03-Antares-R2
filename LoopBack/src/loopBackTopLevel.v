@@ -4,26 +4,50 @@ module loopBackTopLevel(
     input clock_50MHz
   );
 
+  wire clock;
+
+  PLL pll(
+    .inclk0(clock_50MHz),
+    .c0(clock));
+
+  reg dataReady;
   wire [7:0] RxD_data;
-  wire dataReady;
+
 
   receiver REC(
-      .clk(clock_50MHz),
+      .clk(clock),
       .RxD(UART_Rx),
 
-      .RxD_data_ready(dataReady),
-      .RxD_data(RxD_data)
+      .data(RxD_data)
   );
 
-  wire TxD_busy;
-
+  
   transmitter transmissor(
-      .clk(clock_50MHz),
-      .TxD_start(dataReady),
-      .TxD_Data(RxD_data),
+      .clk(clock),
+      .start(dataReady),
+      .data(RxD_data),
 
       .TxD(UART_Tx),
-      .TxD_busy(TxD_busy)
   );
 
+  
+  reg [3:0] read = 0;
+  
+  always@(posedge clock) begin
+	if(read==0 && UART_Rx == 0) begin
+		dataReady <= 1'b0;
+		read = 4'b1;
+	end
+	else if(read <= 4'd10 && read !=0) begin
+		read= read + 1'b1;
+		dataReady <= 1'b0;
+		if(read > 4'd8) begin
+			dataReady<= 1'b1;
+			read <= 0;
+		end
+	end 
+	else
+		dataReady <= 0;
+  end
+  
 endmodule
