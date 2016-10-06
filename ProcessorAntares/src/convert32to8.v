@@ -16,6 +16,9 @@
 // Credits: https://www.altera.com/support/support-resources/design-examples/design-software/verilog/ver_statem.html
 //-----------------------------------------------------------------------------
 
+`ifndef _convert32to8
+`define _convert32to8
+
 module convert32to8(
   input clk, reset,
   input [31:0] data,
@@ -59,3 +62,5 @@ always @(posedge clk or posedge reset)
      end
 
 endmodule
+
+`endif
