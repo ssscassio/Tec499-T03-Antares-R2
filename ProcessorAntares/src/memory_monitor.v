@@ -1,18 +1,3 @@
-//-----------------------------------------------------------------------------
-// Universidade Estadual de Feira de Santana
-// TEC499 - MI - Sistemas Digitais
-// Antares-R2 2016.1
-//
-// Module: memory_monitor.v
-// Desc:
-// Inputs:
-// clk: Clock
-// address:
-//
-// Outputs:
-// status:
-//-----------------------------------------------------------------------------
-
 `ifndef _memory_monitor
 `define _memory_monitor
 
@@ -23,7 +8,7 @@ module memory_monitor(
   input [31:0] inAddress
   );
 
-  reg [31:0] deviceDataAddress = 32'11111111111111111000000000000100;
+  reg [31:0] deviceDataAddress = 32'b11111111111111111000000000000100;
   reg [31:0] statusAddress = 32'b11111111111111111000000000000000;
   reg state;
 
@@ -54,8 +39,8 @@ module memory_monitor(
               one:
                 state = zero;
           endcase
+      end    
   end
-
 endmodule
 
 `endif
