@@ -9,11 +9,11 @@ ADDI $t1,$zero,4 ;int B = 4;
 
 ADD $t2,$t0,$t1 ;int Sum = A+B;
 ;Print--------------------------------------------------
-ADDI $t3,$zero,00000000000000001111111111111000
+ADDI $t3,$zero,65528
 
 SW $t2, $t3 ;Inserir no topo da pilha reservado ao dispositivo
 POOLING1:
-  ADDI $t8,$zero,00000000000000001111111111111100
+  ADDI $t8,$zero,65532
   LW $t7, $t8 ;Carrega status do dispositivo
   BNE $t7,$zero,POOLING1
 ;-------------------------------------------------------
