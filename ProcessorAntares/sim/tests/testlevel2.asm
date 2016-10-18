@@ -15,21 +15,20 @@ ADD $t5,$t1,$t2 ;int Sum = B+C;
 ADD $t6,$t2,$t3 ;int Sum = C+D;
 ;Print--------------------------------------------------
   ADDI $t7,$zero,65528 ;Endereço do dispositivo
+  ADDI $t8,$zero,65532
 
   SW $t4, $t7 ;Armazena na reserva de dados do dispositivo
 POOLING1:
-  ADDI $t8,$zero,65532
+
   LW $t9, $t8 ;Carrega status do dispositivo
   BNE $t9,$zero,POOLING1
 
   SW $t5, $t7 ;Armazena na reserva de dados do dispositivo
 POOLING2:
-  ADDI $t8,$zero,65532
   LW $t9, $t8 ;Carrega status do dispositivo
   BNE $t9,$zero,POOLING2
 
   SW $t6, $t7 ;Armazena na reserva de dados do dispositivo
 POOLING3:
-  ADDI $t8,$zero,65532
   LW $t9, $t8 ;Carrega status do dispositivo
   BNE $t9,$zero,POOLING3
