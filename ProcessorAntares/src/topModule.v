@@ -1,6 +1,5 @@
 module topModule(input clock, output saida);
 
-
   wire clk4;
 
   wire memRead2_test, memWrite_test;
@@ -14,7 +13,6 @@ module topModule(input clock, output saida);
     .readData(readData_test), .readData2(readData2_test));
 
 
-	 
   cpu cpu( .clock(clock), .reset(Reset),
         .readData(readData_test), .readData2(readData2_test),
 

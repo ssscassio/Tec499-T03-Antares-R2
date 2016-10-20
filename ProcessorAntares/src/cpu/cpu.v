@@ -76,13 +76,13 @@ module cpu(input clock, reset,
 
   //Branch Address Calculate
   wire [31:0] immediate_extended;
-  sign_extend ImmediateExtend(.immediate(instruction_2[16:0]),.out(immediate_extended));
+  sign_extend ImmediateExtend(.immediate(instruction_2[15:0]),.out(immediate_extended));
 
   wire [31:0] immediate_shift2;
   shift_2 BranchShift2 (.in(immediate_extended),.out(immediate_shift2));
 
   behavioral_adder #(.Width(32)) BranchPlusPC(.A(PCPlus4_2), .B(immediate_shift2),
-                                              .Result(branchAddress));
+                                              .Result(branchAddress),.Cout());
   //End Branch Calculate
 
   //Jump Address Calculate
