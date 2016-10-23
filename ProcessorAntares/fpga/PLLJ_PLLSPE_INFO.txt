@@ -1,0 +1,10 @@
+PLL_Name	data_memory:mem|PLL4:pll|altpll:altpll_component|PLL_altpll1:auto_generated|pll1
+PLLJITTER	41
+PLLSPEmax	84
+PLLSPEmin	-53
+
+PLL_Name	PLL:pll|altpll:altpll_component|PLL_altpll:auto_generated|pll1
+PLLJITTER	30
+PLLSPEmax	84
+PLLSPEmin	-53
+

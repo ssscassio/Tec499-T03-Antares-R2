@@ -1,0 +1,4 @@
+Warning (10268): Verilog HDL information at alu.v(34): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at ex_mem.v(16): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at id_ex.v(21): always construct contains both blocking and non-blocking assignments
+Warning (10268): Verilog HDL information at mem_wb.v(15): always construct contains both blocking and non-blocking assignments

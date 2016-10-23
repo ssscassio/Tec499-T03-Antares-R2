@@ -5,8 +5,8 @@
 # Settings File (.qsf)
 ###################################################################
 
-PROJECT = cpu
-TOP = cpu
+PROJECT = topModuleDevice
+TOP = topModuleDevice 
 ASSIGNMENT_FILES = $(PROJECT).qpf $(PROJECT).qsf
 
 ###################################################################

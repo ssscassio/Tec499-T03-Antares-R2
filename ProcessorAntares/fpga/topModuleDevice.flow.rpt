@@ -1,0 +1,116 @@
+Flow report for topModuleDevice
+Thu Oct 20 08:39:31 2016
+Quartus II 32-bit Version 13.0.1 Build 232 06/12/2013 Service Pack 1 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+  8. Flow Messages
+  9. Flow Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2013 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++--------------------------------------------------------------------------------------+
+; Flow Summary                                                                         ;
++------------------------------------+-------------------------------------------------+
+; Flow Status                        ; Successful - Thu Oct 20 08:38:37 2016           ;
+; Quartus II 32-bit Version          ; 13.0.1 Build 232 06/12/2013 SP 1 SJ Web Edition ;
+; Revision Name                      ; topModuleDevice                                 ;
+; Top-level Entity Name              ; topModuleDevice                                 ;
+; Family                             ; Cyclone IV E                                    ;
+; Total logic elements               ; 6,383 / 28,848 ( 22 % )                         ;
+;     Total combinational functions  ; 6,054 / 28,848 ( 21 % )                         ;
+;     Dedicated logic registers      ; 1,347 / 28,848 ( 5 % )                          ;
+; Total registers                    ; 1347                                            ;
+; Total pins                         ; 14 / 329 ( 4 % )                                ;
+; Total virtual pins                 ; 0                                               ;
+; Total memory bits                  ; 524,288 / 608,256 ( 86 % )                      ;
+; Embedded Multiplier 9-bit elements ; 6 / 132 ( 5 % )                                 ;
+; Total PLLs                         ; 2 / 4 ( 50 % )                                  ;
+; Device                             ; EP4CE30F23C7                                    ;
+; Timing Models                      ; Final                                           ;
++------------------------------------+-------------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 10/20/2016 08:24:06 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; topModuleDevice     ;
++-------------------+---------------------+
+
+
++-------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                ;
++-----------------------+------------------------------+---------------+-------------+------------+
+; Assignment Name       ; Value                        ; Default Value ; Entity Name ; Section Id ;
++-----------------------+------------------------------+---------------+-------------+------------+
+; COMPILER_SIGNATURE_ID ; 105425942618.147696264607033 ; --            ; --          ; --         ;
++-----------------------+------------------------------+---------------+-------------+------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                             ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis      ; 00:00:56     ; 1.0                     ; 372 MB              ; 00:00:55                           ;
+; Fitter                    ; 00:13:01     ; 1.0                     ; 611 MB              ; 00:12:57                           ;
+; Assembler                 ; 00:00:09     ; 1.0                     ; 350 MB              ; 00:00:09                           ;
+; TimeQuest Timing Analyzer ; 00:00:49     ; 1.0                     ; 452 MB              ; 00:00:48                           ;
+; Total                     ; 00:14:55     ; --                      ; --                  ; 00:14:49                           ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                               ;
++---------------------------+------------------+------------------+------------+----------------+
+; Module Name               ; Machine Hostname ; OS Name          ; OS Version ; Processor type ;
++---------------------------+------------------+------------------+------------+----------------+
+; Analysis & Synthesis      ; LabHard-25143    ; Debian GNU/Linux ; 7          ; i686           ;
+; Fitter                    ; LabHard-25143    ; Debian GNU/Linux ; 7          ; i686           ;
+; Assembler                 ; LabHard-25143    ; Debian GNU/Linux ; 7          ; i686           ;
+; TimeQuest Timing Analyzer ; LabHard-25143    ; Debian GNU/Linux ; 7          ; i686           ;
++---------------------------+------------------+------------------+------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map --read_settings_files=on --source=../src/cpu/register_memory.v --source=../src/cpu/mux_2_5.v --source=../src/cpu/control_unit.v --source=../src/cpu/alu.v --source=../src/cpu/alu_dec.v --source=../src/cpu/forwarding_unit.v --source=../src/cpu/hazard.v --source=../src/cpu/ripple_adder.v --source=../src/cpu/full_adder.v --source=../src/cpu/mux_2_32.v --source=../src/cpu/behavioral_adder.v --source=../src/cpu/mux_4_32.v --source=../src/cpu/sign_extend.v --source=../src/cpu/branch_compare.v --source=../src/cpu/cpu.v --source=../src/cpu/pc_control.v --source=../src/cpu/shift_2.v --source=../src/cpu/interstageRegisters/ex_mem.v --source=../src/cpu/interstageRegisters/if_id.v --source=../src/cpu/interstageRegisters/id_ex.v --source=../src/cpu/interstageRegisters/mem_wb.v --source=../src/topModule.v --source=../src/memory/PLL4.v --source=../src/memory/data_memory.v --source=../src/memory/true_dual_port_ram_single_clock.v --source=../src/topModuleDevice.v --source=../src/device/full_transmitter.v --source=../src/device/monitor.v --source=../src/device/device_manager.v --source=../src/device/PLL.v --source=../src/device/memory_monitor.v --source=../src/interstageRegisters/ex_mem.v --source=../src/interstageRegisters/if_id.v --source=../src/interstageRegisters/id_ex.v --source=../src/interstageRegisters/mem_wb.v topModuleDevice
+quartus_fit --part=EP4CE30F23C7 --read_settings_files=on topModuleDevice
+quartus_asm topModuleDevice
+quartus_sta topModuleDevice
+
+
+

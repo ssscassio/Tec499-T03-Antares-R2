@@ -57,7 +57,7 @@ control_unit controlUnit(.opCode(opCode), .reset(reset),
         opCode = 6'b000000;
 			#1;
 			checkOutput();
-    
+
         REFbranch = 2'b00;
         REFjump = 1'b0;
         REFregDst = 1'b0;
@@ -74,21 +74,21 @@ control_unit controlUnit(.opCode(opCode), .reset(reset),
         opCode = 6'b001000;
 		  #1;
         checkOutput();
-    
+
         opCode = 6'b001010;
 		  #1;
         checkOutput();
-    
+
 
         opCode = 6'b001011;
 		  #1;
         checkOutput();
-    
+
 
         opCode = 6'b001101;
 		  #1;
         checkOutput();
-   
+
 
         opCode = 6'b001110;
 		  #1;
@@ -149,7 +149,7 @@ control_unit controlUnit(.opCode(opCode), .reset(reset),
         checkOutput();
 
 
-		  
+
         opCode = 6'b000010;//Jump
         REFjump =1;
         REFbranch = 2'b00;

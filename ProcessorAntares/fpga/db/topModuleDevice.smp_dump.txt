@@ -1,0 +1,14 @@
+
+State Machine - |topModuleDevice|data_memory:mem|state2
+Name state2.11 state2.10 state2.01 state2.00 
+state2.00 0 0 0 0 
+state2.01 0 0 1 1 
+state2.10 0 1 0 1 
+state2.11 1 0 0 1 
+
+State Machine - |topModuleDevice|data_memory:mem|state1
+Name state1.11 state1.10 state1.01 state1.00 
+state1.00 0 0 0 0 
+state1.01 0 0 1 1 
+state1.10 0 1 0 1 
+state1.11 1 0 0 1 

@@ -1,0 +1,11 @@
+<?xml version="1.0" ?>
+<LOG_ROOT>
+	<PROJECT NAME="topModuleDevice">
+		<CBX_INST_ENTRY INSTANCE_NAME="|topModuleDevice|cpu:cpu|alu:ALU|lpm_divide:Mod0" CBX_FILE_NAME="lpm_divide_cqo.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|topModuleDevice|data_memory:mem|PLL4:pll|altpll:altpll_component" CBX_FILE_NAME="PLL_altpll1.v"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|topModuleDevice|PLL:pll|altpll:altpll_component" CBX_FILE_NAME="PLL_altpll.v"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|topModuleDevice|cpu:cpu|alu:ALU|lpm_divide:Div0" CBX_FILE_NAME="lpm_divide_92p.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|topModuleDevice|cpu:cpu|alu:ALU|lpm_mult:Mult0" CBX_FILE_NAME="mult_46t.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|topModuleDevice|data_memory:mem|true_dual_port_ram_single_clock:Memory|altsyncram:ram_rtl_0" CBX_FILE_NAME="altsyncram_1kl1.tdf"/>
+	</PROJECT>
+</LOG_ROOT>
