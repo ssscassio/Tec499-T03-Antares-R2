@@ -14,8 +14,8 @@ ADD $t4,$t0,$t1 #int Sum = A+B#
 ADD $t5,$t1,$t2 #int Sum = B+C#
 ADD $t6,$t2,$t3 #int Sum = C+D#
 #Print--------------------------------------------------
-  ADDI $t7,$zero,65528 #Endereço do dispositivo
-  ADDI $t8,$zero,65532
+  LUI $t7 65528
+  LUI $t8 65532
 
   SW $t4, 0($t7) #Armazena na reserva de dados do dispositivo
 POOLING1:
