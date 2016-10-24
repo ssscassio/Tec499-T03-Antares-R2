@@ -27,7 +27,7 @@ module topModuleDevice(
 		.addressIn(address2_test), .dataIn (writeData_test),
 
 		.data(monitorOut),.writeOut(memWrite_test2),.readOut(memRead2_test2),.start(sendStart),
-		.memOutOut(readData3_test),);
+		.memOutOut(readData3_test));
 
 
 	full_transmitter Transmitter(.data(monitorOut), .clk(clock),.start(sendStart),

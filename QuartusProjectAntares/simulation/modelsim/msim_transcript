@@ -1,0 +1,353 @@
+# Reading D:/altera_lite/16.0/modelsim_ase/tcl/vsim/pref.tcl
+# do topModuleDevice_run_msim_rtl_verilog.do
+# if {[file exists rtl_work]} {
+# 	vdel -lib rtl_work -all
+# }
+# vlib rtl_work
+# vmap work rtl_work
+# Model Technology ModelSim ALTERA vmap 10.4d Lib Mapping Utility 2015.12 Dec 30 2015
+# vmap work rtl_work 
+# Copying D:/altera_lite/16.0/modelsim_ase/win32aloem/../modelsim.ini to modelsim.ini
+# Modifying modelsim.ini
+# 
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device/PLL.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:08 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device/PLL.v 
+# -- Compiling module PLL
+# 
+# Top level modules:
+# 	PLL
+# End time: 00:10:08 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device/full_transmitter.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:09 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device/full_transmitter.v 
+# -- Compiling module full_transmitter
+# 
+# Top level modules:
+# 	full_transmitter
+# End time: 00:10:09 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device/device_manager.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:10 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device/device_manager.v 
+# -- Compiling module device_manager
+# 
+# Top level modules:
+# 	device_manager
+# End time: 00:10:10 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/sign_extend.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:10 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/sign_extend.v 
+# -- Compiling module sign_extend
+# 
+# Top level modules:
+# 	sign_extend
+# End time: 00:10:10 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/shift_2.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:11 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/shift_2.v 
+# -- Compiling module shift_2
+# 
+# Top level modules:
+# 	shift_2
+# End time: 00:10:11 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/register_memory.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:12 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/register_memory.v 
+# -- Compiling module register_memory
+# 
+# Top level modules:
+# 	register_memory
+# End time: 00:10:12 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/pc_control.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:13 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/pc_control.v 
+# -- Compiling module pc_control
+# 
+# Top level modules:
+# 	pc_control
+# End time: 00:10:13 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/mux_4_32.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:13 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/mux_4_32.v 
+# -- Compiling module mux_4_32
+# 
+# Top level modules:
+# 	mux_4_32
+# End time: 00:10:13 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/mux_2_32.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:14 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/mux_2_32.v 
+# -- Compiling module mux_2_32
+# 
+# Top level modules:
+# 	mux_2_32
+# End time: 00:10:14 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/mux_2_5.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:15 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/mux_2_5.v 
+# -- Compiling module mux_2_5
+# 
+# Top level modules:
+# 	mux_2_5
+# End time: 00:10:15 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/forwarding_unit.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:16 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/forwarding_unit.v 
+# -- Compiling module forwarding_unit
+# 
+# Top level modules:
+# 	forwarding_unit
+# End time: 00:10:16 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/cpu.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:17 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/cpu.v 
+# -- Compiling module cpu
+# 
+# Top level modules:
+# 	cpu
+# End time: 00:10:17 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/branch_compare.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:18 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/branch_compare.v 
+# -- Compiling module branch_compare
+# 
+# Top level modules:
+# 	branch_compare
+# End time: 00:10:18 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/behavioral_adder.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:19 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/behavioral_adder.v 
+# -- Compiling module behavioral_adder
+# 
+# Top level modules:
+# 	behavioral_adder
+# End time: 00:10:19 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/mem_wb.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:20 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/mem_wb.v 
+# -- Compiling module mem_wb
+# 
+# Top level modules:
+# 	mem_wb
+# End time: 00:10:20 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/if_id.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:21 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/if_id.v 
+# -- Compiling module if_id
+# 
+# Top level modules:
+# 	if_id
+# End time: 00:10:21 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/id_ex.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:22 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/id_ex.v 
+# -- Compiling module id_ex
+# 
+# Top level modules:
+# 	id_ex
+# End time: 00:10:22 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/ex_mem.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:23 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/ex_mem.v 
+# -- Compiling module ex_mem
+# 
+# Top level modules:
+# 	ex_mem
+# End time: 00:10:24 on Oct 24,2016, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory/PLL4.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:25 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory/PLL4.v 
+# -- Compiling module PLL4
+# 
+# Top level modules:
+# 	PLL4
+# End time: 00:10:25 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory/data_memory.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:26 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory/data_memory.v 
+# -- Compiling module data_memory
+# 
+# Top level modules:
+# 	data_memory
+# End time: 00:10:26 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/topModuleDevice.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:27 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/topModuleDevice.v 
+# -- Compiling module topModuleDevice
+# 
+# Top level modules:
+# 	topModuleDevice
+# End time: 00:10:27 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory/memory_ram.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:28 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory/memory_ram.v 
+# -- Compiling module memory_ram
+# 
+# Top level modules:
+# 	memory_ram
+# End time: 00:10:29 on Oct 24,2016, Elapsed time: 0:00:01
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/db {D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/db/pll_altpll.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:30 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/db" D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/db/pll_altpll.v 
+# -- Compiling module PLL_altpll
+# 
+# Top level modules:
+# 	PLL_altpll
+# End time: 00:10:30 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/db {D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/db/pll_altpll1.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:31 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/db" D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/db/pll_altpll1.v 
+# -- Compiling module PLL_altpll1
+# 
+# Top level modules:
+# 	PLL_altpll1
+# End time: 00:10:31 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/hazard.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:32 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/hazard.v 
+# -- Compiling module hazard
+# 
+# Top level modules:
+# 	hazard
+# End time: 00:10:32 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/control_unit.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:33 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/control_unit.v 
+# -- Compiling module control_unit
+# 
+# Top level modules:
+# 	control_unit
+# End time: 00:10:33 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/alu_dec.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:34 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/alu_dec.v 
+# -- Compiling module alu_dec
+# 
+# Top level modules:
+# 	alu_dec
+# End time: 00:10:34 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu {D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/alu.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:35 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu" D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/alu.v 
+# -- Compiling module alu
+# 
+# Top level modules:
+# 	alu
+# End time: 00:10:35 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vlog -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/../ProcessorAntares/sim/tb {D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/../ProcessorAntares/sim/tb/deviceManagerTestBench.v}
+# Model Technology ModelSim ALTERA vlog 10.4d Compiler 2015.12 Dec 30 2015
+# Start time: 00:10:35 on Oct 24,2016
+# vlog -reportprogress 300 -vlog01compat -work work "+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/../ProcessorAntares/sim/tb" D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/../ProcessorAntares/sim/tb/deviceManagerTestBench.v 
+# -- Compiling module deviceManagerTestBench
+# 
+# Top level modules:
+# 	deviceManagerTestBench
+# End time: 00:10:35 on Oct 24,2016, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# 
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs="+acc"  deviceManagerTestBench
+# vsim -t 1ps -L altera_ver -L lpm_ver -L sgate_ver -L altera_mf_ver -L altera_lnsim_ver -L cycloneive_ver -L rtl_work -L work -voptargs=""+acc"" deviceManagerTestBench 
+# Start time: 00:10:37 on Oct 24,2016
+# Loading work.deviceManagerTestBench
+# Loading work.device_manager
+# 
+# add wave *
+# view structure
+# .main_pane.structure.interior.cs.body.struct
+# view signals
+# .main_pane.objects.interior.cs.body.tree
+# run -all
+# Endereco do Dispositivo: <SIM> 00000000000000001111111111111000
+# -----------------------------
+#            SAIDAS            
+# Data| Esperado: 00000000000000000000000000000011 Encontrado: 00000000000000000000000000000011
+# ReadOut| Esperado: 0 Encontrado: 0
+# WriteOut| Esperado: 0 Encontrado: 0
+# Start| Esperado: 1 Encontrado: 1
+# StatusReg| Esperado: 1 Encontrado: 1
+# -----------------------------
+# Endereco do Status: <<SIM>> 00000000000000001111111111111100
+# -----------------------------
+#            SAIDAS            
+# MemOutOut: Esperado: 00000000000000000000000000000001 Encontrado: 00000000000000000000000000000001
+# ReadOut: Esperado: 0 Encontrado: 0
+# WriteOut: Esperado: 0 Encontrado: 0
+# Start: Esperado: 0 Encontrado: 0
+# -----------------------------
+# <<FINISH>>
+# StatusReg| Esperado: 0 Encontrado: 0
+# Endereco do Status: <<SIM>> 00000000000000001111111111111100
+# -----------------------------
+#            SAIDAS            
+# MemOutOut: Esperado: 00000000000000000000000000000000 Encontrado: 00000000000000000000000000000000
+# ReadOut: Esperado: 0 Encontrado: 0
+# WriteOut: Esperado: 0 Encontrado: 0
+# Start: Esperado: 0 Encontrado: 0
+# -----------------------------
+# Endereco Qualquer: 00000000000000000000000000000101
+# -----------------------------
+#            SAIDAS            
+# MemOutOut: Esperado: 00000000000000000000000000000011 Encontrado: 00000000000000000000000000000011
+# ReadOut: Esperado: 1 Encontrado: 1
+# WriteOut: Esperado: 0 Encontrado: 0
+# Start: Esperado: 0 Encontrado: 0
+# -----------------------------
+# End time: 00:28:37 on Oct 24,2016, Elapsed time: 0:18:00
+# Errors: 0, Warnings: 0

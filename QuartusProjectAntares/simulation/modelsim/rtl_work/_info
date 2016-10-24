@@ -1,0 +1,625 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/simulation/modelsim
+valu
+Z1 !s110 1477275035
+!i10b 1
+!s100 XdUWO1KJgA2[lPA98_`=C2
+In]S=Y9V4XVida5L3bh]Rc1
+Z2 VDg1SIo80bB@j0V0VzS_@n1
+R0
+Z3 w1477225930
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/alu.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/alu.v
+Z4 L0 24
+Z5 OV;L;10.4d;61
+r1
+!s85 0
+31
+Z6 !s108 1477275035.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/ALUop.vh|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/Opcode.vh|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/alu.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/alu.v|
+!i113 1
+Z7 o-vlog01compat -work work
+Z8 !s92 -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu
+valu_dec
+!s110 1477275034
+!i10b 1
+!s100 IMo5jckaQ`8RLBkc5HDoZ0
+I:ZjQKRD:ZDDHOhOjLfC@l0
+R2
+R0
+R3
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/alu_dec.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/alu_dec.v
+Z9 L0 20
+R5
+r1
+!s85 0
+31
+!s108 1477275034.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/ALUop.vh|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/Opcode.vh|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/alu_dec.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/alu_dec.v|
+!i113 1
+R7
+R8
+vbehavioral_adder
+!s110 1477275019
+!i10b 1
+!s100 :^O;gobKjh6aIGCGK331n0
+IM0ChX=eki=<YO:Z:?2BUU0
+R2
+R0
+R3
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/behavioral_adder.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/behavioral_adder.v
+L0 4
+R5
+r1
+!s85 0
+31
+!s108 1477275019.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/behavioral_adder.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/behavioral_adder.v|
+!i113 1
+R7
+R8
+vbranch_compare
+!s110 1477275018
+!i10b 1
+!s100 LnRj`=;QZQP:[JgeK=GJ40
+I>Rel<]c4ZT7`W=8eBCV@90
+R2
+R0
+R3
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/branch_compare.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/branch_compare.v
+L0 21
+R5
+r1
+!s85 0
+31
+!s108 1477275018.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/branch_compare.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/branch_compare.v|
+!i113 1
+R7
+R8
+vcontrol_unit
+!s110 1477275033
+!i10b 1
+!s100 zIQUV?Bf7eSXEU35Q5@:k2
+IY0VjYW5Qn_?V?d6RUPE<f0
+R2
+R0
+R3
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/control_unit.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/control_unit.v
+Z10 L0 19
+R5
+r1
+!s85 0
+31
+!s108 1477275033.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/Opcode.vh|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/control_unit.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/control_unit.v|
+!i113 1
+R7
+R8
+vcpu
+!s110 1477275017
+!i10b 1
+!s100 5fP3^EaBdL^;`NAnjL6bY1
+ICfj@;`5ccnBX[<:ceegaP1
+R2
+R0
+R3
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/cpu.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/cpu.v
+L0 1
+R5
+r1
+!s85 0
+31
+!s108 1477275017.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/cpu.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/cpu.v|
+!i113 1
+R7
+R8
+vdata_memory
+!s110 1477275026
+!i10b 1
+!s100 KXz@O>YVmJcOe4Z]>EN[L1
+I=0UN<Gl7=iBBXXe7J>MS]0
+R2
+R0
+w1477270599
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory/data_memory.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory/data_memory.v
+R9
+R5
+r1
+!s85 0
+31
+!s108 1477275026.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory/data_memory.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory/data_memory.v|
+!i113 1
+R7
+Z11 !s92 -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory
+vdevice_manager
+Z12 !s110 1477275010
+!i10b 1
+!s100 1SCE=OXEYbEh7izmY6Y;X1
+I<:PlAXeoU7SQ1f`ioa>KF0
+R2
+R0
+R3
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device/device_manager.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device/device_manager.v
+L0 1
+R5
+r1
+!s85 0
+31
+Z13 !s108 1477275010.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device/device_manager.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device/device_manager.v|
+!i113 1
+R7
+Z14 !s92 -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device
+vdeviceManagerTestBench
+R1
+!i10b 1
+!s100 eZ`E?<=>CMG1JlTj;IIDg3
+Id05OiJFhWZgJ0I@>@OXHE1
+R2
+R0
+w1477274976
+8D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/../ProcessorAntares/sim/tb/deviceManagerTestBench.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/../ProcessorAntares/sim/tb/deviceManagerTestBench.v
+L0 1
+R5
+r1
+!s85 0
+31
+R6
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/../ProcessorAntares/sim/tb/deviceManagerTestBench.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/../ProcessorAntares/sim/tb|D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/../ProcessorAntares/sim/tb/deviceManagerTestBench.v|
+!i113 1
+R7
+!s92 -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/../ProcessorAntares/sim/tb
+ndevice@manager@test@bench
+vex_mem
+!s110 1477275024
+!i10b 1
+!s100 Kd^b@5z4BGYba=?LUdKN`1
+I=f]iS8[08BAzcLHCzI5SB0
+R2
+R0
+R3
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/ex_mem.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/ex_mem.v
+L0 4
+R5
+r1
+!s85 0
+31
+!s108 1477275023.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/ex_mem.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/ex_mem.v|
+!i113 1
+R7
+Z15 !s92 -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters
+vforwarding_unit
+!s110 1477275016
+!i10b 1
+!s100 8<aLhk`RPN>ihZKLggUbY1
+IZ`@ghoOCn0CFB]k7izGkm0
+R2
+R0
+R3
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/forwarding_unit.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/forwarding_unit.v
+R4
+R5
+r1
+!s85 0
+31
+!s108 1477275016.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/forwarding_unit.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/forwarding_unit.v|
+!i113 1
+R7
+R8
+vfull_transmitter
+!s110 1477275009
+!i10b 1
+!s100 @gj[nzkVA0BkTgQGaBYL61
+IDoZV^BGQDHK?HjWfe6nlz2
+R2
+R0
+R3
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device/full_transmitter.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device/full_transmitter.v
+L0 1
+R5
+r1
+!s85 0
+31
+!s108 1477275009.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device/full_transmitter.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device/full_transmitter.v|
+!i113 1
+R7
+R14
+vhazard
+!s110 1477275032
+!i10b 1
+!s100 jKI@b8?Eeg?P=HP_0`Yz33
+ImNd@[>^UOadP`Y<6jXPb53
+R2
+R0
+R3
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/hazard.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/hazard.v
+R4
+R5
+r1
+!s85 0
+31
+!s108 1477275032.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/Opcode.vh|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/hazard.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/hazard.v|
+!i113 1
+R7
+R8
+vid_ex
+!s110 1477275022
+!i10b 1
+!s100 m93E7[<j=NmVQ<Z2IMPCd0
+I?1H<<?46AI;[lRcBCO8:73
+R2
+R0
+R3
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/id_ex.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/id_ex.v
+L0 4
+R5
+r1
+!s85 0
+31
+!s108 1477275022.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/id_ex.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/id_ex.v|
+!i113 1
+R7
+R15
+vif_id
+!s110 1477275021
+!i10b 1
+!s100 =Oh[BK@zL<3@FhhQGIH=>2
+Iba@RJid_@c6<CWG65VinF0
+R2
+R0
+R3
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/if_id.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/if_id.v
+L0 23
+R5
+r1
+!s85 0
+31
+!s108 1477275021.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/if_id.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/if_id.v|
+!i113 1
+R7
+R15
+vmem_wb
+!s110 1477275020
+!i10b 1
+!s100 7f^V6733>1n]RWGd:d;@S3
+I?6deHhM5Pm^f[W8GCWBP33
+R2
+R0
+R3
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/mem_wb.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/mem_wb.v
+L0 5
+R5
+r1
+!s85 0
+31
+!s108 1477275020.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/mem_wb.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/interstageRegisters/mem_wb.v|
+!i113 1
+R7
+R15
+vmemory_ram
+!s110 1477275029
+!i10b 1
+!s100 No7Li8AHd`U6mYhXZKIDP2
+IzNAMSK[Di8VTKPTIYmb0O2
+R2
+R0
+w1477270536
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory/memory_ram.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory/memory_ram.v
+Z16 L0 40
+R5
+r1
+!s85 0
+31
+!s108 1477275028.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory/memory_ram.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory/memory_ram.v|
+!i113 1
+R7
+R11
+vmux_2_32
+!s110 1477275014
+!i10b 1
+!s100 :HMK;V`KTb;;=NGd4^TXa2
+IN:lOYX4gQ<VGA6AgjXiYX0
+R2
+R0
+R3
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/mux_2_32.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/mux_2_32.v
+R10
+R5
+r1
+!s85 0
+31
+!s108 1477275014.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/mux_2_32.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/mux_2_32.v|
+!i113 1
+R7
+R8
+vmux_2_5
+!s110 1477275015
+!i10b 1
+!s100 _PoH>:E8>Z4i0SWWHJez12
+IlDEMj<KWH9iS7B6:01bn<1
+R2
+R0
+R3
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/mux_2_5.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/mux_2_5.v
+R10
+R5
+r1
+!s85 0
+31
+!s108 1477275015.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/mux_2_5.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/mux_2_5.v|
+!i113 1
+R7
+R8
+vmux_4_32
+Z17 !s110 1477275013
+!i10b 1
+!s100 1DI7hCZOD1z:>fOOj;]AU3
+IA;:VCkN=_0S<@FcEWR1T`3
+R2
+R0
+R3
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/mux_4_32.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/mux_4_32.v
+R10
+R5
+r1
+!s85 0
+31
+Z18 !s108 1477275013.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/mux_4_32.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/mux_4_32.v|
+!i113 1
+R7
+R8
+vpc_control
+R17
+!i10b 1
+!s100 cJHP_l3eU^neOI>he`J1Q3
+I5k3@;@ihELbnTS0ZOWR]k2
+R2
+R0
+R3
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/pc_control.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/pc_control.v
+L0 4
+R5
+r1
+!s85 0
+31
+R18
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/pc_control.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/pc_control.v|
+!i113 1
+R7
+R8
+vPLL
+!s110 1477275008
+!i10b 1
+!s100 YZIa]13LZg:1l4laDe5oP1
+ILhN<gn;U9O<fW44>1XD6;1
+R2
+R0
+R3
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device/PLL.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device/PLL.v
+R16
+R5
+r1
+!s85 0
+31
+!s108 1477275008.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device/PLL.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/device/PLL.v|
+!i113 1
+R7
+R14
+n@p@l@l
+vPLL4
+!s110 1477275025
+!i10b 1
+!s100 Z7Ko@i_4fAL?g]M?@K=@g2
+I0jlNlRo5;?1kQL^`6i>`^2
+R2
+R0
+R3
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory/PLL4.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory/PLL4.v
+R16
+R5
+r1
+!s85 0
+31
+!s108 1477275025.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory/PLL4.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/memory/PLL4.v|
+!i113 1
+R7
+R11
+n@p@l@l4
+vPLL_altpll
+!s110 1477275030
+!i10b 1
+!s100 JcQQQK9gc48OceCkjW3DM1
+Ib[8JEa;UB0=zl0nJOVBcW2
+R2
+R0
+w1477262239
+8D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/db/pll_altpll.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/db/pll_altpll.v
+Z19 L0 30
+R5
+r1
+!s85 0
+31
+!s108 1477275030.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/db/pll_altpll.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/db|D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/db/pll_altpll.v|
+!i113 1
+R7
+Z20 !s92 -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/db
+n@p@l@l_altpll
+vPLL_altpll1
+!s110 1477275031
+!i10b 1
+!s100 o441G6K;0>DTWO78mzh]^3
+I3gcCMoOCUcRiSTeNI0;QU2
+R2
+R0
+w1477262241
+8D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/db/pll_altpll1.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/db/pll_altpll1.v
+R19
+R5
+r1
+!s85 0
+31
+!s108 1477275031.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/db/pll_altpll1.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/db|D:/Downloads/Tec499-T03-Antares-R2-master/QuartusProjectAntares/db/pll_altpll1.v|
+!i113 1
+R7
+R20
+n@p@l@l_altpll1
+vregister_memory
+!s110 1477275012
+!i10b 1
+!s100 <4i^I7MW1Zj@1_dNECT9^2
+I`0H@WT@4[F108TCUXM^;o1
+R2
+R0
+R3
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/register_memory.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/register_memory.v
+L0 22
+R5
+r1
+!s85 0
+31
+!s108 1477275012.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/register_memory.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/register_memory.v|
+!i113 1
+R7
+R8
+vshift_2
+!s110 1477275011
+!i10b 1
+!s100 :dTS]BjGV1Fma4?ZjRjhJ3
+Imj=an=W2hOzzZbkHb<zc<0
+R2
+R0
+R3
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/shift_2.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/shift_2.v
+Z21 L0 17
+R5
+r1
+!s85 0
+31
+!s108 1477275011.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/shift_2.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/shift_2.v|
+!i113 1
+R7
+R8
+vsign_extend
+R12
+!i10b 1
+!s100 OCLf4FiNh^]Ea>mWR[3kn1
+Ij@`JmJlK6m?aF27W[4nY62
+R2
+R0
+R3
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/sign_extend.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/sign_extend.v
+R21
+R5
+r1
+!s85 0
+31
+R13
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/sign_extend.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/cpu/sign_extend.v|
+!i113 1
+R7
+R8
+vtopModuleDevice
+!s110 1477275027
+!i10b 1
+!s100 2`QFA>HV32h7R6SjV4H4j3
+I;MA[=X1FTL<Kff8gRdjFC3
+R2
+R0
+w1477271368
+8D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/topModuleDevice.v
+FD:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/topModuleDevice.v
+L0 1
+R5
+r1
+!s85 0
+31
+!s108 1477275027.000000
+!s107 D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/topModuleDevice.v|
+!s90 -reportprogress|300|-vlog01compat|-work|work|+incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src|D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src/topModuleDevice.v|
+!i113 1
+R7
+!s92 -vlog01compat -work work +incdir+D:/Downloads/Tec499-T03-Antares-R2-master/ProcessorAntares/src
+ntop@module@device

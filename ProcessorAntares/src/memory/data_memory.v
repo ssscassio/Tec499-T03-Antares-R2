@@ -35,16 +35,16 @@ module data_memory(
       wire [7:0] out1, out2;
       reg memWrite2;
 
-      true_dual_port_ram_single_clock Memory(
-          .clk(clk4),
+      memory_ram Memory(
+          .clock(clk4),
 
-          .addr_a(addr1),
-			 .we_a(1'b0),
+          .address_a(addr1),
+			 .wren_a(1'b0),
           .data_a(8'b0),
           .q_a(out1),
 
-          .addr_b(addr2),
-          .we_b(memWrite2),
+          .address_b(addr2),
+          .wren_b(memWrite2),
           .data_b(wr2),
           .q_b(out2)
         );
